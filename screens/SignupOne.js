@@ -3,10 +3,10 @@ import { Text } from "react-native";
 
 //import Navigation from "../Navigation";
 
-const SignuoOne=() => {
+const SignupOne=() => {
     return(
-        <Text>Time to start</Text>
+        <Text>Sign up panel</Text>
     );
 }
 
-export default SignuoOne;
+export default SignupOne;
