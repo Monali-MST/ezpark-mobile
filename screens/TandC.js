@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Ant from 'react-native-vector-icons/Foundation';
+import Foundation from 'react-native-vector-icons/Foundation';
 import extStyles from "../styles/extStyles";
 
 const TandC = props => {
@@ -9,7 +9,7 @@ const TandC = props => {
         <SafeAreaView style={[extStyles.body]}>
             <View style={{flex:.7}}>
                 <View style={[intStyles.titleView]}>
-                    <Ant name="book-bookmark" size={82} color="#FAA41E" style={[intStyles.icon]}/>
+                    <Foundation name="book-bookmark" size={82} color="#FAA41E" style={intStyles.icon}/>
                     <Text style={[intStyles.title]}>Terms{'\n'}of Service</Text>
                 </View>
             </View>
@@ -118,13 +118,13 @@ const intStyles = StyleSheet.create({
 
     icon:{
         marginLeft:10,
-        marginHorizontal:5,
+        marginRight:5,
         height:"100%"
     },
 
     title:{
         fontSize:36,
-        fontWeight:"bold",
+        fontWeight:"900",
         color:"#FAA41E",
         lineHeight:40,
     },
