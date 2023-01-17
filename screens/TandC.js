@@ -20,7 +20,7 @@ const TandC = props => {
                             Introduction
                         </Text>
                         <Text style={[intStyles.para]}>
-                            These terms and conditions ("Terms") govern your use of the Parking App ("App") and the services provided through the App (collectively, the "Services"). Please read these Terms carefully before using the Services. By accessing or using the Services, you agree to be bound by these Terms and our privacy policy, which can be found at [insert link to privacy policy]. If you do not agree to these Terms, you may not use the Services.
+                            These terms and conditions ("Term") govern your use of the Parking App ("App") and the services provided through the App (collectively, the "Services"). Please read these Terms carefully before using the Services. By accessing or using the Services, you agree to be bound by these Terms and our privacy policy, which can be found at [insert link to privacy policy]. If you do not agree to these Terms, you may not use the Services.
                         </Text>
                     </View>
 
