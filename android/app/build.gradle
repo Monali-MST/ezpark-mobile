@@ -219,7 +219,6 @@ android {
             keyPassword 'android'
         }
     }
-    namespace 'com.ezpark'
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
