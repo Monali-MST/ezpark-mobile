@@ -20,7 +20,7 @@ const Login = props => {
           <TextInput secureTextEntry={true} placeholder="Password" placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
         </View>
         <View style={{width:"80%", alignSelf:"center"}}>
-          <TouchableOpacity onPress={() => Alert.alert('This is forgot passwrod')} activeOpacity={0.8}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Payment')} activeOpacity={0.8}>
             <Text style={{...extStyles.txtColor2,...{fontWeight:"500"}}}>Forgot password?</Text>
           </TouchableOpacity>
         </View>

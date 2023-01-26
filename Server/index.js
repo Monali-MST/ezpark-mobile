@@ -9,7 +9,7 @@ const db=mysql.createConnection({
     host:"ezpark-db.cvhbqqtsx1je.ap-northeast-1.rds.amazonaws.com",
     user:"admin",
     password:"ezPark!123",
-    database:"EzPark"
+    database:"EzPark",
 
 })
 
