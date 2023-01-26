@@ -94,13 +94,16 @@ const SignupOne= props => {
                         <TextInput placeholder={"Fixed Line (Optional)"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={[intStyles.formInput]}>
+                        <TextInput placeholder={"NIC"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                    </View>
+                    <View style={[intStyles.formInput]}>
                         <TextInput placeholder={"E-Mail"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder={"Password"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder={"Password"} placeholderTextColor="#A5A5A5" style={intStyles.inputText} secureTextEntry={true}/>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder={"Re-enter password"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder={"Re-enter password"} placeholderTextColor="#A5A5A5" style={intStyles.inputText} secureTextEntry={true}/>
                     </View>
                 </ScrollView>
             </View>

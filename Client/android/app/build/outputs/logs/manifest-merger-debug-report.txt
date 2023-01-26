@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:1:1-26:12
-MERGED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:1:1-26:12
+ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:1:1-26:12
+MERGED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:1:1-26:12
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:8:1-18:12
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/e32b7eeb3398efff4e100fae60e161ae/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/d00cb5af49214c127447117a850c65b4/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
-MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/4aa3daa4c119e5ebf154ad11d072f485/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.facebook.react:hermes-engine:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/9d7eb90167c45c49ac02b1539a4fe443/transformed/jetified-hermes-engine-0.70.6-debug/AndroidManifest.xml:2:1-9:12
@@ -69,36 +69,36 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] /Users/pramodjayathilak
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/264bfea9cec9553b72567ddd2a81a286/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/fe525e62d2b9e85c0d777a0bb14f7298/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/54294f5f857978835a11e24fc1422778/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:2:1-13:12
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:2:1-13:12
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:2:1-13:12
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:2:1-13:12
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:2:1-13:12
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:2:1-13:12
 	package
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:2:3-23
-		INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:2:3-23
-		INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:2:3-23
+		INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:2:3-23
+		INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:1:1-26:12
-		INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:1:1-26:12
+		INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml
 	xmlns:tools
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:3:5-51
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:3:5-51
 	android:versionCode
-		INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:1:1-26:12
-		INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:1:1-26:12
+		INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:1:11-69
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:4:5-67
+ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:4:5-67
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:15:5-67
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:15:5-67
 	android:name
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:4:22-64
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:4:22-64
 application
-ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:6:5-25:19
-MERGED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:6:5-25:19
-MERGED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:6:5-25:19
+ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:6:5-25:19
+MERGED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:6:5-25:19
+MERGED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:6:5-25:19
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.soloader:soloader:0.10.4] /Users/pramodjayathilaka/.gradle/caches/transforms-3/87826452408345e9fcde9828ee0fb34c/transformed/jetified-soloader-0.10.4/AndroidManifest.xml:11:5-20
@@ -118,69 +118,69 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/pramodjayathilaka/.g
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.7.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/63a3df243d2d102452600006144a86df/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:8:7-39
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:8:7-39
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:8:7-39
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:8:7-39
 	tools:ignore
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:10:9-48
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:10:9-48
 	android:roundIcon
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:10:7-52
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:10:7-52
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:10:7-52
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:10:7-52
 	tools:targetApi
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:9:9-29
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:9:9-29
 	android:icon
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:9:7-41
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:9:7-41
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:9:7-41
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:9:7-41
 	android:allowBackup
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:11:7-34
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:11:7-34
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:11:7-34
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:11:7-34
 	android:theme
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:12:7-38
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:12:7-38
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:12:7-38
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:12:7-38
 	android:usesCleartextTraffic
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:8:9-44
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:8:9-44
 	android:name
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:7:7-38
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:7:7-38
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:7:7-38
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:7:7-38
 activity#com.ezpark.MainActivity
-ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:13:7-24:18
+ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:13:7-24:18
 	android:label
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:15:9-41
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:15:9-41
 	android:launchMode
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:17:9-40
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:17:9-40
 	android:windowSoftInputMode
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:18:9-51
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:18:9-51
 	android:exported
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:19:9-32
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:19:9-32
 	android:configChanges
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:16:9-118
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:16:9-118
 	android:name
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:14:9-37
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:14:9-37
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:20:9-23:25
+ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:20:9-23:25
 action#android.intent.action.MAIN
-ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:21:13-65
+ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:21:13-65
 	android:name
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:21:21-62
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:21:21-62
 category#android.intent.category.LAUNCHER
-ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:22:13-73
+ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:22:13-73
 	android:name
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml:22:23-70
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:22:23-70
 uses-sdk
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/e32b7eeb3398efff4e100fae60e161ae/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/e32b7eeb3398efff4e100fae60e161ae/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/d00cb5af49214c127447117a850c65b4/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/d00cb5af49214c127447117a850c65b4/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
-MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/4aa3daa4c119e5ebf154ad11d072f485/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
@@ -297,24 +297,24 @@ MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/pramodjayathilaka/.gradle/
 MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/fe525e62d2b9e85c0d777a0bb14f7298/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/54294f5f857978835a11e24fc1422778/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/54294f5f857978835a11e24fc1422778/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml
-INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
-ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:5:5-77
+ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:5:5-77
 	android:name
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:5:22-75
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:5:22-75
 activity#com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:11:9-111
+ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:11:9-111
 	android:exported
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:11:84-108
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:11:84-108
 	android:name
-		ADDED from /Users/pramodjayathilaka/Documents/ezpark-mobile/ezpark-mobile/android/app/src/debug/AndroidManifest.xml:11:19-83
+		ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/debug/AndroidManifest.xml:11:19-83
 uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from [com.facebook.flipper:flipper:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:5-76
 	android:name
