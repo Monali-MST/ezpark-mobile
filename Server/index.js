@@ -13,6 +13,14 @@ const db=mysql.createConnection({
 
 })
 
+app.get ("/payment",(req, res)=>{
+    const query="SELECT * FROM EzPark.Test;";
+    db.query(query,(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 app.get("/",(req,res)=>{
     res.json("Hello this is backend")
 })
@@ -23,6 +31,22 @@ app.get("/user",(req,res)=>{
         if(err) return res.json(err)
         return res.json(data)
     })
+})
+//INSERT INTO `EzPark`.`Test` (`CardNumber`, `CardHolder`, `ExpDate`) VALUES (?);
+
+app.post("/payment",(req,res)=>{
+    const query="INSERT INTO `EzPark`.`Test` (`CardNumber`, `CardHolder`, `ExpDate`) VALUES (?);"
+    const values=[
+        req.body.CardNum,
+        req.body.CardHolder,
+        req.body.Expiry,
+       
+    ]
+    db.query(query,[values],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json("Nathali test has been created")
+    })
+
 })
 
 app.post("/user",(req,res)=>{

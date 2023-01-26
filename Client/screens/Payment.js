@@ -1,7 +1,10 @@
 import React from "react";
-import { SafeAreaView, View, Text, StyleSheet,TextInput,Pressable,Alert,Image, ScrollView} from "react-native";
+import { SafeAreaView, View, Text, StyleSheet,TextInput,Pressable,Alert,Image, ScrollView, label} from "react-native";
 import Icon from 'react-native-vector-icons/Feather';
 import extStyles from "../styles/extStyles";
+import RadioButtonRN from 'radio-buttons-react-native';
+
+
 
 
 const App=()=>{
@@ -10,6 +13,16 @@ const App=()=>{
     <SafeAreaView style={[extStyles.body]}>
     
     <ScrollView>
+    const data = [{{label: 'data 1' }},
+ {{label: 'data 2'}
+  
+ }
+];
+
+<RadioButtonRN
+  data={data}
+  selectedBtn={(e) => console.log(e)}
+/>
       <View style={styles.heading}> 
           <Icon name="credit-card" size={80} color="#FAA41E" style={styles.icon} />
           <Text style={styles.headingTxt}>Payment Details</Text>
