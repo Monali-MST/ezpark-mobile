@@ -26,14 +26,20 @@ app.get("/user",(req,res)=>{
 })
 
 app.post("/user",(req,res)=>{
-    const query="INSERT INTO `EzPark`.`User_Details` (`UserID`, `Firstname`, `Lastname`, `Email`, `UserPassword`, `Contact`) VALUES (?);"
+    const query="INSERT INTO `EzPark`.`User_Details` (`FirstName`, `LastName`, `AddFLine`, `AddSLine`, `Street`, `City`, `PostCode`, `MobileNo`, `FixedLine`, `NIC`, `Email`,`Password`) VALUES (?);"
     const values=[
-        req.body.UserID,
-        req.body.Firstname,
-        req.body.Lastname,
+        req.body.FirstName,
+        req.body.LastName,
+        req.body.AddFLine,
+        req.body.AddSLine,
+        req.body.Street,
+        req.body.City,
+        req.body.PostCode,
+        req.body.MobileNo,
+        req.body.FixedLine,
+        req.body.NIC,
         req.body.Email,
-        req.body.UserPassword,
-        req.body.Contact,
+        req.body.Password
     ]
     db.query(query,[values],(err,data)=>{
         if(err) return res.json(err)
