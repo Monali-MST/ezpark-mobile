@@ -1,9 +1,12 @@
 import express from "express";
 import mysql from "mysql";
+import cors from "cors";
 
 const app = express()
+app.use(express.json());
+app.use(cors());
 
-app.use(express.json())
+
 
 const db=mysql.createConnection({
     host:"ezpark-db.cvhbqqtsx1je.ap-northeast-1.rds.amazonaws.com",
@@ -28,18 +31,18 @@ app.get("/user",(req,res)=>{
 app.post("/user",(req,res)=>{
     const query="INSERT INTO `EzPark`.`User_Details` (`FirstName`, `LastName`, `AddFLine`, `AddSLine`, `Street`, `City`, `PostCode`, `MobileNo`, `FixedLine`, `NIC`, `Email`,`Password`) VALUES (?);"
     const values=[
-        req.body.FirstName,
-        req.body.LastName,
+        req.body.Fname,
+        req.body.Lname,
         req.body.AddFLine,
         req.body.AddSLine,
         req.body.Street,
         req.body.City,
-        req.body.PostCode,
-        req.body.MobileNo,
-        req.body.FixedLine,
-        req.body.NIC,
+        req.body.PCode,
+        req.body.MobNum,
+        req.body.FixedNum,
+        req.body.Nic,
         req.body.Email,
-        req.body.Password
+        req.body.Pword
     ]
     db.query(query,[values],(err,data)=>{
         if(err) return res.json(err)

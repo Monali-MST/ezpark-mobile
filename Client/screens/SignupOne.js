@@ -1,13 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView, Text, View, StyleSheet, ScrollView, TextInput, Pressable,Alert } from "react-native";
 import extStyles from "../styles/extStyles";
 import Foundatin from "react-native-vector-icons/Foundation";
-import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
-
-const Labels=['Basic Info','Vehicles Details', 'Complete'];
-
+import axios from "axios";
 
 const SignupOne= props => {
+
+    const [users, setUsers] = useState({
+        Fname: "",
+        Lname: "",
+        AddFLine: "",
+        AddSLine: "",
+        Street: "",
+        City: "",
+        PCode: null,
+        MobNum: "",
+        FixedNum: "",
+        Nic: "",
+        Email: "",
+        Pword: "",
+    });
+
+
+    const handleChange = (name, value) => {
+        setUsers((prev) => ({...prev,[name]: value}));
+    };
+
+    console.log(users);
+
+    const handleClick = async e =>{
+        e.preventDefault()
+        try{
+            await axios.post("http://10.0.2.2:8800/user", users);
+            props.navigation.navigate("Test");
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+    
+
     return(
        <SafeAreaView style={[extStyles.body]}>
             <View style={{flex:.7}}>
@@ -61,46 +93,46 @@ const SignupOne= props => {
             <View style={{flex:3.9}}>
                 <ScrollView style={{height:"100%"}} showsVerticalScrollIndicator={false}>
                     <View style={{...intStyles.formInput, ...{marginTop:15}}}>
-                        <TextInput placeholder="First Name" placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder="First Name" onChangeText={(value) => handleChange("Fname", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder="Last Name" placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder="Last Name" onChangeText={(value) => handleChange("Lname", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder={"Address (First Line)"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder={"Address (First Line)"} onChangeText={(value) => handleChange("AddFLine", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder={"Address (Second Line)"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder={"Address (Second Line)"} onChangeText={(value) => handleChange("AddSLine", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder={"Street"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder={"Street"} onChangeText={(value) => handleChange("Street", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={{flexDirection:"row", width:"90%", marginHorizontal:20}}>
                         <View style={{width:"49%"}}>
                         <View style={{...intStyles.formInput,...{width:"100%", alignItems:"flex-start"}}}>
-                            <TextInput placeholder={"City"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                            <TextInput placeholder={"City"} onChangeText={(value) => handleChange("City", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                         </View>
                         </View>
                         <View style={{width:"49%", marginLeft:5}}>
                         <View style={{...intStyles.formInput,...{width:"100%", marginHorizontal:0}}}>
-                            <TextInput placeholder={"Postal Code"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                            <TextInput placeholder={"Postal Code"} onChangeText={(value) => handleChange("PCode", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                         </View>
                         </View>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder={"Mobile number 1"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder={"Mobile number"} onChangeText={(value) => handleChange("MobNum", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder={"Fixed Line (Optional)"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder={"Fixed Line (Optional)"} onChangeText={(value) => handleChange("FixedNum", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder={"NIC"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder={"NIC"} onChangeText={(value) => handleChange("Nic", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder={"E-Mail"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+                        <TextInput placeholder={"E-Mail"} onChangeText={(value) => handleChange("Email", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
                     <View style={[intStyles.formInput]}>
-                        <TextInput placeholder={"Password"} placeholderTextColor="#A5A5A5" style={intStyles.inputText} secureTextEntry={true}/>
+                        <TextInput placeholder={"Password"} onChangeText={(value) => handleChange("Pword", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText} secureTextEntry={true}/>
                     </View>
                     <View style={[intStyles.formInput]}>
                         <TextInput placeholder={"Re-enter password"} placeholderTextColor="#A5A5A5" style={intStyles.inputText} secureTextEntry={true}/>
@@ -114,7 +146,7 @@ const SignupOne= props => {
                     </Text>
                 </View>
                 <View style={{width:"90%", alignSelf:"center", marginTop:10}}>
-                    <Pressable onPress={() => Alert.alert('This is next button')} 
+                    <Pressable onPress={handleClick} 
                     style={({ pressed })=>[
                     intStyles.button,
                     pressed && {opacity:.8}
@@ -223,59 +255,4 @@ const intStyles= StyleSheet.create({
       },
 });
 
-const nxtBtn={width:120, backgroundColor:"#FAA41E", alignItems:"center", borderRadius: 20};
-const nxtBtnTxt={fontSize:20, fontWeight:"bold", color:"#000"};
-const prvBtn={width:120, backgroundColor:"#000", alignItems:"center", borderRadius:20};
-const prvBtnTxt={fontSize:20, fontWeight:"bold", color:"#fff"};
-
-
-
 export default SignupOne;
-
-
-{/*<View style={{flex:5.3}}>
-                <ProgressSteps topOffset={20} marginBottom={10} activeStepIconBorderColor={"#FAA41E"} completedProgressBarColor={"#FAA41E"} completedStepIconColor={"#FAA41E"} activeLabelColor={"#FAA41E"} completedLabelColor={"#FAA41E"}>
-                    <ProgressStep label="Basic Info" nextBtnStyle={nxtBtn} nextBtnTextStyle={nxtBtnTxt}>
-                        <View>
-                            <ScrollView>
-                                <View style={{...intStyles.formInput, ...{marginTop:15}}}>
-                                    <TextInput placeholder="First Name" placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
-                                </View>
-                                <View style={[intStyles.formInput]}>
-                                    <TextInput placeholder="Last Name" placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
-                                </View>
-                                <View style={[intStyles.formInput]}>
-                                    <TextInput placeholder={"Address (First Line)"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
-                                </View>
-                                <View style={[intStyles.formInput]}>
-                                    <TextInput placeholder={"Address (Second Line)"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
-                                </View>
-                                <View style={[intStyles.formInput]}>
-                                    <TextInput placeholder={"Street"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
-                                </View>
-                                    <View style={{...intStyles.formInput,...{width:"40%"}}}>
-                                        <TextInput placeholder={"Street"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
-                                    </View>
-                                    <View style={{...intStyles.formInput,...{width:"40%"}}}>
-                                        <TextInput placeholder={"Street"} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
-                                    </View>
-                            </ScrollView>
-                        </View>
-                        <View style={{alignItems:"center"}}>
-                            <Text style={{fontWeight:"500", fontSize:16, color:"#A5A5A5"}}>Already have an account?
-                                <Text onPress={() => props.navigation.navigate('Login')} style={{color:"#FAA41E"}} > Sign in</Text>
-                            </Text>
-                        </View>
-                    </ProgressStep>
-                    <ProgressStep label="Vehicle Details" nextBtnStyle={nxtBtn} nextBtnTextStyle={nxtBtnTxt} previousBtnStyle={prvBtn} previousBtnTextStyle={prvBtnTxt}>
-                        <View style={{ alignItems: 'center' }}>
-                            <Text>This is the content within step 2!</Text>
-                        </View>
-                    </ProgressStep>
-                    <ProgressStep label="Complete" nextBtnStyle={nxtBtn} nextBtnTextStyle={nxtBtnTxt} previousBtnStyle={prvBtn} previousBtnTextStyle={prvBtnTxt}>
-                        <View style={{ alignItems: 'center' }}>
-                            <Text>This is the content within step 3!</Text>
-                        </View>
-                    </ProgressStep>
-                </ProgressSteps>
-        </View>*/}
