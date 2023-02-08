@@ -6,6 +6,8 @@ import Login from './screens/Login';
 import SignupOne from './screens/SignupOne';
 import TandC from './screens/TandC';
 import Test from './screens/Test';
+import Vehicle from './screens/Vehicle';
+import VerMob from './screens/VerMob';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +19,8 @@ const Navigation = props => {
                 <Stack.Screen name="TandC" component={TandC} options={{headerShown:false}}/>
                 <Stack.Screen name="SignupOne" component={SignupOne} options={{headerShown:false}}/>
                 <Stack.Screen name="Test" component={Test} options={{headerShown:false}}/>
+                <Stack.Screen name="Vehicle" component={Vehicle} options={{headerShown:false}}/>
+                <Stack.Screen name="VerMob" component={VerMob} options={{headerShown:false}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

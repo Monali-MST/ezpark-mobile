@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, Text, View, StyleSheet, ScrollView, TextInput, Pressable,Alert } from "react-native";
+import { SafeAreaView, Text, View, StyleSheet, ScrollView, TextInput, Pressable } from "react-native";
 import extStyles from "../styles/extStyles";
 import Foundatin from "react-native-vector-icons/Foundation";
 import axios from "axios";
@@ -31,8 +31,8 @@ const SignupOne= props => {
     const handleClick = async e =>{
         e.preventDefault()
         try{
-            await axios.post("http://10.0.2.2:8800/user", users);
-            props.navigation.navigate("Test");
+            // await axios.post("http://10.0.2.2:8800/user", users);
+            props.navigation.navigate("Vehicle");
         }catch(err){
             console.log(err);
         }
@@ -41,14 +41,11 @@ const SignupOne= props => {
     
 
     return(
-       <SafeAreaView style={[extStyles.body]}>
-            <View style={{flex:.7}}>
+       <SafeAreaView style={extStyles.body}>
                 <View style={intStyles.titleView}>
                     <Foundatin name="address-book" size={82} color="#FAA41E" style={intStyles.icon}/>
                     <Text style={[intStyles.title]}>Sign Up</Text>
                 </View>
-            </View>
-            <View style={{flex:.6, justifyContent:"center"}}>
                 <View style={{flexDirection:"row", alignItems:"center", justifyContent:"center"}}>
                     <View style={{flex:1, alignItems:"center"}}>
                         <View style={intStyles.activeCircle}>
@@ -72,7 +69,7 @@ const SignupOne= props => {
                         </View>
                     </View>
                 </View>
-                <View style={{flexDirection:"row"}}>
+                <View style={{flexDirection:"row", marginBottom:5}}>
                     <View style={{flex:1, alignItems:"center"}}>
                         <Text style={intStyles.stepText}>
                             Basic Info
@@ -89,9 +86,8 @@ const SignupOne= props => {
                         </Text>
                     </View>
                 </View>
-            </View>
-            <View style={{flex:3.9}}>
-                <ScrollView style={{height:"100%"}} showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View>
                     <View style={{...intStyles.formInput, ...{marginTop:15}}}>
                         <TextInput placeholder="First Name" onChangeText={(value) => handleChange("Fname", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
                     </View>
@@ -137,29 +133,27 @@ const SignupOne= props => {
                     <View style={[intStyles.formInput]}>
                         <TextInput placeholder={"Re-enter password"} placeholderTextColor="#A5A5A5" style={intStyles.inputText} secureTextEntry={true}/>
                     </View>
-                </ScrollView>
-            </View>
-            <View style={{flex:.8}}>
-                <View style={{alignItems:"center"}}>
-                    <Text style={{fontWeight:"500", fontSize:16, color:"#A5A5A5", marginTop:10}}>Already have an account?
-                        <Text onPress={() => props.navigation.navigate('Login')} style={{color:"#FAA41E"}} > Sign in</Text>
-                    </Text>
                 </View>
-                <View style={{width:"90%", alignSelf:"center", marginTop:10}}>
-                    <Pressable onPress={handleClick} 
-                    style={({ pressed })=>[
-                    intStyles.button,
-                    pressed && {opacity:.8}
-                    ]}>
-                    {({ pressed }) => { 
-                        return(
-                        <Text style={[intStyles.btnTxt, pressed && {opacity:.8}]}>Next</Text>
-                        );
-                    }} 
-                    </Pressable>
-                </View>
+            </ScrollView>
+            <View style={{alignItems:"center"}}>
+                <Text style={{fontWeight:"500", fontSize:16, color:"#A5A5A5", marginTop:10}}>Already have an account?
+                    <Text onPress={() => props.navigation.navigate('Login')} style={{color:"#FAA41E"}} > Sign in</Text>
+                </Text>
             </View>
-       </SafeAreaView>
+            <View style={{width:"90%", alignSelf:"center", marginVertical:10}}>
+                <Pressable onPress={handleClick} 
+                style={({ pressed })=>[
+                intStyles.button,
+                pressed && {opacity:.8}
+                ]}>
+                {({ pressed }) => { 
+                    return(
+                    <Text style={[intStyles.btnTxt, pressed && {opacity:.8}]}>Next</Text>
+                    );
+                }} 
+                </Pressable>
+            </View>
+        </SafeAreaView>
     );
 }
 
@@ -217,7 +211,6 @@ const intStyles= StyleSheet.create({
 
     titleView:{
         flexDirection:"row",
-        marginVertical:5,
         alignItems:"center"
     },
     formInput:{
