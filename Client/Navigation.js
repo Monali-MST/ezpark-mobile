@@ -8,6 +8,7 @@ import TandC from './screens/TandC';
 import Test from './screens/Test';
 import Vehicle from './screens/Vehicle';
 import VerMob from './screens/VerMob';
+import OtpMob from "./screens/OtpMob";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const Navigation = props => {
                 <Stack.Screen name="Test" component={Test} options={{headerShown:false}}/>
                 <Stack.Screen name="Vehicle" component={Vehicle} options={{headerShown:false}}/>
                 <Stack.Screen name="VerMob" component={VerMob} options={{headerShown:false}}/>
+                <Stack.Screen name="OtpMob" component={OtpMob} options={{headerShown:false}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

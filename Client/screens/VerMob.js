@@ -7,7 +7,6 @@ import extStyles from '../styles/extStyles';
 const VerMob = props => {
     return(
         <SafeAreaView style={extStyles.body}>
-            {/* <View style={{flex:1.2}}> */}
             <View style={intStyles.titleView}>
                 <Foundatin name="address-book" size={82} color="#FAA41E" style={intStyles.icon}/>
                 <Text style={[intStyles.title]}>Sign Up</Text>
@@ -55,25 +54,20 @@ const VerMob = props => {
             <View>
                 <Text style={intStyles.success}>Success!</Text>
             </View>
-            {/* </View> */}
-            {/* <View style={{flex:3.8, justifyContent:"flex-start", alignItems:"flex-start"}}> */}
-                <Image source={require("../src/assets/CelebrationRafiki.png")} style={intStyles.mainImage}/>
-            {/* </View> */}
-            {/* <View style={{flex:1}}> */}
-                <View style={{width:"90%", alignSelf:"center"}}>
-                    <Pressable onPress={() => Alert.alert("Hello")} 
-                        style={({ pressed })=>[
-                        intStyles.button,
-                        pressed && {opacity:.8}
-                        ]}>
-                        {({ pressed }) => { 
-                            return(
-                            <Text style={[intStyles.btnTxt, pressed && {opacity:.8}]}>Verify Mobile Number</Text>
-                            );
-                        }} 
-                    </Pressable>
-                </View>
-            {/* </View> */}
+            <Image source={require("../src/assets/CelebrationRafiki.png")} style={intStyles.mainImage}/>
+            <View style={{width:"90%", alignSelf:"center"}}>
+                <Pressable onPress={() => props.navigation.navigate('OtpMob')} 
+                    style={({ pressed })=>[
+                    intStyles.button,
+                    pressed && {opacity:.8}
+                    ]}>
+                    {({ pressed }) => { 
+                        return(
+                        <Text style={[intStyles.btnTxt, pressed && {opacity:.8}]}>Verify Mobile Number</Text>
+                        );
+                    }} 
+                </Pressable>
+            </View>
         </SafeAreaView>
     )
 }
