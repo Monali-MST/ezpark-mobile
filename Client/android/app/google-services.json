@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "569060444438",
-    "project_id": "ezpark-auth",
-    "storage_bucket": "ezpark-auth.appspot.com"
+    "project_number": "846439380028",
+    "project_id": "ezpark-auth-4ca3e",
+    "storage_bucket": "ezpark-auth-4ca3e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:569060444438:android:299593f3edd54770276837",
+        "mobilesdk_app_id": "1:846439380028:android:2309ce826b59a2af6d3f39",
         "android_client_info": {
           "package_name": "com.ezpark"
         }
       },
       "oauth_client": [
         {
-          "client_id": "569060444438-k3jm1hjn5v9i1rkrjci50ac4fv1hdnv2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ezpark",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
-          }
-        },
-        {
-          "client_id": "569060444438-aul2gjt7v3ii053rd41mgpv87vj4lbmn.apps.googleusercontent.com",
+          "client_id": "846439380028-jj1eirne103fl3n5dmuo02m23ma1f30i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAleN4_iPjo71uwUCw5hppBddSKSDF5iNY"
+          "current_key": "AIzaSyCYciRolf7wRjfQln989Tk4REwSeZl0zlE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "569060444438-aul2gjt7v3ii053rd41mgpv87vj4lbmn.apps.googleusercontent.com",
+              "client_id": "846439380028-jj1eirne103fl3n5dmuo02m23ma1f30i.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

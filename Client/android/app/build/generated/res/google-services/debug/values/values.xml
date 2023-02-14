@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_web_client_id" translatable="false">569060444438-aul2gjt7v3ii053rd41mgpv87vj4lbmn.apps.googleusercontent.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">569060444438</string>
-    <string name="google_api_key" translatable="false">AIzaSyAleN4_iPjo71uwUCw5hppBddSKSDF5iNY</string>
-    <string name="google_app_id" translatable="false">1:569060444438:android:299593f3edd54770276837</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAleN4_iPjo71uwUCw5hppBddSKSDF5iNY</string>
-    <string name="google_storage_bucket" translatable="false">ezpark-auth.appspot.com</string>
-    <string name="project_id" translatable="false">ezpark-auth</string>
+    <string name="default_web_client_id" translatable="false">846439380028-jj1eirne103fl3n5dmuo02m23ma1f30i.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">846439380028</string>
+    <string name="google_api_key" translatable="false">AIzaSyCYciRolf7wRjfQln989Tk4REwSeZl0zlE</string>
+    <string name="google_app_id" translatable="false">1:846439380028:android:2309ce826b59a2af6d3f39</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCYciRolf7wRjfQln989Tk4REwSeZl0zlE</string>
+    <string name="google_storage_bucket" translatable="false">ezpark-auth-4ca3e.appspot.com</string>
+    <string name="project_id" translatable="false">ezpark-auth-4ca3e</string>
 </resources>

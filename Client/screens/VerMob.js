@@ -56,7 +56,7 @@ const VerMob = props => {
             </View>
             <Image source={require("../src/assets/CelebrationRafiki.png")} style={intStyles.mainImage}/>
             <View style={{width:"90%", alignSelf:"center"}}>
-                <Pressable onPress={() => props.navigation.navigate('OtpMob')} 
+                <Pressable onPress={() => props.navigation.navigate('Test')} 
                     style={({ pressed })=>[
                     intStyles.button,
                     pressed && {opacity:.8}
