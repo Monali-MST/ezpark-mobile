@@ -2,9 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView, Text, View, StyleSheet, TextInput, TouchableOpacity ,Pressable, Alert} from 'react-native';
 import extStyles from '../styles/extStyles';
 import Material from "react-native-vector-icons/MaterialCommunityIcons";
-import auth from '@react-native-firebase/auth';
+import EncryptedStorage from 'react-native-encrypted-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OtpMob = props => {
+  const [OtpVal, setOtpVal] = useState('');
+  const [MobNo, setMobNo] = useState('');
+  
+  const handleChange = (text)=> {
+    setOtpVal(text);
+  }
+
+  useEffect(() => {
+    async function getMobNo(){
+    setMobNo(await AsyncStorage.getItem('MobNum'));
+    }
+    getMobNo();
+  }, []);
+
+  const OtpValidation = async e =>{
+    inputedVal=await EncryptedStorage.getItem('OTP');
+    if(OtpVal==inputedVal){
+      props.navigation.navigate("Test");
+    }else{
+      Alert.alert("Invalid OTP");
+    }
+  }
   return (
     <SafeAreaView style={extStyles.body}>
       <View style={intStyles.titleView}>
@@ -12,10 +35,10 @@ const OtpMob = props => {
         <Text style={[intStyles.title]}>Verification{'\n'}Code</Text>
       </View>
       <View>
-        <Text style={{fontSize:16, marginLeft:10}}>Please type the verification code sent{'\n'} to +94 77 ** ** 535</Text>
+        <Text style={{fontSize:16, marginLeft:10}}>Please type the verification code sent{'\n'} to {MobNo.substring(0, 2) + '*'.repeat(4) + MobNo.substring(7)}</Text>
       </View>
       <View style={[intStyles.formInput]}>
-        <TextInput placeholderTextColor="#A5A5A5" style={intStyles.inputText}/>
+        <TextInput placeholderTextColor="#A5A5A5" style={intStyles.inputText} value={OtpVal} onChangeText={handleChange}/>
       </View>
       <View style={{alignItems:"center"}}>
       <Text style={{fontWeight:"bold", fontSize:16, color:"#A5A5A5", marginTop:10}}>Did not receive?
@@ -23,7 +46,7 @@ const OtpMob = props => {
       </Text>
       </View>
       <View style={{width:"90%", alignSelf:"center", marginVertical:10}}>
-        <Pressable onPress={()=>Alert.alert('Pramod')} 
+        <Pressable onPress={OtpValidation} 
         style={({ pressed })=>[
         intStyles.button,
         pressed && {opacity:.8}
@@ -62,10 +85,10 @@ const intStyles= StyleSheet.create({
   },
 
   inputText:{
-    fontSize:20,
+    fontSize:36,
     color:"#212121",
     width:"95%",
-    marginHorizontal:"2.5%"
+    marginHorizontal:"2.5%",
   }, 
 
   formInput:{
@@ -77,7 +100,7 @@ const intStyles= StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 10,
     height:65,
-    width:200,
+    width:120,
     alignSelf:"center",
     marginTop: 20
   },

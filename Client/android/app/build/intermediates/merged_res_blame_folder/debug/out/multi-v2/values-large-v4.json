@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.ezpark.app-mergeDebugResources-33:/values-large-v4/values-large-v4.xml",
+            "outputFile": "com.ezpark.app-mergeDebugResources-28:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/83445e1e40ac16980ab69ece4da013c8/transformed/appcompat-1.4.1/res/values-large-v4/values-large-v4.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/1b40e4574e76bff5831ef4bf4270480d/transformed/appcompat-1.4.1/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/4e506807a0d345185fb42e4af67f5dbe/transformed/material-1.1.0/res/values-large-v4/values-large-v4.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/ff7f9e1ea9c2e709fffb9e018f2252cf/transformed/material-1.1.0/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

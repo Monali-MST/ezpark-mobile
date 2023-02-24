@@ -11,14 +11,16 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-// @react-native-firebase/app
-import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
-// @react-native-firebase/auth
-import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
+// @react-native-async-storage/async-storage
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+// react-native-encrypted-storage
+import com.emeraldsanto.encryptedstorage.RNEncryptedStoragePackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
 import com.swmansion.rnscreens.RNScreensPackage;
+// react-native-sensitive-info
+import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 // react-native-svg
 import com.horcrux.svg.SvgPackage;
 // react-native-vector-icons
@@ -68,10 +70,11 @@ public class PackageList {
   public ArrayList<ReactPackage> getPackages() {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
-      new ReactNativeFirebaseAppPackage(),
-      new ReactNativeFirebaseAuthPackage(),
+      new AsyncStoragePackage(),
+      new RNEncryptedStoragePackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
+      new RNSensitiveInfoPackage(),
       new SvgPackage(),
       new VectorIconsPackage()
     ));

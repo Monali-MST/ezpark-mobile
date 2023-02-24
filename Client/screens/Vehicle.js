@@ -7,6 +7,10 @@ import { SelectList } from "react-native-dropdown-select-list";
 
 const Vehicle = props =>{
 
+    const handleClick = async e =>{
+        props.navigation.navigate("VerMob");
+    }
+
     //const [selected, setSelected] = React.useState("");
   
     const data = [
@@ -117,7 +121,7 @@ const Vehicle = props =>{
                     </View>
                 </ScrollView>
                 <View style={{width:"90%", alignSelf:"center", marginVertical:20}}>
-                    <Pressable onPress={() => props.navigation.navigate("VerMob")} 
+                    <Pressable onPress={handleClick} 
                         style={({ pressed })=>[
                         intStyles.button,
                         pressed && {opacity:.8}

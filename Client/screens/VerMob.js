@@ -3,8 +3,28 @@ import { SafeAreaView, View, Text, StyleSheet, Image, Pressable, Alert } from "r
 import Foundatin from "react-native-vector-icons/Foundation";
 import Ant from "react-native-vector-icons/AntDesign";
 import extStyles from '../styles/extStyles';
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 const VerMob = props => {
+    const handleClick = async e =>{
+        e.preventDefault()
+        try{
+            console.log(await AsyncStorage.getItem('MobNum'));
+            var id=94776651535;
+            var pw=1701;
+            var to=await AsyncStorage.getItem('MobNum');
+            var code=Math.floor(Math.random()*(9999-1000+1))+1000;
+            await EncryptedStorage.setItem('OTP',code.toString());
+            console.log(await EncryptedStorage.getItem('OTP'));
+            var text="ඔබගේ EzPark ලියාපදිංචි වීමේ කේතය: ";
+            //await axios.post("http://textit.biz/sendmsg/index.php?id="+id+"&pw="+pw+"&to="+to+"&text="+text+code+"");
+            props.navigation.navigate('OtpMob');
+        }catch(err){
+            console.log(err);
+        }
+      }
     return(
         <SafeAreaView style={extStyles.body}>
             <View style={intStyles.titleView}>
@@ -56,7 +76,7 @@ const VerMob = props => {
             </View>
             <Image source={require("../src/assets/CelebrationRafiki.png")} style={intStyles.mainImage}/>
             <View style={{width:"90%", alignSelf:"center"}}>
-                <Pressable onPress={() => props.navigation.navigate('Test')} 
+                <Pressable onPress={handleClick} 
                     style={({ pressed })=>[
                     intStyles.button,
                     pressed && {opacity:.8}

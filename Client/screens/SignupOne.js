@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { SafeAreaView, Text, View, StyleSheet, ScrollView, TextInput, Pressable } from "react-native";
+import { SafeAreaView, Text, View, StyleSheet, ScrollView, TextInput, Pressable} from "react-native";
 import extStyles from "../styles/extStyles";
 import Foundatin from "react-native-vector-icons/Foundation";
 import axios from "axios";
+import AsyncStore from "@react-native-async-storage/async-storage";
 
 const SignupOne= props => {
 
@@ -13,7 +14,7 @@ const SignupOne= props => {
         AddSLine: "",
         Street: "",
         City: "",
-        PCode: null,
+        PCode: "",
         MobNum: "",
         FixedNum: "",
         Nic: "",
@@ -26,12 +27,14 @@ const SignupOne= props => {
         setUsers((prev) => ({...prev,[name]: value}));
     };
 
-    console.log(users);
+  //console.log(users);
 
     const handleClick = async e =>{
         e.preventDefault()
         try{
-            // await axios.post("http://10.0.2.2:8800/user", users);
+            //console.log(users.Fname);
+            //await axios.post("http://10.0.2.2:8800/user", users);
+            await AsyncStore.multiSet([['Fname',users.Fname],['Lname',users.Lname],['AddFLine',users.Lname],['AddSLine',users.AddSLine],['Street',users.Street],['City',users.City],['Pcode',users.PCode],['MobNum',users.MobNum],['FixedNum',users.FixedNum],['Nic',users.Nic],['Email',users.Email],['Pword',users.Pword]]);
             props.navigation.navigate("Vehicle");
         }catch(err){
             console.log(err);

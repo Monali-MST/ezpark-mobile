@@ -27,28 +27,17 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Deel met"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Deel met <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Vou in"</string>
-    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Aktiveer</string>
-    <string msgid="227660514972886228" name="common_google_play_services_enable_text">%1$s sal nie werk nie tensy jy Google Play Dienste aktiveer.</string>
-    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Aktiveer Google Play Dienste</string>
-    <string msgid="7153882981874058840" name="common_google_play_services_install_button">Installeer</string>
-    <string name="common_google_play_services_install_text">%1$s sal nie sonder Google Play Dienste werk nie, wat nie op jou toestel is nie.</string>
-    <string msgid="7215213145546190223" name="common_google_play_services_install_title">Kry Google Play Dienste</string>
-    <string name="common_google_play_services_notification_channel_name">Beskikbaarheid van Google Play Dienste</string>
-    <string name="common_google_play_services_notification_ticker">Google Play Services-fout</string>
-    <string name="common_google_play_services_unknown_issue">%1$s ondervind probleme met Google Play Dienste. Probeer asseblief weer.</string>
-    <string name="common_google_play_services_unsupported_text">%1$s sal nie werk sonder Google Play Dienste nie, wat nie deur jou toestel gesteun word nie.</string>
-    <string msgid="6556509956452265614" name="common_google_play_services_update_button">Dateer op</string>
-    <string msgid="9053896323427875356" name="common_google_play_services_update_text">%1$s sal nie werk nie tensy jy Google Play Dienste opdateer.</string>
-    <string msgid="6006316683626838685" name="common_google_play_services_update_title">Dateer Google Play Dienste op</string>
-    <string name="common_google_play_services_updating_text">%1$s sal nie sonder Google Play Dienste werk nie, wat tans opdateer.</string>
-    <string name="common_google_play_services_wear_update_text">Nuwe weergawe van Google Play Dienste is nodig. Dit sal binnekort self opdateer.</string>
-    <string name="common_open_on_phone">Maak oop op foon</string>
-    <string name="common_signin_button_text">Meld aan</string>
-    <string name="common_signin_button_text_long">Meld aan met Google</string>
-    <string msgid="3260749812566568062" name="copy_toast_msg">"Skakel is na knipbord gekopieer"</string>
-    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopieer skakel"</string>
-    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Maak in blaaier oop"</string>
-    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Deel skakel"</string>
+    <string msgid="6241458715391513061" name="accessibility_fingerprint_dialog_help_area">"Hulpboodskapgebied"</string>
+    <string msgid="4296851028928624518" name="confirm_device_credential_password">"Gebruik wagwoord"</string>
+    <string msgid="7497355367608150274" name="default_error_msg">"Onbekende fout"</string>
+    <string msgid="5354590751262189738" name="fingerprint_dialog_touch_sensor">"Raak die vingerafdruksensor"</string>
+    <string msgid="3976825677335166260" name="fingerprint_error_hw_not_available">"Vingerafdrukhardeware is nie beskikbaar nie."</string>
+    <string msgid="1176237289575184578" name="fingerprint_error_hw_not_present">"Hierdie toetstel het nie \'n vingerafdruksensor nie"</string>
+    <string msgid="1651062876313169162" name="fingerprint_error_lockout">"Te veel pogings. Probeer later weer."</string>
+    <string msgid="3350805046152877040" name="fingerprint_error_no_fingerprints">"Geen vingerafdrukke is geregistreer nie."</string>
+    <string msgid="3421037373085129417" name="fingerprint_error_user_canceled">"Vingerafdrukhandeling is deur gebruiker gekanselleer."</string>
+    <string msgid="5491287833813257925" name="fingerprint_not_recognized">"Nie herken nie"</string>
+    <string msgid="7474799539658018076" name="generic_error_user_canceled">"Gebruiker het stawing gekanselleer."</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Soek"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

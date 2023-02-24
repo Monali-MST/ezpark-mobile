@@ -27,28 +27,17 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Partilhar com"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Partilhar com a app <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Reduzir"</string>
-    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Ativar</string>
-    <string msgid="227660514972886228" name="common_google_play_services_enable_text">O %1$s não funciona enquanto não ativar os serviços do Google Play.</string>
-    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Ativar serviços do Google Play</string>
-    <string msgid="7153882981874058840" name="common_google_play_services_install_button">Instalar</string>
-    <string name="common_google_play_services_install_text">O %1$s não é executado sem os Serviços do Google Play, os quais estão em falta no seu dispositivo.</string>
-    <string msgid="7215213145546190223" name="common_google_play_services_install_title">Obter serviços do Google Play</string>
-    <string name="common_google_play_services_notification_channel_name">Disponibilidade Serviços do Google Play</string>
-    <string name="common_google_play_services_notification_ticker">Erro dos Serviços do Google Play</string>
-    <string name="common_google_play_services_unknown_issue">%1$s está a ter problemas com os Serviços do Google Play. Tente novamente.</string>
-    <string name="common_google_play_services_unsupported_text">Não é possível executar o %1$s sem os Serviços do Google Play, os quais não são compatíveis com o seu dispositivo.</string>
-    <string msgid="6556509956452265614" name="common_google_play_services_update_button">Atualizar</string>
-    <string msgid="9053896323427875356" name="common_google_play_services_update_text">O %1$s não é executado enquanto não atualizar os serviços do Google Play.</string>
-    <string msgid="6006316683626838685" name="common_google_play_services_update_title">Atualizar serviços do Google Play</string>
-    <string name="common_google_play_services_updating_text">O %1$s não é executado sem os serviços do Google Play, os quais estão a ser atualizados.</string>
-    <string name="common_google_play_services_wear_update_text">É necessária uma nova versão dos serviços do Google Play. Esta será atualizada automaticamente em breve.</string>
-    <string name="common_open_on_phone">Abrir no telemóvel</string>
-    <string name="common_signin_button_text">Iniciar sessão</string>
-    <string name="common_signin_button_text_long">Iniciar sessão com o Google</string>
-    <string msgid="3260749812566568062" name="copy_toast_msg">"Link copiado para a área de transferência."</string>
-    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Copiar link"</string>
-    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Abrir no navegador"</string>
-    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Partilhar link"</string>
+    <string msgid="6241458715391513061" name="accessibility_fingerprint_dialog_help_area">"Área da mensagem de ajuda"</string>
+    <string msgid="4296851028928624518" name="confirm_device_credential_password">"Utilizar palavra-passe"</string>
+    <string msgid="7497355367608150274" name="default_error_msg">"Erro desconhecido."</string>
+    <string msgid="5354590751262189738" name="fingerprint_dialog_touch_sensor">"Toque no sensor de impressões digitais"</string>
+    <string msgid="3976825677335166260" name="fingerprint_error_hw_not_available">"Hardware de impressão digital não disponível."</string>
+    <string msgid="1176237289575184578" name="fingerprint_error_hw_not_present">"Este dispositivo não tem sensor de impressões digitais."</string>
+    <string msgid="1651062876313169162" name="fingerprint_error_lockout">"Demasiadas tentativas. Tente novamente mais tarde."</string>
+    <string msgid="3350805046152877040" name="fingerprint_error_no_fingerprints">"Nenhuma impressão digital registada."</string>
+    <string msgid="3421037373085129417" name="fingerprint_error_user_canceled">"Operação de impressão digital cancelada pelo utilizador."</string>
+    <string msgid="5491287833813257925" name="fingerprint_not_recognized">"Não reconhecida."</string>
+    <string msgid="7474799539658018076" name="generic_error_user_canceled">"Autenticação cancelada pelo utilizador."</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Pesquisar"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

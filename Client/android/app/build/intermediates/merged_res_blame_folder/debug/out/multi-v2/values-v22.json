@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.ezpark.app-mergeDebugResources-33:/values-v22/values-v22.xml",
+            "outputFile": "com.ezpark.app-mergeDebugResources-28:/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/83445e1e40ac16980ab69ece4da013c8/transformed/appcompat-1.4.1/res/values-v22/values-v22.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/1b40e4574e76bff5831ef4bf4270480d/transformed/appcompat-1.4.1/res/values-v22/values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

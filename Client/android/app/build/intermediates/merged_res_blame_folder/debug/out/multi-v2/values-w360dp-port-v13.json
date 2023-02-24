@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.ezpark.app-mergeDebugResources-33:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
+            "outputFile": "com.ezpark.app-mergeDebugResources-28:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
             "map": [
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/4e506807a0d345185fb42e4af67f5dbe/transformed/material-1.1.0/res/values-w360dp-port-v13/values-w360dp-port-v13.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/ff7f9e1ea9c2e709fffb9e018f2252cf/transformed/material-1.1.0/res/values-w360dp-port-v13/values-w360dp-port-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

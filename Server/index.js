@@ -1,22 +1,40 @@
 import express from "express";
 import mysql from "mysql";
 import cors from "cors";
+import session from "express-session";
+import MySQLStore from "express-mysql-session";
 
-const app = express()
+const app = express();
 app.use(express.json());
 app.use(cors());
 
-
-
-const db=mysql.createConnection({
+var options={
     host:"ezpark-db.cvhbqqtsx1je.ap-northeast-1.rds.amazonaws.com",
     user:"admin",
+    port: 3306,
     password:"ezPark!123",
     database:"EzPark"
+}
+var connection = mysql.createConnection(options);
+var sessionStore = new MySQLStore({}, connection);
 
-})
+const db=mysql.createConnection(options);
 
+app.use(session({
+    secret: "This going be a secret",
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore
+}));
+
+const OTPstore = (req, res, next)=>{
+
+}
+ 
 app.get("/",(req,res)=>{
+    req.session.isAuth=true;
+    console.log(req.session);
+    console.log(req.session.id);
     res.json("Hello this is backend")
 })
 
@@ -52,5 +70,5 @@ app.post("/user",(req,res)=>{
 })
 
 app.listen(8800, ()=>{
-    console.log("Connected to backend!2")
+    console.log("Connected to backend!")
 })
