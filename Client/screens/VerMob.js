@@ -17,9 +17,9 @@ const VerMob = props => {
             var to=await AsyncStorage.getItem('MobNum');
             var code=Math.floor(Math.random()*(9999-1000+1))+1000;
             await EncryptedStorage.setItem('OTP',code.toString());
-            console.log(await EncryptedStorage.getItem('OTP'));
+            //console.log(await EncryptedStorage.getItem('OTP'));
             var text="ඔබගේ EzPark ලියාපදිංචි වීමේ කේතය: ";
-            //await axios.post("http://textit.biz/sendmsg/index.php?id="+id+"&pw="+pw+"&to="+to+"&text="+text+code+"");
+            await axios.post("http://textit.biz/sendmsg/index.php?id="+id+"&pw="+pw+"&to="+to+"&text="+text+code+"");
             props.navigation.navigate('OtpMob');
         }catch(err){
             console.log(err);
