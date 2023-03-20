@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, Text, View, StyleSheet, TextInput, TouchableOpacity ,Pressable, Alert} from 'react-native';
+import { SafeAreaView, Text, View, StyleSheet, TextInput ,Pressable, Alert, BackHandler} from 'react-native';
 import extStyles from '../styles/extStyles';
 import Material from "react-native-vector-icons/MaterialCommunityIcons";
+import Button from '../Components/Button';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -15,15 +16,20 @@ const OtpMob = props => {
 
   useEffect(() => {
     async function getMobNo(){
-    setMobNo(await AsyncStorage.getItem('MobNum'));
+      setMobNo(await AsyncStorage.getItem('MobNum'));
     }
     getMobNo();
   }, []);
 
   const OtpValidation = async e =>{
-    inputedVal=await EncryptedStorage.getItem('OTP');
-    if(OtpVal==inputedVal){
-      props.navigation.navigate("Test");
+    genVal=await EncryptedStorage.getItem('OTP');
+    if(OtpVal==genVal){
+      EncryptedStorage.removeItem('OTP'); 
+      props.navigation.navigate('VerEmail');
+      // props.navigation.reset({
+      //   index: 0,
+      //   routes: [{name: 'VerEmail'}]
+      // })
     }else{
       Alert.alert("Invalid OTP");
     }
@@ -57,7 +63,8 @@ const OtpMob = props => {
             );
         }} 
         </Pressable>
-    </View>
+        <Button title={"Verify"} onPress={OtpValidation}/>
+      </View>
     </SafeAreaView>
   );
 };
@@ -100,22 +107,8 @@ const intStyles= StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 10,
     height:65,
-    width:120,
+    width:100,
     alignSelf:"center",
     marginTop: 20
-  },
-
-  button:{
-    height:54,
-    width:"100%",
-    alignItems:"center",
-    justifyContent:"center",
-    backgroundColor:"#FAA41E"
-  },
-
-  btnTxt:{
-    color:"#000",
-    fontSize:20,
-    fontWeight:"bold"
   },
 });

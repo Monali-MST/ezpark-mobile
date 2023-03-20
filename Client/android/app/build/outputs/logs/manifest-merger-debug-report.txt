@@ -12,7 +12,6 @@ MERGED from [:react-native-async-storage_async-storage] /Users/pramodjayathilaka
 MERGED from [:react-native-encrypted-storage] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-encrypted-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-10:12
 MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-sensitive-info] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-sensitive-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-12:12
 MERGED from [:react-native-svg] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:2:1-11:12
@@ -34,7 +33,6 @@ MERGED from [com.facebook.fresco:imagepipeline:2.6.0] /Users/pramodjayathilaka/.
 MERGED from [com.facebook.fresco:nativeimagetranscoder:2.6.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/72898a632139019e38bc9fa5121bc1f7/transformed/jetified-nativeimagetranscoder-2.6.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:imagepipeline-base:2.6.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/1d1edd6ff4f1a69fd6c2a9b7b9361b66/transformed/jetified-imagepipeline-base-2.6.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.material:material:1.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/ff7f9e1ea9c2e709fffb9e018f2252cf/transformed/material-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:17:1-34:12
 MERGED from [androidx.appcompat:appcompat:1.4.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/1b40e4574e76bff5831ef4bf4270480d/transformed/appcompat-1.4.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.sqlite:sqlite-framework:2.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/7aa95ea95f7888771eaaf73aa7600b26/transformed/sqlite-framework-2.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.4.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/25ca79b7ef1a689e48a9ba2099d7ac89/transformed/jetified-appcompat-resources-1.4.1/AndroidManifest.xml:17:1-24:12
@@ -111,8 +109,6 @@ MERGED from [com.facebook.soloader:soloader:0.10.4] /Users/pramodjayathilaka/.gr
 MERGED from [com.facebook.soloader:soloader:0.10.4] /Users/pramodjayathilaka/.gradle/caches/transforms-3/87826452408345e9fcde9828ee0fb34c/transformed/jetified-soloader-0.10.4/AndroidManifest.xml:11:5-20
 MERGED from [com.google.android.material:material:1.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/ff7f9e1ea9c2e709fffb9e018f2252cf/transformed/material-1.1.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/ff7f9e1ea9c2e709fffb9e018f2252cf/transformed/material-1.1.0/AndroidManifest.xml:22:5-20
-MERGED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:27:5-32:19
-MERGED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:27:5-32:19
 MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/b6fe4da57007a43d86a66ba4c66459bd/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:25:5-35:19
 MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/b6fe4da57007a43d86a66ba4c66459bd/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:25:5-35:19
 MERGED from [androidx.core:core:1.7.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/63a3df243d2d102452600006144a86df/transformed/core-1.7.0/AndroidManifest.xml:24:5-89
@@ -191,8 +187,6 @@ MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents
 MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-sensitive-info] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-sensitive-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-sensitive-info] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-sensitive-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-svg] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-svg] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
@@ -235,8 +229,6 @@ MERGED from [com.facebook.fresco:imagepipeline-base:2.6.0] /Users/pramodjayathil
 MERGED from [com.facebook.fresco:imagepipeline-base:2.6.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/1d1edd6ff4f1a69fd6c2a9b7b9361b66/transformed/jetified-imagepipeline-base-2.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.material:material:1.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/ff7f9e1ea9c2e709fffb9e018f2252cf/transformed/material-1.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/ff7f9e1ea9c2e709fffb9e018f2252cf/transformed/material-1.1.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.4.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/1b40e4574e76bff5831ef4bf4270480d/transformed/appcompat-1.4.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.4.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/1b40e4574e76bff5831ef4bf4270480d/transformed/appcompat-1.4.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.sqlite:sqlite-framework:2.1.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/7aa95ea95f7888771eaaf73aa7600b26/transformed/sqlite-framework-2.1.0/AndroidManifest.xml:20:5-22:41
@@ -339,26 +331,6 @@ uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from [com.facebook.flipper:flipper:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:5-76
 	android:name
 		ADDED from [com.facebook.flipper:flipper:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:22-73
-uses-permission#android.permission.USE_BIOMETRIC
-ADDED from [:react-native-sensitive-info] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-sensitive-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-72
-MERGED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:24:5-72
-MERGED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:24:5-72
-	android:name
-		ADDED from [:react-native-sensitive-info] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-sensitive-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-69
-uses-permission#android.permission.USE_FINGERPRINT
-ADDED from [:react-native-sensitive-info] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-sensitive-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-74
-MERGED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:25:5-74
-MERGED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:25:5-74
-	android:name
-		ADDED from [:react-native-sensitive-info] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-sensitive-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-71
-activity#androidx.biometric.DeviceCredentialHandlerActivity
-ADDED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:28:9-31:67
-	android:exported
-		ADDED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:30:13-36
-	android:theme
-		ADDED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:31:13-64
-	android:name
-		ADDED from [androidx.biometric:biometric:1.0.1] /Users/pramodjayathilaka/.gradle/caches/transforms-3/6f93c4fa80219e2b5d41999780cb6225/transformed/biometric-1.0.1/AndroidManifest.xml:29:13-78
 provider#androidx.startup.InitializationProvider
 ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/b6fe4da57007a43d86a66ba4c66459bd/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
 MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/bc74a39e1ea23fea00bfcf2682a93948/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:26:9-34:20

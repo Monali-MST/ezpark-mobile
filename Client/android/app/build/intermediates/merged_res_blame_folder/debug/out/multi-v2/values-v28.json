@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.ezpark.app-mergeDebugResources-28:/values-v28/values-v28.xml",
+            "outputFile": "com.ezpark.app-mergeDebugResources-27:/values-v28/values-v28.xml",
             "map": [
                 {
                     "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/ff7f9e1ea9c2e709fffb9e018f2252cf/transformed/material-1.1.0/res/values-v28/values-v28.xml",

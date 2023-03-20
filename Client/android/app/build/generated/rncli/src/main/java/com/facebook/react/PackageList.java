@@ -19,8 +19,6 @@ import com.emeraldsanto.encryptedstorage.RNEncryptedStoragePackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
 import com.swmansion.rnscreens.RNScreensPackage;
-// react-native-sensitive-info
-import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 // react-native-svg
 import com.horcrux.svg.SvgPackage;
 // react-native-vector-icons
@@ -74,7 +72,6 @@ public class PackageList {
       new RNEncryptedStoragePackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
-      new RNSensitiveInfoPackage(),
       new SvgPackage(),
       new VectorIconsPackage()
     ));

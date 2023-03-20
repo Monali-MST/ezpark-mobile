@@ -1,12 +1,25 @@
 import React from "react";
-import {View,Text} from "react-native"
+import { View, Text, SafeAreaView } from "react-native";
+
 
 const Test = props => {
-    return(
-        <View>
-            <Text>Hello. This is test page</Text>
-        </View>
-    )
-    }
+  return (
+    <SafeAreaView>
+      <View>
+      <RNPickerSelect
+                 onValueChange={(value) => console.log(value)}
+                 items={[
+                     { label: "JavaScript", value: "JavaScript" },
+                     { label: "TypeScript", value: "TypeScript" },
+                     { label: "Python", value: "Python" },
+                     { label: "Java", value: "Java" },
+                     { label: "C++", value: "C++" },
+                     { label: "C", value: "C" },
+                 ]}
+             />
+      </View>
+    </SafeAreaView>
+  );
+};
 
-    export default Test;
+export default Test;
