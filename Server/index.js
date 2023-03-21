@@ -78,6 +78,24 @@ app.post("/vehicle", (req,res) => {
     })
 })
 
+app.post("/emailValidation", (req, res) => {
+    const query = "SELECT Email FROM EzPark.User_Details WHERE Email=(?);";
+    const value=[
+        req.body.Email,
+    ]
+    db.query(query, [value], (err, data) => {
+        if (err){
+            return res.json(err);
+        }else if(data==""){
+            return res.json(100);
+        }else{
+            return res.json(200);
+        }
+    })
+})
+
+
+
 app.listen(8800, () => {
     console.log("Connected to backend!")
 })

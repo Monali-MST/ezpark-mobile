@@ -52,17 +52,6 @@ const OtpMob = props => {
       </Text>
       </View>
       <View style={{width:"90%", alignSelf:"center", marginVertical:10}}>
-        <Pressable onPress={OtpValidation} 
-        style={({ pressed })=>[
-        intStyles.button,
-        pressed && {opacity:.8}
-        ]}>
-        {({ pressed }) => { 
-            return(
-            <Text style={[intStyles.btnTxt, pressed && {opacity:.8}]}>Verify</Text>
-            );
-        }} 
-        </Pressable>
         <Button title={"Verify"} onPress={OtpValidation}/>
       </View>
     </SafeAreaView>
