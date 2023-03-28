@@ -18,8 +18,8 @@ const VerMob = props => {
             var code = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
             await EncryptedStorage.setItem('OTP', code.toString());
             console.log(await EncryptedStorage.getItem('OTP'));
-            var text = "ඔබගේ EzPark ලියාපදිංචි වීමේ කේතය: ";
-            await axios.post("https://cloud.websms.lk/smsAPI?sendsms&apikey=hB8Y73E2OTVPBfEGhfBk9ddi95MOFDf7&apitoken=sxX51677694785&type=sms&from=EzPark&to=0776651535&text=My+first+text");
+            var text = "Your EzPark verification code: ";
+            //await axios.post("https://cloud.websms.lk/smsAPI?sendsms&apikey=hB8Y73E2OTVPBfEGhfBk9ddi95MOFDf7&apitoken=sxX51677694785&type=sms&from=EzPark&to=0776651535&text=My+first+text");
             props.navigation.navigate('OtpMob');
             // props.navigation.reset({
             //     index: 0,
