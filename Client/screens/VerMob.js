@@ -9,20 +9,21 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import EncryptedStorage from 'react-native-encrypted-storage';
 import AppLoader from "../Components/AppLoader";
 
-
-
 const VerMob = props => {
     const [loading, setLoading] = useState(false);
 
     const handleClick = async e => {
         setLoading(true);
         try {
-            var to = await AsyncStorage.getItem('MobNum');
-            var code = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
-            await EncryptedStorage.setItem('OTP', code.toString());
+            var to = await AsyncStorage.getItem('MobNum'); //Get user entered mobile number from Async Storage
+            var code = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000; //Generate four digits random number
+            await EncryptedStorage.setItem('OTP', code.toString()); //Store OTP in Encrypted Storage
             console.log(code);
             var text = "Your EzPark verification code: ";
+            //Call "WebSMS" API
             await axios.post("https://cloud.websms.lk/smsAPI?sendsms&apikey=hB8Y73E2OTVPBfEGhfBk9ddi95MOFDf7&apitoken=sxX51677694785&type=sms&from=EzPark&to="+to+"&text="+text+code+"");
+            
+            //Prevent go back and navigate to the OTP entering screen
             props.navigation.reset({
                 index: 0,
                 routes: [{ name: 'OtpMob' }]

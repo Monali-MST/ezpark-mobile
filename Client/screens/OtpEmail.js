@@ -10,6 +10,7 @@ import AppLoader from "../Components/AppLoader";
 
 const OtpEmail = props => {
 
+    //Array for the user details
     const [users, setUsers] = useState({
         Fname: '',
         Lname: '',
@@ -25,6 +26,7 @@ const OtpEmail = props => {
         Pword: '',
     });
 
+    //Array for the vehicle details
     const [vehicle, setVehicle] = useState([{
         VehicleNo: '',
         Type: '',
@@ -51,21 +53,27 @@ const OtpEmail = props => {
         Email: ''
     }
     ]);
-    const [OtpVal, setOtpVal] = useState('');
-    const [Email, setEmail] = useState('');
-    const [GenVal, setGenVal] = useState('');
-    const [loading, setLoading] = useState(false);
+
+    const [OtpVal, setOtpVal] = useState(''); //State variable for the get user entered OTP value
+    const [Email, setEmail] = useState(''); //State variable for the get user entered Email
+    const [GenVal, setGenVal] = useState(''); //State variable for the get generated OTP value from EncryptedStorage
+    const [loading, setLoading] = useState(false); //State variable for the loading screen
+
 
     const handleChange = (text) => {
-        setOtpVal(text);
+        setOtpVal(text); //Set OTP value to OtpVal state variable
     }
 
     useEffect(() => {
         async function getEmail() {
-            setEmail(await AsyncStorage.getItem('Email'));
-            setGenVal(await EncryptedStorage.getItem('OTP'));
+            //Get user entered Email from Asyncstorage and set it to Email state varible 
+            setEmail(await AsyncStorage.getItem('Email')); 
+
+            //Get generated OTP value from Encryptedstorage and set it to Email state varible 
+            setGenVal(await EncryptedStorage.getItem('OTP')); 
         };
 
+        //Get user registartion details to the users array from the AsyncStorage
         async function getUser() {
             setUsers({
                 Fname: await AsyncStorage.getItem('Fname'),
@@ -83,6 +91,7 @@ const OtpEmail = props => {
             });
         };
 
+        //Get user entered vehicles details to the vehicle array from the AsyncStorage
         async function getVehicle() {
             const newVehicle = [...vehicle];
             for (let i = 0; i < 5; i++) {
@@ -100,14 +109,17 @@ const OtpEmail = props => {
     const OtpValidation = async e => {
         if (OtpVal == GenVal) {
             setLoading(true);
+            //send user's data to backend
             await axios.post("http://10.0.2.2:8800/user", users);
             for(const item of vehicle){
                 if(item.VehicleNo!=null){
+                    //Send vehicel data to backend
                     await axios.post("http://10.0.2.2:8800/vehicle", item);
                 }
               }
             EncryptedStorage.clear('OTP');
             AsyncStorage.clear();
+            //Navigate to congratulations screen
             props.navigation.reset({
                 index: 0,
                 routes: [{name: 'Congrats'}]

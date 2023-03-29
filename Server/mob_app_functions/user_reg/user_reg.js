@@ -1,4 +1,6 @@
-var connection = require("../../service/connection");
+//Pass user registration details to the databse(User_details table)
+
+var connection = require("../../service/connection");//Connect to the database
 
 module.exports = async function user_reg(req, res) {
     const query = "INSERT INTO `EzPark`.`User_Details` (`FirstName`, `LastName`, `AddFLine`, `AddSLine`, `Street`, `City`, `PostCode`, `MobileNo`, `FixedLine`, `NIC`, `Email`,`Password`) VALUES (?);"

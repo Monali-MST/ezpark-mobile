@@ -9,12 +9,14 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 import AppLoader from "../Components/AppLoader";
 
 const VerEmail = props => {
+    //State variable for collecting data
     const [To_mail, setToMail] = useState('');
     const [F_name, setF_name] = useState('');
     const [L_name, setL_name] = useState('');
     const [OTP, setOTP] = useState('');
     const [loading, setLoading] = useState(false);
 
+    //E-mail template parameters
     var templateParams = {
         to_mail: To_mail,
         OTP: OTP,
@@ -24,23 +26,24 @@ const VerEmail = props => {
 
     useEffect(() => {
         async function getData() {
-            setToMail(await AsyncStorage.getItem('Email'));
-            setF_name(await AsyncStorage.getItem('Fname'));
-            setL_name(await AsyncStorage.getItem('Lname'));
-            setOTP(Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000);
+            setToMail(await AsyncStorage.getItem('Email')); //Get user entered E-mail from Async Storage
+            setF_name(await AsyncStorage.getItem('Fname')); //Get user entered first name from Async Storage
+            setL_name(await AsyncStorage.getItem('Lname')); //Get user entered lasr name from Async Storage
+            setOTP(Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000); //Generate four digits random number
 
         }
         getData();
     }, []);
 
     const handleClick = async e => {
-        setLoading(true);
-        await EncryptedStorage.setItem('OTP', OTP.toString());
+        setLoading(true);//Enable loading lottie
+        await EncryptedStorage.setItem('OTP', OTP.toString()); //Store generated OTP in Encrypted Store
         
+        //Call API (emailJS) with parameters
         emailjs.send('service_r6g104n', 'template_iq1nsoh', templateParams, '8nD6AUE-CeWWCKKgo')
         .then(function(response) {
             console.log(OTP);
-            // props.navigation.navigate('OtpEmail');
+            // Prevent go back and navigate to OTP entering screen
             props.navigation.reset({
                 index: 0,
                 routes: [{name: 'OtpEmail'}]

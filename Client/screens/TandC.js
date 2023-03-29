@@ -1,3 +1,5 @@
+//Terms and conditions screen
+
 import React from "react";
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";

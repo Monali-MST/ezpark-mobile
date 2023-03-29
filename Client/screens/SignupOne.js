@@ -8,7 +8,7 @@ import Button from "./../Components/Button";
 
 const SignupOne = props => {
 
-    const [errors, setErrors] = useState({
+    const [errors, setErrors] = useState({ //State variable with array for validation purpose
         fNameEmptyErr: "",
         fnameBColor: "#212121",
         addFLineErr: "",
@@ -35,9 +35,8 @@ const SignupOne = props => {
         emailValid: false
     })
 
-    // const [conPWord, setConPWord] = useState("");
-
-    const [users, setUsers] = useState({
+    const [users, setUsers] = useState({ //State variable with array for store user entered value
+        fNameEmptyErr: "",
         Fname: "",
         Lname: "",
         AddFLine: "",
@@ -53,11 +52,13 @@ const SignupOne = props => {
         conPWord: ""
     });
 
+    //Store value to users state variable when customer typing in relevant text field
     const handleChange = (name, value) => {
         setUsers((prev) => ({ ...prev, [name]: value }));
         setErrors((prev) => ({ ...prev, valid: false }));
     };
 
+    //Check whether user entered E-mail alreday registered one or not
     const handleEmail = async (name, value) => {
         setUsers((prev) => ({ ...prev, [name]: value }));
         if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
@@ -76,7 +77,9 @@ const SignupOne = props => {
         }
     };
 
+    //Validate user signup form
     const isValid = () => {
+        //Validate first name (First name should not be null)
         setErrors((prev) => ({ ...prev, valid: true }));
         if (users.Fname == "") {
             setErrors((prev) => ({ ...prev, fNameEmptyErr: "First name field cannot be empty", fnameBColor: "#F00", valid: false }));
@@ -84,48 +87,61 @@ const SignupOne = props => {
             setErrors((prev) => ({ ...prev, fNameEmptyErr: "", fnameBColor: "#FAA41E" }));
         }
 
+        //Validate first line of the address (First Line should not be null)
         if (users.AddFLine == "") {
             setErrors((prev) => ({ ...prev, addFLineErr: "First line of address field cannot be empty", addFLineBColor: "#F00", valid: false }));
         } else {
             setErrors((prev) => ({ ...prev, addFLineErr: "", addFLineBColor: "#FAA41E" }));
         }
 
+        //Validate second line of the address (Second Line should not be null)
         if (users.AddSLine == "") {
             setErrors((prev) => ({ ...prev, addSLineErr: "Second line of address field cannot be empty", addSLineBColor: "#F00", valid: false }));
         } else {
             setErrors((prev) => ({ ...prev, addSLineErr: "", addSLineBColor: "#FAA41E" }));
         }
 
+        //Validate city of the address (City should not be null)
         if (users.City == "") {
             setErrors((prev) => ({ ...prev, cityErr: "City field cannot be empty", cityBColor: "#F00", valid: false }));
         } else {
             setErrors((prev) => ({ ...prev, cityErr: "", cityBColor: "#FAA41E" }));
         }
 
+        //Validate postal code of the address (Postal code should not be null)
         if (users.PCode == "") {
             setErrors((prev) => ({ ...prev, pCodeErr: "Postal code field cannot be empty", pCodeBColor: "#F00", valid: false }));
         } else {
             setErrors((prev) => ({ ...prev, pCodeErr: "", pCodeBColor: "#FAA41E" }));
         }
 
-        if (users.MobNum == "") {
+        //Validate mobile number
+        if (users.MobNum == "") { //Mobile number should not be null
             setErrors((prev) => ({ ...prev, mobNumErr: "Mobile number  field cannot be empty", mobNumBColor: "#F00", valid: false }));
         } else {
+            //Check whether mobile number first two digits are starting with 94
             if (users.MobNum.slice(0, 2) == "94") {
+                //Is it has 11 digits
                 if (!(/^\d{11}$/.test(users.MobNum))) {
                     setErrors((prev) => ({ ...prev, mobNumErr: "Invalid phone number", mobNumBColor: "#F00", valid: false }));
                 } else {
+                    //Add + mark to the begining of the mobile number
                     users.MobNum = "+" + users.MobNum;
                     setErrors((prev) => ({ ...prev, mobNumErr: "", mobNumBColor: "#FAA41E" }));
                 }
+            //Check whether mobile number first digit is starting with 0
             } else if (users.MobNum.charAt(0) == "0") {
+                //Is it has 10 digits
                 if (!(/^\d{10}$/.test(users.MobNum))) {
                     setErrors((prev) => ({ ...prev, mobNumErr: "Invalid phone number", mobNumBColor: "#F00", valid: false }));
                 } else {
                     setErrors((prev) => ({ ...prev, mobNumErr: "", mobNumBColor: "#FAA41E" }));
+                    //Remove first digit(0) and add +94 to begining
                     users.MobNum = "+94" + (users.MobNum.slice(1));
                 }
+            //Check whether mobile number first three characters are containing +94
             } else if (users.MobNum.slice(0, 3) == "+94") {
+                //Check number have 12 digit and third character not a 0
                 if ((!(users.MobNum.length == 12)) || users.MobNum.charAt(3) == "0") {
                     setErrors((prev) => ({ ...prev, mobNumErr: "Invalid phone number", mobNumBColor: "#F00", valid: false }));
                 } else {
@@ -137,6 +153,7 @@ const SignupOne = props => {
             }
         }
 
+        //Validate fixed number
         if (users.FixedNum != "") {
             if (users.FixedNum.slice(0, 2) == "94") {
                 if (!(/^\d{11}$/.test(users.FixedNum))) {
@@ -166,6 +183,7 @@ const SignupOne = props => {
             setErrors((prev) => ({ ...prev, fixedNumErr: "", fixedNumBColor: "#212121" }));
         }
 
+        //Validate NIC number(Old type or New type)
         if (users.Nic == "") {
             setErrors((prev) => ({ ...prev, nicErr: "NIC field cannot be empty", nicBColor: "#F00", valid: false }));
         } else if ((/^\d{12}$/.test(users.Nic))) {
@@ -188,13 +206,14 @@ const SignupOne = props => {
             setErrors((prev) => ({ ...prev, emailErr: "", emailBColor: "#FAA41E" }));
         }
 
-        if (users.Pword == "") {
+        //Validate password
+        if (users.Pword == "") { //Password field should not be null
             setErrors((prev) => ({ ...prev, valid: false,  pWordErr: "Password field cannot be empty", pWordBColor: "#F00",}));
-        } else if (users.Pword.length < 8) {
+        } else if (users.Pword.length < 8) { //Password must contain minimum 8 characters
             setErrors((prev) => ({ ...prev, valid: false, pWordErr: "Password must contains minimum 8 characters", pWordBColor: "#F00", }));
-        } else if (users.conPWord == "") {
+        } else if (users.conPWord == "") { //Confirm password field should not be null
             setErrors((prev) => ({ ...prev, valid: false, conPWordErr: "Confirm password field cannot be empty", conPWordBColor: "#F00", }));
-        } else if (users.Pword != users.conPWord) {
+        } else if (users.Pword != users.conPWord) { //Check whether Password and Confirmation password are not equal
             setErrors((prev) => ({ ...prev, valid: false, conPWordErr: "Password mismatched. Please check again", conPWordBColor: "#F00",}));
             setErrors((prev) => ({ ...prev, pWordErr: "", pWordBColor: "#F00" } ));
         } else {
@@ -207,6 +226,7 @@ const SignupOne = props => {
         isValid();
         if (errors.valid && errors.emailValid) {
             try {
+                //Store user entered values in Async Storage
                 await AsyncStore.multiSet([['Fname', users.Fname], ['Lname', users.Lname], ['AddFLine', users.AddFLine], ['AddSLine', users.AddSLine], ['Street', users.Street], ['City', users.City], ['PCode', users.PCode], ['MobNum', users.MobNum], ['FixedNum', users.FixedNum], ['Nic', users.Nic], ['Email', users.Email], ['Pword', users.Pword]]);
                 props.navigation.navigate("Vehicle");
             } catch (err) {

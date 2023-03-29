@@ -1,3 +1,5 @@
+//Vehicle registering form
+
 import React, { useState } from "react";
 import { SafeAreaView, Text, View, StyleSheet, Image, ScrollView, TextInput, Pressable } from "react-native";
 import extStyles from "../styles/extStyles";
@@ -9,6 +11,7 @@ import AsyncStore from "@react-native-async-storage/async-storage";
 
 const Vehicle = props => {
 
+    //Select list values
     const data = [
         { label: '1', value: 'Car' },
         { label: '2', value: 'Van' },
@@ -16,6 +19,7 @@ const Vehicle = props => {
         { label: '4', value: 'Cab' },
     ]
 
+    //State variable for store user selected vehicle type
     const [selected, setSelected] = useState({
         Vehicle1: "",
         Vehicle2: "",
@@ -24,6 +28,7 @@ const Vehicle = props => {
         Vehicle5: ""
     });
 
+    //State variable for store user entered vehicle number
     const [vehicle, setVehicle] = useState({
         Vno1: "",
         Vno2: "",
@@ -32,6 +37,7 @@ const Vehicle = props => {
         Vno5: ""
     });
 
+    //State variable for form validation
     const [errors, setErrors] = useState({
         vNo1BColor: "#68BB59",
         vType1BColor: "#68BB59",
@@ -51,15 +57,18 @@ const Vehicle = props => {
         valid: false,
     });
 
+    //Set values to Selected state variable
     const handleSelect = (name, value) => {
         setSelected((prev) => ({ ...prev, [name]: value }));
     };
 
+    //Set values to Vehicle state variable
     const handleChange = (name, value) => {
         setVehicle((prev) => ({ ...prev, [name]: value }));
         setErrors((prev) => ({ ...prev, valid: false }));
     };
 
+    //Vehicle number and type validation function
     const isValid = () => {
         if (vehicle.Vno1 == "" && selected.Vehicle1 == "") {
             setErrors((prev) => ({ ...prev, valid: false, errText: "Minimum one vehicle details is required!", vNo1BColor: "#F00", vType1BColor: "#F00" }));
@@ -72,6 +81,7 @@ const Vehicle = props => {
         } else {
             setErrors((prev) => ({ ...prev, valid: true, errText: "", vNo1BColor: "#FAA41E", vType1BColor: "#FAA41E", enableBox2: "auto", vNo2BColor: "#68BB59", vType2BColor: "#68BB59" }));
 
+            //Second vehicle details validation
             if (vehicle.Vno2 != "" || selected.Vehicle2 != "") {
                 if (selected.Vehicle2 == "") {
                     setErrors((prev) => ({ ...prev, valid: false, errText: "Please select vehicle type!", vNo2BColor: "#FAA41E", vType2BColor: "#F00" }));
@@ -82,6 +92,7 @@ const Vehicle = props => {
                 } else {
                     setErrors((prev) => ({ ...prev, valid: true, errText: "", vNo2BColor: "#FAA41E", vType2BColor: "#FAA41E", enableBox3: "auto", vNo3BColor: "#68BB59", vType3BColor: "#68BB59" }));
 
+                    //Third vehicle details validation
                     if (vehicle.Vno3 != "" || selected.Vehicle3 != "") {
                         if (selected.Vehicle3 == "") {
                             setErrors((prev) => ({ ...prev, valid: false, errText: "Please select vehicle type!", vNo3BColor: "#FAA41E", vType3BColor: "#F00" }));
@@ -93,6 +104,7 @@ const Vehicle = props => {
                             setErrors((prev) => ({ ...prev, valid: true, errText: "", vNo3BColor: "#FAA41E", vType3BColor: "#FAA41E", enableBox4: "auto", vNo4BColor: "#68BB59", vType4BColor: "#68BB59" }));
                         }
 
+                        //Fourth vehicle details validation
                         if (vehicle.Vno4 != "" || selected.Vehicle4 != "") {
                             if (selected.Vehicle4 == "") {
                                 setErrors((prev) => ({ ...prev, valid: false, errText: "Please select vehicle type!", vNo4BColor: "#FAA41E", vType4BColor: "#F00" }));
@@ -103,6 +115,7 @@ const Vehicle = props => {
                             } else {
                                 setErrors((prev) => ({ ...prev, valid: true, errText: "", vNo4BColor: "#FAA41E", vType4BColor: "#FAA41E", enableBox5: "auto", vNo5BColor: "#68BB59", vType5BColor: "#68BB59" }));
 
+                                //Fifth vehicle details validation
                                 if (vehicle.Vno5 != "" || selected.Vehicle5 != "") {
                                     if (selected.Vehicle5 == "") {
                                         setErrors((prev) => ({ ...prev, valid: false, errText: "Please select vehicle type!", vNo5BColor: "#FAA41E", vType5BColor: "#F00" }));
@@ -122,10 +135,12 @@ const Vehicle = props => {
         }
     }
 
+    //Submit button function
     const handleClick = async e => {
         isValid();
         if (errors.valid) {
             try {
+                //If form valid store user entered value in Async storage
                 await AsyncStore.multiSet([['Vehicle1', selected.Vehicle1], ['Vehicle2', selected.Vehicle2], ['Vehicle3', selected.Vehicle3], ['Vehicle4', selected.Vehicle4], ['Vehicle5', selected.Vehicle5], ['Vno1', vehicle.Vno1], ['Vno2', vehicle.Vno2], ['Vno3', vehicle.Vno3], ['Vno4', vehicle.Vno4], ['Vno5', vehicle.Vno5]]);
                 props.navigation.navigate("VerMob");
             } catch (err) {

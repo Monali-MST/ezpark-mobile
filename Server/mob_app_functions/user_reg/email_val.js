@@ -1,4 +1,6 @@
-var connection = require("../../service/connection");
+//Email validation when user login. Check whether entered E-mail registered one or not
+
+var connection = require("../../service/connection");//Connect to the database
 
 module.exports = async function email_val(req, res) {
     const query = "SELECT Email FROM EzPark.User_Details WHERE Email=(?);";

@@ -14,13 +14,14 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", mob_app_functions);
 
-
+//Listening to frontend
 app.use(
   cors({
     origin: "http://localhost:3000",
   })
 );
 
+//Start server using environment variables
 app.listen(process.env.PORT, () => {
   console.log("server started in port : ", process.env.PORT);
 });

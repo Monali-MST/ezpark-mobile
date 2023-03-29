@@ -1,3 +1,4 @@
+//Login screen
 import React, { useEffect } from "react";
 import { Text, StyleSheet, View, TextInput, Image, SafeAreaView, Alert, Pressable, TouchableOpacity, BackHandler } from "react-native";
 import extStyles from "../styles/extStyles";
@@ -23,6 +24,8 @@ const Login = props => {
             <Text style={{ ...extStyles.txtColor2, ...{ fontWeight: "500" } }}>Forgot password?</Text>
           </TouchableOpacity>
         </View>
+
+        {/* Navigate to main dashboard(Sign in) */}
         <View style={{ width: "80%", alignSelf: "center", marginTop: 64 }}>
           <Pressable onPress={() => Alert.alert('This is sign in button')}
             style={({ pressed }) => [
@@ -36,6 +39,8 @@ const Login = props => {
             }}
           </Pressable>
         </View>
+
+        {/* Navigate to signup process */}
         <View style={{ alignItems: "center", marginTop: 150 }}>
           <Text style={{ fontWeight: "500", fontSize: 16, color: "#A5A5A5" }}>Don't have an account?
             <Text onPress={() => props.navigation.navigate('TandC')} style={{ color: "#FAA41E" }} > Sign Up</Text>

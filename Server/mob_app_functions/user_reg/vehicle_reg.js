@@ -1,4 +1,6 @@
-var connection = require("../../service/connection");
+//Pass user entered vehicle details to the databse(Vehicle table)
+
+var connection = require("../../service/connection");//Connect to the database
 
 module.exports = async function vehicle_reg(req, res) {
     const query="INSERT INTO `EzPark`.`Vehicle` (`VehicleNo`, `VehicleType`,`Email`) VALUES (?);"

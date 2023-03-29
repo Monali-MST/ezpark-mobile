@@ -7,15 +7,16 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OtpMob = props => {
-  const [OtpVal, setOtpVal] = useState('');
-  const [MobNo, setMobNo] = useState('');
+  const [OtpVal, setOtpVal] = useState(''); //State variable for the get user entered OTP value
+  const [MobNo, setMobNo] = useState(''); //State variable for the get user entered Email
   
   const handleChange = (text)=> {
-    setOtpVal(text);
+    setOtpVal(text); //Set OTP value to OtpVal state variable
   }
 
   useEffect(() => {
     async function getMobNo(){
+      //Get user entered Email from Asyncstorage and set it to Email state varible 
       setMobNo(await AsyncStorage.getItem('MobNum'));
     }
     getMobNo();

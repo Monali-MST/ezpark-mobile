@@ -1,3 +1,5 @@
+//Congratulations screen. This will appear at the end of the registration process
+
 import React, { useEffect } from "react";
 import { View, Text, SafeAreaView, Image, StyleSheet,Pressable, BackHandler } from "react-native";
 import extStyles from "../styles/extStyles";
@@ -7,7 +9,7 @@ import Button from "../Components/Button";
 const Congrats = props => {
 
     const handleClick=()=>{
-        // props.navigation.navigate('Login');
+        //Prevent go back
         props.navigation.reset({
             index: 0,
             routes: [{name: 'Login'}]
