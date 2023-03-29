@@ -7,11 +7,11 @@ import Button from "../Components/Button";
 const Congrats = props => {
 
     const handleClick=()=>{
-        props.navigation.navigate('Login');
-        // props.navigation.reset({
-        //     index: 0,
-        //     routes: [{name: 'Login'}]
-        // })
+        // props.navigation.navigate('Login');
+        props.navigation.reset({
+            index: 0,
+            routes: [{name: 'Login'}]
+        });
     }
 
     return (

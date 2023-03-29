@@ -5,7 +5,6 @@ import Foundatin from "react-native-vector-icons/Foundation";
 import axios from "axios";
 import AsyncStore from "@react-native-async-storage/async-storage";
 import Button from "./../Components/Button";
-import { NavigationHelpersContext } from "@react-navigation/native";
 
 const SignupOne = props => {
 
@@ -36,7 +35,7 @@ const SignupOne = props => {
         emailValid: false
     })
 
-    const [conPWord, setConPWord] = useState("");
+    // const [conPWord, setConPWord] = useState("");
 
     const [users, setUsers] = useState({
         Fname: "",
@@ -51,6 +50,7 @@ const SignupOne = props => {
         Nic: "",
         Email: "",
         Pword: "",
+        conPWord: ""
     });
 
     const handleChange = (name, value) => {
@@ -64,7 +64,7 @@ const SignupOne = props => {
             await axios.post("http://10.0.2.2:8800/emailValidation", { "Email": value })
                 .then(res => {
                     if (res.data == 100) {
-                        setErrors((prev) => ({ ...prev, emailErr: "", emailBColor: "#212121", ema }));
+                        setErrors((prev) => ({ ...prev, emailErr: "", emailBColor: "#212121", emailValid: true }));
                     } else if (res.data == 200) {
                         {
                             setErrors((prev) => ({ ...prev, emailErr: "This E-Mail already registered", emailBColor: "#F00", emailValid: false }));
@@ -189,14 +189,14 @@ const SignupOne = props => {
         }
 
         if (users.Pword == "") {
-            setErrors((prev) => ({ ...prev, pWordErr: "Password field cannot be empty", pWordBColor: "#F00", valid: false }));
+            setErrors((prev) => ({ ...prev, valid: false,  pWordErr: "Password field cannot be empty", pWordBColor: "#F00",}));
         } else if (users.Pword.length < 8) {
-            setErrors((prev) => ({ ...prev, pWordErr: "Password must contains minimum 8 characters", pWordBColor: "#F00", valid: false }));
-        } else if (conPWord == "") {
-            setErrors((prev) => ({ ...prev, conPWordErr: "Confirm password field cannot be empty", conPWordBColor: "#F00", valid: false }));
-        } else if (users.Pword != conPWord) {
-            setErrors((prev) => ({ ...prev, conPWordErr: "Password mismatched. Please check again", conPWordBColor: "#F00", valid: false }));
-            setErrors((prev) => ({ ...prev, pWordErr: "", pWordBColor: "#F00", valid: false }));
+            setErrors((prev) => ({ ...prev, valid: false, pWordErr: "Password must contains minimum 8 characters", pWordBColor: "#F00", }));
+        } else if (users.conPWord == "") {
+            setErrors((prev) => ({ ...prev, valid: false, conPWordErr: "Confirm password field cannot be empty", conPWordBColor: "#F00", }));
+        } else if (users.Pword != users.conPWord) {
+            setErrors((prev) => ({ ...prev, valid: false, conPWordErr: "Password mismatched. Please check again", conPWordBColor: "#F00",}));
+            setErrors((prev) => ({ ...prev, pWordErr: "", pWordBColor: "#F00" } ));
         } else {
             setErrors((prev) => ({ ...prev, pWordErr: "", pWordBColor: "#FAA41E" }));
             setErrors((prev) => ({ ...prev, conPWordErr: "", conPWordBColor: "#FAA41E" }));
@@ -270,7 +270,7 @@ const SignupOne = props => {
                     {errors.fNameEmptyErr != "" ? <Text style={intStyles.errTxt}>{errors.fNameEmptyErr}</Text> : null}
 
                     <View style={intStyles.formInput}>
-                        <TextInput placeholder="Last Name" onChangeText={(value) => handleChange("Lname", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText} />
+                        <TextInput placeholder="Last Name" onChangeText={(value) => handleChange("Lname", value)} placeholderTextColor="#A5A5A5"  style={intStyles.inputText} />
                     </View>
 
                     <View style={{ ...intStyles.formInput, ...{ borderColor: errors.addFLineBColor } }}>
@@ -329,7 +329,7 @@ const SignupOne = props => {
                     {errors.pWordErr != "" ? <Text style={intStyles.errTxt}>{errors.pWordErr}</Text> : null}
 
                     <View style={{ ...intStyles.formInput, ...{ borderColor: errors.conPWordBColor } }}>
-                        <TextInput placeholder={"Re-enter password"} placeholderTextColor="#A5A5A5" autoCapitalize="none" style={intStyles.inputText} onChangeText={(value) => setConPWord(value)} secureTextEntry={true} />
+                        <TextInput placeholder={"Re-enter password"} placeholderTextColor="#A5A5A5" autoCapitalize="none" style={intStyles.inputText} onChangeText={(value) => handleChange("conPWord", value)} secureTextEntry={true} />
                     </View>
                     {errors.conPWordErr != "" ? <Text style={intStyles.errTxt}>{errors.conPWordErr}</Text> : null}
                 </View>

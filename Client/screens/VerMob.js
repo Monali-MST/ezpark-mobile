@@ -1,5 +1,5 @@
-import React from "react";
-import { SafeAreaView, View, Text, StyleSheet, Image, Pressable, Alert } from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, View, Text, StyleSheet, Image } from "react-native";
 import Foundatin from "react-native-vector-icons/Foundation";
 import Ant from "react-native-vector-icons/AntDesign";
 import Button from "../Components/Button";
@@ -7,24 +7,26 @@ import extStyles from '../styles/extStyles';
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import EncryptedStorage from 'react-native-encrypted-storage';
+import AppLoader from "../Components/AppLoader";
+
+
 
 const VerMob = props => {
+    const [loading, setLoading] = useState(false);
+
     const handleClick = async e => {
+        setLoading(true);
         try {
-            console.log(await AsyncStorage.getItem('MobNum'));
-            var id = 94776651535;
-            var pw = 1701;
             var to = await AsyncStorage.getItem('MobNum');
             var code = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
             await EncryptedStorage.setItem('OTP', code.toString());
-            console.log(await EncryptedStorage.getItem('OTP'));
+            console.log(code);
             var text = "Your EzPark verification code: ";
-            //await axios.post("https://cloud.websms.lk/smsAPI?sendsms&apikey=hB8Y73E2OTVPBfEGhfBk9ddi95MOFDf7&apitoken=sxX51677694785&type=sms&from=EzPark&to=0776651535&text=My+first+text");
-            props.navigation.navigate('OtpMob');
-            // props.navigation.reset({
-            //     index: 0,
-            //     routes: [{ name: 'OtpMob' }]
-            // });
+            await axios.post("https://cloud.websms.lk/smsAPI?sendsms&apikey=hB8Y73E2OTVPBfEGhfBk9ddi95MOFDf7&apitoken=sxX51677694785&type=sms&from=EzPark&to="+to+"&text="+text+code+"");
+            props.navigation.reset({
+                index: 0,
+                routes: [{ name: 'OtpMob' }]
+            });
         } catch (err) {
             console.log(err);
         }
@@ -82,6 +84,7 @@ const VerMob = props => {
             <View style={{ width: "90%", alignSelf: "center" }}>
                 <Button title={"Verify Mobile Number"} onPress={handleClick}/>
             </View>
+            {loading ? <AppLoader/> : null}
         </SafeAreaView>
     )
 }

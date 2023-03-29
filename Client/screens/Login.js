@@ -3,9 +3,6 @@ import { Text, StyleSheet, View, TextInput, Image, SafeAreaView, Alert, Pressabl
 import extStyles from "../styles/extStyles";
 import Feather from "react-native-vector-icons/Feather";
 
-
-  
-
 const Login = props => {
   return (
     <SafeAreaView style={[extStyles.body]}>

@@ -25,11 +25,10 @@ const OtpMob = props => {
     genVal=await EncryptedStorage.getItem('OTP');
     if(OtpVal==genVal){
       EncryptedStorage.removeItem('OTP'); 
-      props.navigation.navigate('VerEmail');
-      // props.navigation.reset({
-      //   index: 0,
-      //   routes: [{name: 'VerEmail'}]
-      // })
+      props.navigation.reset({
+        index: 0,
+        routes: [{name: 'VerEmail'}]
+      });
     }else{
       Alert.alert("Invalid OTP");
     }
@@ -41,10 +40,10 @@ const OtpMob = props => {
         <Text style={[intStyles.title]}>Verification{'\n'}Code</Text>
       </View>
       <View>
-        <Text style={{fontSize:16, marginLeft:10}}>Please type the verification code sent{'\n'} to {MobNo.substring(0, 2) + '*'.repeat(4) + MobNo.substring(7)}</Text>
+        <Text style={{fontSize:16, marginLeft:10}}>Please type the verification code sent{'\n'} to {MobNo.substring(0,3)} {MobNo.substring(3,5)} {MobNo.substring(5,8)} {MobNo.substring(8,12)}</Text>
       </View>
       <View style={[intStyles.formInput]}>
-        <TextInput placeholderTextColor="#A5A5A5" style={intStyles.inputText} value={OtpVal} onChangeText={handleChange}/>
+        <TextInput placeholderTextColor="#A5A5A5" style={intStyles.inputText} value={OtpVal} onChangeText={handleChange} maxLength={4} keyboardType={"numeric"}/>
       </View>
       <View style={{alignItems:"center"}}>
       <Text style={{fontWeight:"bold", fontSize:16, color:"#A5A5A5", marginTop:10}}>Did not receive?

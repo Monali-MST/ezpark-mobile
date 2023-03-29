@@ -6,12 +6,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Button from "../Components/Button";
 import emailjs from '@emailjs/browser';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import AppLoader from "../Components/AppLoader";
 
 const VerEmail = props => {
     const [To_mail, setToMail] = useState('');
     const [F_name, setF_name] = useState('');
     const [L_name, setL_name] = useState('');
     const [OTP, setOTP] = useState('');
+    const [loading, setLoading] = useState(false);
 
     var templateParams = {
         to_mail: To_mail,
@@ -32,18 +34,20 @@ const VerEmail = props => {
     }, []);
 
     const handleClick = async e => {
+        setLoading(true);
         await EncryptedStorage.setItem('OTP', OTP.toString());
-        // console.log(await EncryptedStorage.getItem('OTP'));
-        console.log(OTP);
-        props.navigation.navigate('OtpEmail');
-
-        // emailjs.send('service_r6g104n', 'template_iq1nsoh', templateParams, '8nD6AUE-CeWWCKKgo')
-        // .then(function(response) {
-        //     console.log(OTP);
-        //     props.navigation.navigate('OtpEmail');
-        // }, function(error) {
-        //     console.log('FAILED...', error);
-        // });
+        
+        emailjs.send('service_r6g104n', 'template_iq1nsoh', templateParams, '8nD6AUE-CeWWCKKgo')
+        .then(function(response) {
+            console.log(OTP);
+            // props.navigation.navigate('OtpEmail');
+            props.navigation.reset({
+                index: 0,
+                routes: [{name: 'OtpEmail'}]
+              });
+        }, function(error) {
+            console.log('FAILED...', error);
+        });
     }
 
     return (
@@ -58,6 +62,7 @@ const VerEmail = props => {
             <View style={{ width: "90%", alignSelf: "center", marginVertical: 50 }}>
                 <Button title={"Verify E-Mail"} onPress={handleClick}/>
             </View>
+            {loading ? <AppLoader/> : null}
         </SafeAreaView>
     )
 }

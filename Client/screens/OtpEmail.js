@@ -6,6 +6,7 @@ import Button from "../Components/Button";
 import EncryptedStorage from "react-native-encrypted-storage";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
+import AppLoader from "../Components/AppLoader";
 
 const OtpEmail = props => {
 
@@ -53,6 +54,7 @@ const OtpEmail = props => {
     const [OtpVal, setOtpVal] = useState('');
     const [Email, setEmail] = useState('');
     const [GenVal, setGenVal] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (text) => {
         setOtpVal(text);
@@ -97,20 +99,19 @@ const OtpEmail = props => {
 
     const OtpValidation = async e => {
         if (OtpVal == GenVal) {
-            console.log(users);
-            console.log(vehicle);
+            setLoading(true);
             await axios.post("http://10.0.2.2:8800/user", users);
             for(const item of vehicle){
                 if(item.VehicleNo!=null){
                     await axios.post("http://10.0.2.2:8800/vehicle", item);
                 }
               }
-            //EncryptedStorage.clear('OTP');
-            //props.navigation.navigate('Congrats');
-            // props.navigation.reset({
-            //     index: 0,
-            //     routes: [{name: 'Congrats'}]
-            // });
+            EncryptedStorage.clear('OTP');
+            AsyncStorage.clear();
+            props.navigation.reset({
+                index: 0,
+                routes: [{name: 'Congrats'}]
+            });
         } else {
             Alert.alert("Invalid OTP");
         }
@@ -123,10 +124,10 @@ const OtpEmail = props => {
                 <Text style={[intStyles.title]}>Verification{'\n'}Code</Text>
             </View>
             <View>
-                <Text style={{ fontSize: 16, marginLeft: 10 }}>Please type the verification code sent{'\n'} to {Email.substring(0, 2) + '*'.repeat(6) + Email.substring(10)}</Text>
+                <Text style={{ fontSize: 16, marginLeft: 10 }}>Please type the verification code sent{'\n'} to {Email}</Text>
             </View>
             <View style={[intStyles.formInput]}>
-                <TextInput placeholderTextColor="#A5A5A5" style={intStyles.inputText} value={OtpVal} onChangeText={handleChange} />
+                <TextInput placeholderTextColor="#A5A5A5" style={intStyles.inputText} value={OtpVal} onChangeText={handleChange} maxLength={4} keyboardType={"numeric"}/>
             </View>
             <View style={{ alignItems: "center" }}>
                 <Text style={{ fontWeight: "bold", fontSize: 16, color: "#A5A5A5", marginTop: 10 }}>Did not receive?
@@ -136,6 +137,7 @@ const OtpEmail = props => {
             <View style={{ width: "90%", alignSelf: "center", marginVertical: 10 }}>
                 <Button title={"Verify"} onPress={OtpValidation}/>
             </View>
+            {loading ? <AppLoader/> : null}
         </SafeAreaView>
     );
 }

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 // @react-native-async-storage/async-storage
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+// lottie-react-native
+import com.airbnb.android.react.lottie.LottiePackage;
 // react-native-encrypted-storage
 import com.emeraldsanto.encryptedstorage.RNEncryptedStoragePackage;
 // react-native-safe-area-context
@@ -69,6 +71,7 @@ public class PackageList {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
+      new LottiePackage(),
       new RNEncryptedStoragePackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
