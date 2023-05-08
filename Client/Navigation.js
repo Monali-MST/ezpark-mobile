@@ -12,13 +12,17 @@ import OtpMob from "./screens/OtpMob";
 import VerEmail from "./screens/VerEmail";
 import OtpEmail from "./screens/OtpEmail";
 import Congrats from "./screens/Congrats";
+import Dashboard from "./screens/Dashboard";
+import Splash from "./screens/Splash";
+import DateTime from "./screens/DateTime";
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = props => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Login">
+            <Stack.Navigator initialRouteName="Splash">
+                <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="TandC" component={TandC} options={{ headerShown: false }} />
                 <Stack.Screen name="SignupOne" component={SignupOne} options={{ headerShown: false }} />
@@ -29,6 +33,8 @@ const Navigation = props => {
                 <Stack.Screen name="VerEmail" component={VerEmail} options={{ headerShown: false }} />
                 <Stack.Screen name="OtpEmail" component={OtpEmail} options={{ headerShown: false }} />
                 <Stack.Screen name="Congrats" component={Congrats} options={{ headerShown: false }} />
+                <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
+                <Stack.Screen name="DateTime" component={DateTime} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

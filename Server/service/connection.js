@@ -1,10 +1,15 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+
 
 var connection = mysql.createConnection({
-  host: "ezpark-db.cvhbqqtsx1je.ap-northeast-1.rds.amazonaws.com",
-  user: "admin",
-  password: "ezPark!123",
-  database: "EzPark",
+  host: process.env.DBHost,
+  user: process.env.DBUname,
+  password: process.env.DBPassword,
+  database: process.env.ezpark,
 });
 connection.connect(function(err) {
     if (err) throw err;

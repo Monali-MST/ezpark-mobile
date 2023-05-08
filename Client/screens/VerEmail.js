@@ -28,7 +28,7 @@ const VerEmail = props => {
         async function getData() {
             setToMail(await AsyncStorage.getItem('Email')); //Get user entered E-mail from Async Storage
             setF_name(await AsyncStorage.getItem('Fname')); //Get user entered first name from Async Storage
-            setL_name(await AsyncStorage.getItem('Lname')); //Get user entered lasr name from Async Storage
+            setL_name(await AsyncStorage.getItem('Lname')); //Get user entered last name from Async Storage
             setOTP(Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000); //Generate four digits random number
 
         }

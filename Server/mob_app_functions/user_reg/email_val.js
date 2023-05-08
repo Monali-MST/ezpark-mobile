@@ -4,9 +4,7 @@ var connection = require("../../service/connection");//Connect to the database
 
 module.exports = async function email_val(req, res) {
     const query = "SELECT Email FROM EzPark.User_Details WHERE Email=(?);";
-    const value=[
-        req.body.Email,
-    ]
+    const value=[req.body.Email]
     connection.query(query, [value], (err, data) => {
         if (err){
             return res.json(err);

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="SpinnerDatePickerDialog" parent="SpinnerDatePickerDialogBase">
+		<item name="android:windowBackground">#424242</item>
+	</style>
+    <style name="SpinnerTimePickerDialog" parent="SpinnerTimePickerDialogBase">
+		<item name="android:windowBackground">#424242</item>
+	</style>
     <style name="Theme.AppCompat.DayNight" parent="Theme.AppCompat"/>
     <style name="Theme.AppCompat.DayNight.DarkActionBar" parent="Theme.AppCompat"/>
     <style name="Theme.AppCompat.DayNight.Dialog" parent="Theme.AppCompat.Dialog"/>

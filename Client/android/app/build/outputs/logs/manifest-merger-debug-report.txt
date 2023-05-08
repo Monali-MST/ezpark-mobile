@@ -9,11 +9,11 @@ MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/pramodjayathilaka/.gra
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/e32b7eeb3398efff4e100fae60e161ae/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/d00cb5af49214c127447117a850c65b4/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
 MERGED from [:react-native-async-storage_async-storage] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-community_datetimepicker] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:lottie-react-native] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/lottie-react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-encrypted-storage] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-encrypted-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-10:12
 MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-svg] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/4aa3daa4c119e5ebf154ad11d072f485/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -107,6 +107,8 @@ application
 ADDED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:6:5-25:19
 MERGED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:6:5-25:19
 MERGED from /Users/pramodjayathilaka/Documents/ezPark/Client/android/app/src/main/AndroidManifest.xml:6:5-25:19
+MERGED from [:react-native-community_datetimepicker] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-20
+MERGED from [:react-native-community_datetimepicker] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.soloader:soloader:0.10.4] /Users/pramodjayathilaka/.gradle/caches/transforms-3/87826452408345e9fcde9828ee0fb34c/transformed/jetified-soloader-0.10.4/AndroidManifest.xml:11:5-20
@@ -187,6 +189,8 @@ MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/pramodja
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/pramodjayathilaka/.gradle/caches/transforms-3/d00cb5af49214c127447117a850c65b4/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [:react-native-async-storage_async-storage] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-async-storage_async-storage] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_datetimepicker] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_datetimepicker] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/@react-native-community/datetimepicker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:lottie-react-native] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/lottie-react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:lottie-react-native] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/lottie-react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-encrypted-storage] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-encrypted-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-8:41
@@ -195,8 +199,6 @@ MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents
 MERGED from [:react-native-safe-area-context] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-svg] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-svg] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-vector-icons] /Users/pramodjayathilaka/Documents/ezPark/Client/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/pramodjayathilaka/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:5:5-7:41

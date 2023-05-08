@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, Text, View, StyleSheet, ScrollView, TextInput } from "react-native";
+import { server } from '../Service/server_con'
 import extStyles from "../styles/extStyles";
 import Foundatin from "react-native-vector-icons/Foundation";
 import axios from "axios";
 import AsyncStore from "@react-native-async-storage/async-storage";
 import Button from "./../Components/Button";
-
+ 
 const SignupOne = props => {
 
     const [errors, setErrors] = useState({ //State variable with array for validation purpose
@@ -62,7 +63,7 @@ const SignupOne = props => {
     const handleEmail = async (name, value) => {
         setUsers((prev) => ({ ...prev, [name]: value }));
         if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-            await axios.post("http://10.0.2.2:8800/emailValidation", { "Email": value })
+            await axios.post(server + "emailValidation", { "Email": value })
                 .then(res => {
                     if (res.data == 100) {
                         setErrors((prev) => ({ ...prev, emailErr: "", emailBColor: "#212121", emailValid: true }));
@@ -115,7 +116,7 @@ const SignupOne = props => {
             setErrors((prev) => ({ ...prev, pCodeErr: "", pCodeBColor: "#FAA41E" }));
         }
 
-        //Validate mobile number
+        //Validate mobile number (0771234567, 94771234567, +94771234567)
         if (users.MobNum == "") { //Mobile number should not be null
             setErrors((prev) => ({ ...prev, mobNumErr: "Mobile number  field cannot be empty", mobNumBColor: "#F00", valid: false }));
         } else {
@@ -129,7 +130,7 @@ const SignupOne = props => {
                     users.MobNum = "+" + users.MobNum;
                     setErrors((prev) => ({ ...prev, mobNumErr: "", mobNumBColor: "#FAA41E" }));
                 }
-            //Check whether mobile number first digit is starting with 0
+                //Check whether mobile number first digit is starting with 0
             } else if (users.MobNum.charAt(0) == "0") {
                 //Is it has 10 digits
                 if (!(/^\d{10}$/.test(users.MobNum))) {
@@ -139,7 +140,7 @@ const SignupOne = props => {
                     //Remove first digit(0) and add +94 to begining
                     users.MobNum = "+94" + (users.MobNum.slice(1));
                 }
-            //Check whether mobile number first three characters are containing +94
+                //Check whether mobile number first three characters are containing +94
             } else if (users.MobNum.slice(0, 3) == "+94") {
                 //Check number have 12 digit and third character not a 0
                 if ((!(users.MobNum.length == 12)) || users.MobNum.charAt(3) == "0") {
@@ -208,14 +209,14 @@ const SignupOne = props => {
 
         //Validate password
         if (users.Pword == "") { //Password field should not be null
-            setErrors((prev) => ({ ...prev, valid: false,  pWordErr: "Password field cannot be empty", pWordBColor: "#F00",}));
+            setErrors((prev) => ({ ...prev, valid: false, pWordErr: "Password field cannot be empty", pWordBColor: "#F00", }));
         } else if (users.Pword.length < 8) { //Password must contain minimum 8 characters
             setErrors((prev) => ({ ...prev, valid: false, pWordErr: "Password must contains minimum 8 characters", pWordBColor: "#F00", }));
         } else if (users.conPWord == "") { //Confirm password field should not be null
             setErrors((prev) => ({ ...prev, valid: false, conPWordErr: "Confirm password field cannot be empty", conPWordBColor: "#F00", }));
         } else if (users.Pword != users.conPWord) { //Check whether Password and Confirmation password are not equal
-            setErrors((prev) => ({ ...prev, valid: false, conPWordErr: "Password mismatched. Please check again", conPWordBColor: "#F00",}));
-            setErrors((prev) => ({ ...prev, pWordErr: "", pWordBColor: "#F00" } ));
+            setErrors((prev) => ({ ...prev, valid: false, conPWordErr: "Password mismatched. Please check again", conPWordBColor: "#F00", }));
+            setErrors((prev) => ({ ...prev, pWordErr: "", pWordBColor: "#F00" }));
         } else {
             setErrors((prev) => ({ ...prev, pWordErr: "", pWordBColor: "#FAA41E" }));
             setErrors((prev) => ({ ...prev, conPWordErr: "", conPWordBColor: "#FAA41E" }));
@@ -290,7 +291,7 @@ const SignupOne = props => {
                     {errors.fNameEmptyErr != "" ? <Text style={intStyles.errTxt}>{errors.fNameEmptyErr}</Text> : null}
 
                     <View style={intStyles.formInput}>
-                        <TextInput placeholder="Last Name" onChangeText={(value) => handleChange("Lname", value)} placeholderTextColor="#A5A5A5"  style={intStyles.inputText} />
+                        <TextInput placeholder="Last Name" onChangeText={(value) => handleChange("Lname", value)} placeholderTextColor="#A5A5A5" style={intStyles.inputText} />
                     </View>
 
                     <View style={{ ...intStyles.formInput, ...{ borderColor: errors.addFLineBColor } }}>

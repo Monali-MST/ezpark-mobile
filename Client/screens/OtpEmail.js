@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, SafeAreaView, Alert, Pressable, TextInput } from "react-native";
 import extStyles from '../styles/extStyles';
+import {server} from '../Service/server_con';
 import Material from "react-native-vector-icons/MaterialCommunityIcons";
 import Button from "../Components/Button";
 import EncryptedStorage from "react-native-encrypted-storage";
@@ -110,11 +111,11 @@ const OtpEmail = props => {
         if (OtpVal == GenVal) {
             setLoading(true);
             //send user's data to backend
-            await axios.post("http://10.0.2.2:8800/user", users);
+            await axios.post(server+"user", users);
             for(const item of vehicle){
                 if(item.VehicleNo!=null){
                     //Send vehicel data to backend
-                    await axios.post("http://10.0.2.2:8800/vehicle", item);
+                    await axios.post(server+"vehicle", item);
                 }
               }
             EncryptedStorage.clear('OTP');

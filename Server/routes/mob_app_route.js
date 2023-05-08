@@ -5,6 +5,7 @@ const test = require('../mob_app_functions/test/test')
 const user_reg = require('../mob_app_functions/user_reg/user_reg')
 const vehicle_reg = require('../mob_app_functions/user_reg/vehicle_reg')
 const email_val = require('../mob_app_functions/user_reg/email_val')
+const user_login = require('../mob_app_functions/user_login/user_login')
 
 //__________Server test__________
 router.get('/test' , (req,res,next)=>{
@@ -21,9 +22,15 @@ router.post('/vehicle' , (req,res,next)=>{
     vehicle_reg(req, res);
 })
 
-//__________Email validation when login__________
+//__________Email validation when signup__________
 router.post('/emailValidation' , (req,res,next)=>{
     email_val(req, res);
 })
+
+//__________Email validation when login__________
+router.post('/userLogin' , (req,res,next)=>{
+    user_login(req, res);
+})
+
 
 module.exports = router;
