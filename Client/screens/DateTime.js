@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, StyleSheet, Image, Platform, Pressable, Alert } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet, Image, Platform, Pressable } from 'react-native';
 import extStyles from "../styles/extStyles";
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Ant from 'react-native-vector-icons/AntDesign';
 import Button from "../Components/Button";
+import ErrorMessage from "../Components/ErrorMessage";
+import { setErrContent, setErrTitle } from '../Global/Variable';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const DateTime = (props) => {
     const [fromDate, setFromDate] = useState({
@@ -37,6 +40,28 @@ const DateTime = (props) => {
 
     const [maxDate, setMaxDate] = useState(new Date());
 
+    const [error, setError] = useState(false);
+
+    const validate = async e => {
+        console.log(toTime.TimeChecker.getMinutes()-fromTime.TimeChecker.getMinutes());
+        if(fromDate.DateChecker>toDate.DateChecker){
+            setErrTitle("Oops...!!");
+            setErrContent("Invalid date selection");
+            setError(true);
+        }else if(fromDate.DateChecker.getDate()==toDate.DateChecker.getDate() && fromTime.TimeChecker>toTime.TimeChecker){
+            setErrTitle("Oops...!!");
+            setErrContent("Invalid time selection");
+            setError(true);
+        }else if(fromDate.DateChecker.getDate()==toDate.DateChecker.getDate() && fromTime.TimeChecker.getHours()==toTime.TimeChecker.getHours() && (toTime.TimeChecker.getMinutes()-fromTime.TimeChecker.getMinutes()) < 31){
+            setErrTitle("Oops...!!");
+            setErrContent("Maximum booking time must be more than 30 minutes");
+            setError(true);
+        }else{
+            await AsyncStorage.multiSet([['fromDate', fromDate.Date], ['fromTime', fromTime.Time], ['toDate', toDate.Date], ['toTime', toTime.Time]]);
+            props.navigation.navigate('Zone');
+        }
+    }
+
 
     const onChange = (event, selected, item) => {
         if (item === "fromDate") {
@@ -60,7 +85,6 @@ const DateTime = (props) => {
 
     useEffect(() => {
         maxDate.setDate(maxDate.getDate() + 7);
-        console.log(fromDate.Date);
     }, [])
 
     return (
@@ -129,7 +153,7 @@ const DateTime = (props) => {
                 </View>
 
                 <View style={{ width: "90%", alignSelf: "center", marginVertical: 50 }}>
-                    <Button title={"Next"} onPress={() => (Alert.alert("Hiii"))} />
+                    <Button title={"Next"} onPress={() => validate()} />
                 </View>
             </View>
 
@@ -140,6 +164,8 @@ const DateTime = (props) => {
             {toDate.DateShow && (<DateTimePicker value={toDate.Date != null ? toDate.DateChecker : new Date()} mode='date' display="default" minimumDate={fromDate != null ? fromDate.DateChecker : new Date()} maximumDate={maxDate} onChange={(event, selectedDate) => onChange(event, selectedDate, "toDate")} />)}
 
             {toTime.TimeShow && (<DateTimePicker value={toTime.Time != null ? toTime.TimeChecker : new Date()} mode='time' is24Hour={true} display="default" onChange={(event, selectedTime) => onChange(event, selectedTime, "toTime")} />)}
+
+            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }
         </SafeAreaView>
     )
 }

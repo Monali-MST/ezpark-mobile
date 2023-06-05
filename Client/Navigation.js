@@ -15,6 +15,7 @@ import Congrats from "./screens/Congrats";
 import Dashboard from "./screens/Dashboard";
 import Splash from "./screens/Splash";
 import DateTime from "./screens/DateTime";
+import Zone from "./screens/Zone";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ const Navigation = props => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Splash">
+                <Stack.Screen name="Zone" component={Zone} options={{ headerShown: false }} />
                 <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="TandC" component={TandC} options={{ headerShown: false }} />
