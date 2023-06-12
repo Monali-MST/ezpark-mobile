@@ -205,7 +205,7 @@ const Vehicle = props => {
                         </View>
                     </View>
                     <View style={{ width: "49%", marginLeft: 5 }}>
-                        <SelectList setSelected={(value) => handleSelect("Vehicle1", value)} placeholder={"Vehicle Type"} boxStyles={{ ...intStyles.boxStyles, ...{ borderColor: errors.vType1BColor } }} dropdownTextStyles={intStyles.dropdownTextStyles} inputStyles={intStyles.inputStyles} search={false} data={data} save="value2" />
+                        <SelectList setSelected={(value) => handleSelect("Vehicle1", value)} placeholder={"Vehicle Type"} boxStyles={{ ...intStyles.boxStyles, ...{ borderColor: errors.vType1BColor } }} dropdownTextStyles={intStyles.dropdownTextStyles} inputStyles={intStyles.inputStyles} search={false} data={data} save="value1" />
                     </View>
                 </View>
                 <View style={{ flexDirection: "row", width: "90%", marginHorizontal: 20 }} pointerEvents={errors.enableBox2}>

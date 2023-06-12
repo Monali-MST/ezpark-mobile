@@ -6,6 +6,9 @@ const user_reg = require('../mob_app_functions/user_reg/user_reg')
 const vehicle_reg = require('../mob_app_functions/user_reg/vehicle_reg')
 const email_val = require('../mob_app_functions/user_reg/email_val')
 const user_login = require('../mob_app_functions/user_login/user_login')
+const slot_ret = require('../mob_app_functions/booking/slot_display')
+const fetch_vehicles = require('../mob_app_functions/booking/fetch_vehicles')
+const fetch_discounts = require('../mob_app_functions/booking/fetch_discounts')
 
 //__________Server test__________
 router.get('/test' , (req,res,next)=>{
@@ -32,5 +35,19 @@ router.post('/userLogin' , (req,res,next)=>{
     user_login(req, res);
 })
 
+//__________Booket slot retrive when booking__________
+router.post('/slotBooking' , (req,res,next)=>{
+    slot_ret(req,res);
+})
+
+//__________Vehicle fetch when booking__________
+router.post('/fetchVehicles', (req,res,next)=>{
+    fetch_vehicles(req,res);
+})
+
+//__________Available discounts fetch when booking__________
+router.post('/fetchDiscounts', (req,res,next)=>{
+    fetch_discounts(req,res);
+})
 
 module.exports = router;

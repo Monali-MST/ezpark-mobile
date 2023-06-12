@@ -18,7 +18,7 @@ const Zone = (props) => {
                 <View style={[StyleSheet.absoluteFillObject, intStyles.zoneBtnContainer]}>
                     <View style={intStyles.zoneContainerDivider}>
                         <View style={intStyles.zoneSubDivider}>
-                            <Pressable style={intStyles.btn} onPress={() => Alert.alert("Zone-C")}>
+                            <Pressable style={intStyles.btn} onPress={() => props.navigation.navigate('Slots', {data: 'C'})}>
                                 <Text style={intStyles.btnTxt}>
                                     Zone-C
                                 </Text>
@@ -28,7 +28,7 @@ const Zone = (props) => {
                             </Pressable>
                         </View>
                         <View style={intStyles.zoneSubDivider}>
-                            <Pressable style={intStyles.btn} onPress={() => Alert.alert("Zone-D")}>
+                            <Pressable style={intStyles.btn} onPress={() => props.navigation.navigate('Slots', {data: 'D'})}>
                                 <Text style={intStyles.btnTxt}>
                                     Zone-D
                                 </Text>
@@ -40,7 +40,7 @@ const Zone = (props) => {
                     </View>
                     <View style={intStyles.zoneContainerDivider}>
                         <View style={intStyles.zoneSubDivider}>
-                            <Pressable style={intStyles.btn} onPress={() => Alert.alert("Zone-A")}>
+                            <Pressable style={intStyles.btn} onPress={() => props.navigation.navigate('Slots', {data: 'A'})}>
                                 <Text style={intStyles.btnTxt}>
                                     Zone-A
                                 </Text>
@@ -50,7 +50,7 @@ const Zone = (props) => {
                             </Pressable>
                         </View>
                         <View style={intStyles.zoneSubDivider}>
-                            <Pressable style={intStyles.btn} onPress={() => Alert.alert("Zone-B")}>
+                            <Pressable style={intStyles.btn} onPress={() => props.navigation.navigate('Slots', {data: 'B'})}>
                                 <Text style={intStyles.btnTxt}>
                                     Zone-B
                                 </Text>

@@ -10,7 +10,7 @@ import { setErrContent, setErrTitle } from '../Global/Variable';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const DateTime = (props) => {
-    const [fromDate, setFromDate] = useState({
+    const [date, setDate] = useState({
         DateShow: false,
         Date: null,
         DateChecker: new Date(),
@@ -22,13 +22,6 @@ const DateTime = (props) => {
         Time: null,
         TimeChecker: new Date(),
         TimeSelected: false,
-    });
-
-    const [toDate, setToDate] = useState({
-        DateShow: false,
-        Date: null,
-        DateChecker: new Date(),
-        DateSelected: false,
     });
 
     const [toTime, setToTime] = useState({
@@ -43,38 +36,42 @@ const DateTime = (props) => {
     const [error, setError] = useState(false);
 
     const validate = async e => {
-        console.log(toTime.TimeChecker.getMinutes()-fromTime.TimeChecker.getMinutes());
-        if(fromDate.DateChecker>toDate.DateChecker){
+        if(date.Date==null){
             setErrTitle("Oops...!!");
-            setErrContent("Invalid date selection");
+            setErrContent("Select the date first");
             setError(true);
-        }else if(fromDate.DateChecker.getDate()==toDate.DateChecker.getDate() && fromTime.TimeChecker>toTime.TimeChecker){
+        }else if(fromTime.Time==null && toTime.Time==null){
+            setErrTitle("Oops...!!");
+            setErrContent("Select the booking starting and end time");
+            setError(true);
+        }else if(toTime.Time==null){
+            setErrTitle("Oops...!!");
+            setErrContent("Select the booking end time");
+            setError(true);
+        }else if(fromTime.TimeChecker>toTime.TimeChecker){
             setErrTitle("Oops...!!");
             setErrContent("Invalid time selection");
             setError(true);
-        }else if(fromDate.DateChecker.getDate()==toDate.DateChecker.getDate() && fromTime.TimeChecker.getHours()==toTime.TimeChecker.getHours() && (toTime.TimeChecker.getMinutes()-fromTime.TimeChecker.getMinutes()) < 31){
+        }else if(fromTime.TimeChecker.getHours()==toTime.TimeChecker.getHours() && (toTime.TimeChecker.getMinutes()-fromTime.TimeChecker.getMinutes()) < 31){
             setErrTitle("Oops...!!");
             setErrContent("Maximum booking time must be more than 30 minutes");
             setError(true);
         }else{
-            await AsyncStorage.multiSet([['fromDate', fromDate.Date], ['fromTime', fromTime.Time], ['toDate', toDate.Date], ['toTime', toTime.Time]]);
+            await AsyncStorage.multiSet([['date', date.Date], ['fromTime', fromTime.Time],['toTime', toTime.Time]]);
             props.navigation.navigate('Zone');
         }
     }
 
 
     const onChange = (event, selected, item) => {
-        if (item === "fromDate") {
+        if (item === "date") {
             let fDate = selected.getFullYear() + "/" + (selected.getMonth() + 1) + "/" + selected.getDate();
-            setFromDate((prev) => ({ ...prev, DateShow: Platform.OS === 'ios', Date: fDate, DateChecker: selected }));
+            setDate((prev) => ({ ...prev, DateShow: Platform.OS === 'ios', Date: fDate, DateChecker: selected }));
         } else if (item === "fromTime") {
-            let fTime = selected.getHours() + ":" + selected.getMinutes();
+            let fTime = selected.getHours().toString().padStart(2, '0') + ":" + selected.getMinutes().toString().padStart(2, '0');
             setFromTime((prev) => ({ ...prev, TimeShow: Platform.OS === 'ios', Time: fTime, TimeChecker: selected }));
-        } else if (item === "toDate") {
-            let fDate = selected.getFullYear() + "/" + (selected.getMonth() + 1) + "/" + selected.getDate();
-            setToDate((prev) => ({ ...prev, DateShow: Platform.OS === 'ios', Date: fDate, DateChecker: selected }));
-        } else if (item === "toTime") {
-            let fTime = selected.getHours() + ":" + selected.getMinutes();
+        }else if (item === "toTime") {
+            let fTime = selected.getHours().toString().padStart(2, '0') + ":" + selected.getMinutes().toString().padStart(2, '0');
             setToTime((prev) => ({ ...prev, TimeShow: Platform.OS === 'ios', Time: fTime, TimeChecker: selected }));
         }
     }
@@ -99,20 +96,25 @@ const DateTime = (props) => {
             </View>
             <View style={intStyles.formContainer}>
                 <View style={intStyles.formElement}>
-                    <Text style={intStyles.formTitle}>From</Text>
+                    <Text style={intStyles.formTitle}>Date</Text>
                     <View style={{ flexDirection: "row", width: "100%", marginHorizontal: "3.3%" }}>
-                        <Pressable style={intStyles.inputField} onPress={() => showMode(setFromDate, 'DateShow')}>
+                        <Pressable style={{...intStyles.inputField, ...{width:"93.3%"}}} onPress={() => showMode(setDate, 'DateShow')}>
                             <View style={{ width: "85%" }}>
                                 {
-                                    fromDate.Date != null ? <Text style={intStyles.selectedText}>{fromDate.Date}</Text>
+                                    date.Date != null ? <Text style={intStyles.selectedText}>{date.Date}</Text>
                                         :
                                         <Text style={intStyles.inputFieldText}>Date</Text>
                                 }
                             </View>
                             <Ant name="right" size={24} color={"#000"} style={{ alignSelf: "flex-end" }} />
                         </Pressable>
+                    </View>
+                </View>
 
-                        <Pressable style={{ ...intStyles.inputField, ...{ marginLeft: "3.3%" } }} onPress={() => showMode(setFromTime, 'TimeShow')}>
+                <View style={intStyles.formElement}>
+                    <Text style={intStyles.formTitle}>Time</Text>
+                    <View style={{ flexDirection: "row", width: "100%", marginHorizontal: "3.3%" }}>
+                        <Pressable style={intStyles.inputField} onPress={() => showMode(setFromTime, 'TimeShow')}  disabled={date.Date == null}>
                             <View style={{ width: "85%" }}>
                                 {
                                     fromTime.Time != null ? <Text style={intStyles.selectedText}>{fromTime.Time}</Text>
@@ -121,22 +123,6 @@ const DateTime = (props) => {
                                 }
                             </View>
                             <Ant name="clockcircleo" size={24} color={"#000"} style={{ alignSelf: "flex-end" }} />
-                        </Pressable>
-                    </View>
-                </View>
-
-                <View style={intStyles.formElement}>
-                    <Text style={intStyles.formTitle}>To</Text>
-                    <View style={{ flexDirection: "row", width: "100%", marginHorizontal: "3.3%" }}>
-                        <Pressable style={intStyles.inputField} onPress={() => showMode(setToDate, 'DateShow')} disabled={fromDate.Date === null}>
-                            <View style={{ width: "85%" }}>
-                                {
-                                    toDate.Date != null ? <Text style={intStyles.selectedText}>{toDate.Date}</Text>
-                                        :
-                                        <Text style={intStyles.inputFieldText}>Date</Text>
-                                }
-                            </View>
-                            <Ant name="right" size={24} color={"#000"} style={{ alignSelf: "flex-end" }} />
                         </Pressable>
 
                         <Pressable style={{ ...intStyles.inputField, ...{ marginLeft: "3.3%" } }} onPress={() => showMode(setToTime, 'TimeShow')} disabled={fromTime.Time == null}>
@@ -157,11 +143,9 @@ const DateTime = (props) => {
                 </View>
             </View>
 
-            {fromDate.DateShow && (<DateTimePicker value={fromDate.Date != null ? fromDate.DateChecker : new Date()} mode='date' display="default" minimumDate={new Date()} maximumDate={maxDate} onChange={(event, selectedDate) => onChange(event, selectedDate, "fromDate")} />)}
+            {date.DateShow && (<DateTimePicker value={date.Date != null ? date.DateChecker : new Date()} mode='date' display="default" minimumDate={new Date()} maximumDate={maxDate} onChange={(event, selectedDate) => onChange(event, selectedDate, "date")} />)}
 
             {fromTime.TimeShow && (<DateTimePicker value={fromTime.Time != null ? fromTime.TimeChecker : new Date()} mode='time' is24Hour={true} display="default" onChange={(event, selectedTime) => onChange(event, selectedTime, "fromTime")} />)}
-
-            {toDate.DateShow && (<DateTimePicker value={toDate.Date != null ? toDate.DateChecker : new Date()} mode='date' display="default" minimumDate={fromDate != null ? fromDate.DateChecker : new Date()} maximumDate={maxDate} onChange={(event, selectedDate) => onChange(event, selectedDate, "toDate")} />)}
 
             {toTime.TimeShow && (<DateTimePicker value={toTime.Time != null ? toTime.TimeChecker : new Date()} mode='time' is24Hour={true} display="default" onChange={(event, selectedTime) => onChange(event, selectedTime, "toTime")} />)}
 
