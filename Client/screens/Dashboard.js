@@ -23,13 +23,31 @@ const Dashboard = props => {
                     <View style={intStyles.carousel}>
 
                     </View>
-                    <View style={{flexDirection:"row", marginHorizontal: 10}}>
-                        <Pressable onPress={() => props.navigation.navigate('DateTime')}>
-                            <View style={intStyles.btn1}>
-                                <Material name="calendar-edit" color={"#FAA41E"} size={50} />
-                                <Text style={intStyles.btnTxt1}>Make a Booking</Text>
-                            </View>
-                        </Pressable>
+                    <View style={intStyles.divider}>
+                        <View style={{flexDirection:"row", marginHorizontal: 5}}>
+                            <Pressable onPress={() => props.navigation.navigate('DateTime')}>
+                                <View style={intStyles.btn1}>
+                                    <Material name="calendar-edit" color={"#FAA41E"} size={50} />
+                                    <Text style={intStyles.btnTxt1}>Make a Booking</Text>
+                                </View>
+                            </Pressable>
+                        </View>
+                        <View style={{flexDirection:"row", marginHorizontal: 5}}>
+                            <Pressable onPress={() => props.navigation.navigate('MyBookings')}>
+                                <View style={intStyles.btn2}>
+                                    <Material name="calendar-clock" color={"#FFF"} size={50} />
+                                    <Text style={intStyles.btnTxt2}>My Bookings</Text>
+                                </View>
+                            </Pressable>
+                        </View>
+                        <View style={{flexDirection:"row", marginHorizontal: 5}}>
+                            <Pressable onPress={() => props.navigation.navigate('DateTime')}>
+                                <View style={intStyles.btn1}>
+                                    <Material name="calendar-edit" color={"#FAA41E"} size={50} />
+                                    <Text style={intStyles.btnTxt1}>Make a Booking</Text>
+                                </View>
+                            </Pressable>
+                        </View>
                     </View>
 
 
@@ -44,6 +62,12 @@ const Dashboard = props => {
 }
 
 const intStyles = StyleSheet.create({
+    divider: {
+        width: "100%",
+        flexDirection: "row",
+        paddingHorizontal: 5,
+        justifyContent: "center"
+    },
     navBar: {
         height: "10%",
         backgroundColor: "#0F0"
@@ -53,11 +77,28 @@ const intStyles = StyleSheet.create({
         height: "90%",
     },
 
+    btn2: {
+        height: 118,
+        width: 114,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#FAA41E",
+        elevation: 5
+    },
+
+    btnTxt2: {
+        color: "#FFF",
+        fontSize: 20,
+        textAlign: "center",
+        fontWeight: "600"
+    },
+
     btn1: {
         height: 118,
         width: 114,
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "#FFF",
         elevation: 5
     },
 

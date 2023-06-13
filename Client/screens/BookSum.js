@@ -93,7 +93,7 @@ const BookSum = (props) => {
         }else{
             setShowError(false);
             console.log(selected);
-            props.navigation.navigate("Payment");
+            props.navigation.navigate("Payment",{SlotCharge: slotCharge, Discount: discountValue, Total: payableCharge, rate: discountRate});
         }
     }
 

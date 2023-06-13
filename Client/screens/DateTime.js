@@ -88,7 +88,7 @@ const DateTime = (props) => {
         <SafeAreaView style={extStyles.body}>
             <View style={intStyles.titleView}>
                 <Material name="calendar-edit" color={"#FAA41E"} size={82} style={intStyles.icon} />
-                <Text style={intStyles.title}>Sign Up</Text>
+                <Text style={intStyles.title}>Make a{'\n'}booking</Text>
             </View>
 
             <View style={intStyles.imageContainer}>

@@ -9,6 +9,7 @@ const user_login = require('../mob_app_functions/user_login/user_login')
 const slot_ret = require('../mob_app_functions/booking/slot_display')
 const fetch_vehicles = require('../mob_app_functions/booking/fetch_vehicles')
 const fetch_discounts = require('../mob_app_functions/booking/fetch_discounts')
+const fetch_bookings = require('../mob_app_functions/my_bookings/fetch_bookings')
 
 //__________Server test__________
 router.get('/test' , (req,res,next)=>{
@@ -48,6 +49,11 @@ router.post('/fetchVehicles', (req,res,next)=>{
 //__________Available discounts fetch when booking__________
 router.post('/fetchDiscounts', (req,res,next)=>{
     fetch_discounts(req,res);
+})
+
+//__________Fetch current and future bookings__________
+router.post('/fetchBookings', (req,res,next)=>{
+    fetch_bookings(req,res);
 })
 
 module.exports = router;

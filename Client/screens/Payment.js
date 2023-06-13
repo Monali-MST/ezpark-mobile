@@ -2,22 +2,21 @@ import React from "react";
 import { SafeAreaView, View, Text, StyleSheet,TextInput,Pressable,Alert,Image, ScrollView } from "react-native";
 import Icon from 'react-native-vector-icons/Feather';
 import extStyles from "../styles/extStyles";
-// import RadioButtonRN from "radio-buttons-react-native";
+import RadioButtonRN from "radio-buttons-react-native";
 
 
 
 
 const Payment = (props) =>{
   const [number, onChangeNumber] = React.useState(null);
+  
+  const data = props.route.params;
+
   return(
     <SafeAreaView style={[extStyles.body]}>
     
     <ScrollView>
-    const data = [{{label: 'data 1' }},
- {{label: 'data 2'}
-  
- }
-];
+    
 
 {/* <RadioButtonRN
   data={data}
@@ -52,43 +51,52 @@ const Payment = (props) =>{
       </View>
       <Text style ={styles.required}>*This area is required</Text>
       </View>
-
-      <View style ={styles.bookingCharge}>
+      <View style={{paddingHorizontal: 10}}>
         <Text style ={styles.yourBooking}>Your Booking...</Text>
-        <Text style ={styles.bCtxt}>Slot charge</Text>
-        <Text style ={styles.bCtxt}>Discount</Text>
-        <Text style ={styles.totalAmount}>Total Amount</Text>
+      </View>
+      
+      <View style={{width: "100%", height: 100, flexDirection: "row", paddingHorizontal: 10}}>
+          <View style={{width: "50%", height: "100%"}}>
+            <Text style ={styles.bCtxt}>Slot charge</Text>
+            <Text style ={styles.bCtxt}>Discount({data.rate}%)</Text>
+            <Text style ={styles.totalAmount}>Total Amount</Text>
+          </View>
+          <View style={{width: "50%", height: "100%", alignItems: "flex-end"}}>
+            <Text style ={styles.bCtxt}>{data.SlotCharge}</Text>
+            <Text style ={styles.bCtxt}>-{data.Discount}</Text>
+            <Text style ={styles.totalAmount}>{data.Total}</Text>
+          </View>
       </View>
 
-      <View style={styles.Buttons}>
-        <View style={{width:"60%",}}>
-          <Pressable onPress={() => Alert.alert('This is cancel  button')} 
-          style={({ pressed })=>[
-            styles.cancelBtn,
-            pressed && {opacity:.8}
-          ]}>
-            {({ pressed }) => { 
-              return(
-                <Text style={[styles.cancelBtnTxt, pressed && {opacity:.8}]}>Cancel</Text>
-              );
-            }} 
-          </Pressable>
-        </View>
+        <View style={styles.Buttons}>
+          <View style={{width:"60%",}}>
+            <Pressable onPress={() => props.navigation.navigate('DateTime')} 
+            style={({ pressed })=>[
+              styles.cancelBtn,
+              pressed && {opacity:.8}
+            ]}>
+              {({ pressed }) => { 
+                return(
+                  <Text style={[styles.cancelBtnTxt, pressed && {opacity:.8}]}>Cancel</Text>
+                );
+              }} 
+            </Pressable>
+          </View>
 
-        <View style={{width:"60%",}}>
-          <Pressable onPress={() => Alert.alert('This is pay  button')} 
-          style={({ pressed })=>[
-            styles.payBtn,
-            pressed && {opacity:.8}
-          ]}>
-            {({ pressed }) => { 
-              return(
-                <Text style={[styles.payBtnTxt, pressed && {opacity:.8}]}>Pay</Text>
-              );
-            }} 
-          </Pressable>
+          <View style={{width:"60%",}}>
+            <Pressable onPress={() => Alert.alert('To be implemented')} 
+            style={({ pressed })=>[
+              styles.payBtn,
+              pressed && {opacity:.8}
+            ]}>
+              {({ pressed }) => { 
+                return(
+                  <Text style={[styles.payBtnTxt, pressed && {opacity:.8}]}>Pay</Text>
+                );
+              }} 
+            </Pressable>
+          </View>
         </View>
-      </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -121,7 +129,12 @@ const styles = StyleSheet.create({
   },
 
   bookingCharge:{
-
+    width: "100%",
+    paddingHorizontal: 10,
+    paddingTop: 5,
+    flexDirection: "row",
+    height: 100,
+    backgroundColor: "#f00",
 },
 
 cardNum:{
