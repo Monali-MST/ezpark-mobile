@@ -93,7 +93,7 @@ const BookSum = (props) => {
         }else{
             setShowError(false);
             console.log(selected);
-            Alert.alert("Over to you nathali")
+            props.navigation.navigate("Payment");
         }
     }
 
