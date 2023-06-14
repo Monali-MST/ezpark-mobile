@@ -15,7 +15,6 @@ const App=()=>{
     <ScrollView>
     const data = [{{label: 'data 1' }},
  {{label: 'data 2'}
-  
  }
 ];
 
