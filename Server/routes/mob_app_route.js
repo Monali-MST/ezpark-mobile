@@ -15,6 +15,7 @@ const mobile_otp_send = require('../mob_app_functions/otp/mobile_otp_send')
 const mobile_otp_check = require('../mob_app_functions/otp/mobile_otp_check')
 const email_otp_send = require('../mob_app_functions/otp/email_otp_send')
 const email_otp_check = require('../mob_app_functions/otp/email_otp_check')
+const booking_history = require('../mob_app_functions/history/booking_history')
  
 
 //__________Server test__________
@@ -85,6 +86,11 @@ router.post('/sendOtpMail', (req,res,next)=>{
 //__________Check Mobile OTP__________
 router.post('/checkOtpMail', (req,res,next)=>{
     email_otp_check(req,res);
+})
+
+//__________Fetch booking history__________
+router.post('/bookHistory', (req,res,next)=>{
+    booking_history(req,res);
 })
 
 module.exports = router;

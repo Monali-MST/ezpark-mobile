@@ -7,7 +7,7 @@ const Chat = props => {
     return(
         <SafeAreaView style={extStyles.body}>
             <View style={intStyles.container}>
-                <Text style={intStyles.heading}>Comming Soon</Text>
+                <Text style={intStyles.heading}>Coming Soon</Text>
                 <Ionicons name="chatbubbles-outline" color={"#FFF"} size={150} />
             </View>
         </SafeAreaView>
