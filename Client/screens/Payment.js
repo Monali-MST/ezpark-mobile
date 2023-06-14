@@ -16,10 +16,10 @@ const Payment = (props) =>{
     <ScrollView>
     
 
-{/* <RadioButtonRN
-  data={data}
-  selectedBtn={(e) => console.log(e)}
-/> */}
+  {/* <RadioButtonRN
+    data={data}
+    selectedBtn={(e) => console.log(e)}
+  /> */}
       <View style={styles.heading}> 
           <Icon name="credit-card" size={80} color="#FAA41E" style={styles.icon} />
           <Text style={styles.headingTxt}>Payment Details</Text>
