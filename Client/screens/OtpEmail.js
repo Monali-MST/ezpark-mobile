@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, SafeAreaView, Alert, Pressable, TextInput } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, TextInput } from "react-native";
 import extStyles from '../styles/extStyles';
 import {server} from '../Service/server_con';
 import Material from "react-native-vector-icons/MaterialCommunityIcons";
 import Button from "../Components/Button";
-import EncryptedStorage from "react-native-encrypted-storage";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
+import ErrorMessage from "../Components/ErrorMessage";
 import AppLoader from "../Components/AppLoader";
+import { setErrContent, setErrTitle } from "../Global/Variable";
 
 const OtpEmail = props => {
 
@@ -57,8 +58,9 @@ const OtpEmail = props => {
 
     const [OtpVal, setOtpVal] = useState(''); //State variable for the get user entered OTP value
     const [Email, setEmail] = useState(''); //State variable for the get user entered Email
-    const [GenVal, setGenVal] = useState(''); //State variable for the get generated OTP value from EncryptedStorage
+
     const [loading, setLoading] = useState(false); //State variable for the loading screen
+    const [error, setError] = useState(false);
 
 
     const handleChange = (text) => {
@@ -69,9 +71,6 @@ const OtpEmail = props => {
         async function getEmail() {
             //Get user entered Email from Asyncstorage and set it to Email state varible 
             setEmail(await AsyncStorage.getItem('Email')); 
-
-            //Get generated OTP value from Encryptedstorage and set it to Email state varible 
-            setGenVal(await EncryptedStorage.getItem('OTP')); 
         };
 
         //Get user registartion details to the users array from the AsyncStorage
@@ -107,29 +106,46 @@ const OtpEmail = props => {
         getVehicle();
     }, []);
 
-    const OtpValidation = async e => {
-        if (OtpVal == GenVal) {
-            setLoading(true);
-            //send user's data to backend
-            await axios.post(server+"user", users);
-            for(const item of vehicle){
-                if(item.VehicleNo!=null){
-                    //Send vehicel data to backend
-                    await axios.post(server+"vehicle", item);
-                }
-              }
-            EncryptedStorage.clear('OTP');
-            AsyncStorage.clear();
-            //Navigate to congratulations screen
-            props.navigation.reset({
-                index: 0,
-                routes: [{name: 'Congrats'}]
-            });
-        } else {
-            Alert.alert("Invalid OTP");
-        }
-    }
 
+    const OtpValidation = async (e) => {
+        setLoading(true);
+        try {
+          const res = await axios.post(server + 'checkOtpMail', { "Email": Email, "OTP": OtpVal });
+          if (res.data === 200) {
+            // Send user's data to backend
+            await axios.post(server + "user", users);
+            for (const item of vehicle) {
+              if (item.VehicleNo != null) {
+                // Send vehicle data to backend
+                await axios.post(server + "vehicle", item);
+              }
+            }
+            AsyncStorage.clear();
+            // Navigate to congratulations screen
+            props.navigation.reset({
+              index: 0,
+              routes: [{ name: 'Congrats' }]
+            });
+          } else if (res.data === 300) {
+            setErrTitle("Oops...!!");
+            setErrContent("Invalid OTP");
+            setLoading(false);
+            setError(true);
+          } else {
+            setErrTitle("Oops...!!");
+            setErrContent("Something went wrong");
+            setLoading(false);
+            setError(true);
+          }
+        } catch (error) {
+          console.log(error);
+          setErrTitle("Oops...!!");
+          setErrContent("Something went wrong");
+          setLoading(false);
+          setError(true);
+        }
+      };
+      
     return (
         <SafeAreaView style={extStyles.body}>
             <View style={intStyles.titleView}>
@@ -151,6 +167,7 @@ const OtpEmail = props => {
                 <Button title={"Verify"} onPress={OtpValidation}/>
             </View>
             {loading ? <AppLoader/> : null}
+            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }
         </SafeAreaView>
     );
 }

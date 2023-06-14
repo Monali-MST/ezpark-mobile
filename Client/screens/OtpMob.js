@@ -3,12 +3,18 @@ import { SafeAreaView, Text, View, StyleSheet, TextInput ,Pressable, Alert, Back
 import extStyles from '../styles/extStyles';
 import Material from "react-native-vector-icons/MaterialCommunityIcons";
 import Button from '../Components/Button';
-import EncryptedStorage from 'react-native-encrypted-storage';
+import ErrorMessage from "../Components/ErrorMessage";
+import { setErrContent, setErrTitle } from '../Global/Variable';
+import AppLoader from "../Components/AppLoader";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { server } from '../Service/server_con';
+import axios from 'axios';
 const OtpMob = props => {
   const [OtpVal, setOtpVal] = useState(''); //State variable for the get user entered OTP value
-  const [MobNo, setMobNo] = useState(''); //State variable for the get user entered Email
+  const [MobNo, setMobNo] = useState(''); //State variable for the get user entered Mobile Number
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   
   const handleChange = (text)=> {
     setOtpVal(text); //Set OTP value to OtpVal state variable
@@ -23,16 +29,27 @@ const OtpMob = props => {
   }, []);
 
   const OtpValidation = async e =>{
-    genVal=await EncryptedStorage.getItem('OTP');
-    if(OtpVal==genVal){
-      EncryptedStorage.removeItem('OTP'); 
-      props.navigation.reset({
-        index: 0,
-        routes: [{name: 'VerEmail'}]
-      });
-    }else{
-      Alert.alert("Invalid OTP");
-    }
+    setLoading(true);
+      await axios.post(server + 'checkOtpMob', {"MobNum": MobNo, "OTP": OtpVal})
+      .then((res)=>{
+        if(res.data===200){
+            props.navigation.reset({
+            index: 0,
+            routes: [{name: 'VerEmail'}]
+          });
+        }else if(res.data===300){
+          setErrTitle("Oops...!!");
+          setErrContent("Invalid OTP");
+          setLoading(false);
+          setError(true);
+        }else{
+          setErrTitle("Oops...!!");
+          setErrContent("Something went wrong");
+          setLoading(false);
+          setError(true);
+        }
+      })
+      
   }
   return (
     <SafeAreaView style={extStyles.body}>
@@ -54,6 +71,8 @@ const OtpMob = props => {
       <View style={{width:"90%", alignSelf:"center", marginVertical:10}}>
         <Button title={"Verify"} onPress={OtpValidation}/>
       </View>
+      {loading ? <AppLoader/> : null}
+      {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }
     </SafeAreaView>
   );
 };

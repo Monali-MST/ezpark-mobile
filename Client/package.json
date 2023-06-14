@@ -16,6 +16,8 @@
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/native-stack": "^6.9.7",
     "axios": "^1.2.6",
+    "bcrypt": "^5.1.0",
+    "js-base64": "^3.7.5",
     "jwt-decode": "^3.1.2",
     "lottie-react-native": "^6.0.0-rc.3",
     "moment": "^2.29.4",

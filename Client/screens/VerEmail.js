@@ -4,9 +4,11 @@ import extStyles from '../styles/extStyles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Button from "../Components/Button";
-import emailjs from '@emailjs/browser';
-import EncryptedStorage from 'react-native-encrypted-storage';
+import ErrorMessage from "../Components/ErrorMessage";
+import { setErrContent, setErrTitle } from '../Global/Variable';
+import axios from "axios";
 import AppLoader from "../Components/AppLoader";
+import { server } from '../Service/server_con';
 
 const VerEmail = props => {
     //State variable for collecting data
@@ -14,15 +16,9 @@ const VerEmail = props => {
     const [F_name, setF_name] = useState('');
     const [L_name, setL_name] = useState('');
     const [OTP, setOTP] = useState('');
-    const [loading, setLoading] = useState(false);
 
-    //E-mail template parameters
-    var templateParams = {
-        to_mail: To_mail,
-        OTP: OTP,
-        f_name: F_name,
-        l_name: L_name,
-    };
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         async function getData() {
@@ -37,20 +33,20 @@ const VerEmail = props => {
 
     const handleClick = async e => {
         setLoading(true);//Enable loading lottie
-        await EncryptedStorage.setItem('OTP', OTP.toString()); //Store generated OTP in Encrypted Store
-        
-        //Call API (emailJS) with parameters
-        emailjs.send('service_r6g104n', 'template_iq1nsoh', templateParams, '8nD6AUE-CeWWCKKgo')
-        .then(function(response) {
-            console.log(OTP);
-            // Prevent go back and navigate to OTP entering screen
-            props.navigation.reset({
-                index: 0,
-                routes: [{name: 'OtpEmail'}]
-              });
-        }, function(error) {
-            console.log('FAILED...', error);
-        });
+        await axios.post(server + 'sendOtpMail', {"Email": To_mail, "FirstName": F_name, "LastName":L_name})
+        .then((res) => {
+            if(res.data==200){
+                props.navigation.reset({
+                    index: 0,
+                    routes: [{name: 'OtpEmail'}]
+                });
+            }else{
+                setErrTitle("Oops...!!");
+                setErrContent("Something went wrong");
+                setLoading(false);
+                setError(true);
+            }
+        })
     }
 
     return (
@@ -66,6 +62,7 @@ const VerEmail = props => {
                 <Button title={"Verify E-Mail"} onPress={handleClick}/>
             </View>
             {loading ? <AppLoader/> : null}
+            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }
         </SafeAreaView>
     )
 }

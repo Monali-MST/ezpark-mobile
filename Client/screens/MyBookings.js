@@ -18,17 +18,16 @@ const MyBookings = (props) => {
 
     const [futureBookings, setFutureBookings] = useState([]);
 
-    const [refresh, setRefresh] = useState([]);
-
-    const BookingID = [];
-
     useEffect(()=>{
         async function getData(){
             const token = await AsyncStorage.getItem('AccessToken');
             const decoded = jwtDecode(token);
             try{
                 const response = await axios.post(server+'fetchBookings',{"userName": decoded.userName});
-                setFetchedData(response.data);
+                if(response.data!=404){
+                    setFetchedData(response.data);
+                }
+                
             }catch(err){
                 console.log(err);
             }
@@ -57,11 +56,11 @@ const MyBookings = (props) => {
                 currentBookings[index]=item;
             }
         });
-    },[fetchedData])
+    },[fetchedData]);
 
     useEffect(()=>{
             setFutureBookings([]);    
-    },[refresh]);
+    },[]);
 
 
     if (!Array.isArray(fetchedData)) {

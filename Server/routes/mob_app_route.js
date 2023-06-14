@@ -10,6 +10,12 @@ const slot_ret = require('../mob_app_functions/booking/slot_display')
 const fetch_vehicles = require('../mob_app_functions/booking/fetch_vehicles')
 const fetch_discounts = require('../mob_app_functions/booking/fetch_discounts')
 const fetch_bookings = require('../mob_app_functions/my_bookings/fetch_bookings')
+const temp_booking = require('../mob_app_functions/booking/temp_booking')
+const mobile_otp_send = require('../mob_app_functions/otp/mobile_otp_send')
+const mobile_otp_check = require('../mob_app_functions/otp/mobile_otp_check')
+const email_otp_send = require('../mob_app_functions/otp/email_otp_send')
+const email_otp_check = require('../mob_app_functions/otp/email_otp_check')
+ 
 
 //__________Server test__________
 router.get('/test' , (req,res,next)=>{
@@ -36,7 +42,7 @@ router.post('/userLogin' , (req,res,next)=>{
     user_login(req, res);
 })
 
-//__________Booket slot retrive when booking__________
+//__________Booked slot retrive when booking__________
 router.post('/slotBooking' , (req,res,next)=>{
     slot_ret(req,res);
 })
@@ -54,6 +60,31 @@ router.post('/fetchDiscounts', (req,res,next)=>{
 //__________Fetch current and future bookings__________
 router.post('/fetchBookings', (req,res,next)=>{
     fetch_bookings(req,res);
+})
+
+//__________Insert booking details to temporary booking table__________
+router.post('/tempBooking', (req,res,next)=>{
+    temp_booking(req,res);
+})
+
+//__________Sdnd OTP to Mobile__________
+router.post('/sendOtpMob', (req,res,next)=>{
+    mobile_otp_send(req,res);
+})
+
+//__________Check Mobile OTP__________
+router.post('/checkOtpMob', (req,res,next)=>{
+    mobile_otp_check(req,res);
+})
+
+//__________Send OTP to Email__________
+router.post('/sendOtpMail', (req,res,next)=>{
+    email_otp_send(req,res);
+})
+
+//__________Check Mobile OTP__________
+router.post('/checkOtpMail', (req,res,next)=>{
+    email_otp_check(req,res);
 })
 
 module.exports = router;

@@ -28,7 +28,7 @@ module.exports = async function fetch_bookings(req, res) {
             });
             return res.json(returnData);
         } else {
-            return res.json("No bookings");
+            return res.json(404);
         }
     })
 }

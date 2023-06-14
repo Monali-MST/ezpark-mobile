@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, Text, View, StyleSheet, ScrollView, TextInput } from "react-native";
-import { server } from '../Service/server_con'
+import { server } from '../Service/server_con';
 import extStyles from "../styles/extStyles";
 import Foundatin from "react-native-vector-icons/Foundation";
 import axios from "axios";
 import AsyncStore from "@react-native-async-storage/async-storage";
 import Button from "./../Components/Button";
+import { Base64 } from 'js-base64';
+
  
 const SignupOne = props => {
 
@@ -227,8 +229,9 @@ const SignupOne = props => {
         isValid();
         if (errors.valid && errors.emailValid) {
             try {
+                var encode = Base64.encode(users.Pword);
                 //Store user entered values in Async Storage
-                await AsyncStore.multiSet([['Fname', users.Fname], ['Lname', users.Lname], ['AddFLine', users.AddFLine], ['AddSLine', users.AddSLine], ['Street', users.Street], ['City', users.City], ['PCode', users.PCode], ['MobNum', users.MobNum], ['FixedNum', users.FixedNum], ['Nic', users.Nic], ['Email', users.Email], ['Pword', users.Pword]]);
+                await AsyncStore.multiSet([['Fname', users.Fname], ['Lname', users.Lname], ['AddFLine', users.AddFLine], ['AddSLine', users.AddSLine], ['Street', users.Street], ['City', users.City], ['PCode', users.PCode], ['MobNum', users.MobNum], ['FixedNum', users.FixedNum], ['Nic', users.Nic], ['Email', users.Email], ['Pword', encode]]);
                 props.navigation.navigate("Vehicle");
             } catch (err) {
                 console.log(err);

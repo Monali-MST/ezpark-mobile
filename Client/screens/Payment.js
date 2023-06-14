@@ -12,6 +12,14 @@ const Payment = (props) =>{
   
   const data = props.route.params;
 
+  const handleClick=()=>{
+    //Prevent go back
+    props.navigation.reset({
+        index: 0,
+        routes: [{name: 'Dashboard'}]
+    });
+}
+
   return(
     <SafeAreaView style={[extStyles.body]}>
     
@@ -70,7 +78,7 @@ const Payment = (props) =>{
 
         <View style={styles.Buttons}>
           <View style={{width:"60%",}}>
-            <Pressable onPress={() => props.navigation.navigate('DateTime')} 
+            <Pressable onPress={() => handleClick()} 
             style={({ pressed })=>[
               styles.cancelBtn,
               pressed && {opacity:.8}

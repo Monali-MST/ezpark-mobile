@@ -6,30 +6,43 @@ import Button from "../Components/Button";
 import extStyles from '../styles/extStyles';
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import EncryptedStorage from 'react-native-encrypted-storage';
+import ErrorMessage from "../Components/ErrorMessage";
+import { setErrContent, setErrTitle } from '../Global/Variable';
 import AppLoader from "../Components/AppLoader";
+import { server } from '../Service/server_con';
 
 const VerMob = props => {
     const [loading, setLoading] = useState(false);
+
+    const [error, setError] = useState(false);
 
     const handleClick = async e => {
         setLoading(true);
         try {
             var to = await AsyncStorage.getItem('MobNum'); //Get user entered mobile number from Async Storage
-            var code = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000; //Generate four digits random number
-            await EncryptedStorage.setItem('OTP', code.toString()); //Store OTP in Encrypted Storage
-            console.log(code);
-            var text = "Your EzPark verification code: ";
             //Call "WebSMS" API
-            await axios.post("https://cloud.websms.lk/smsAPI?sendsms&apikey=hB8Y73E2OTVPBfEGhfBk9ddi95MOFDf7&apitoken=sxX51677694785&type=sms&from=EzPark&to="+to+"&text="+text+code+"");
-            
-            //Prevent go back and navigate to the OTP entering screen
-            props.navigation.reset({
+            await axios.post(server+'sendOtpMob',{"MobNo":to})
+            .then((res)=>{
+                if(res.data===200){
+                //Prevent go back and navigate to the OTP entering screen
+                props.navigation.reset({
                 index: 0,
                 routes: [{ name: 'OtpMob' }]
             });
+                }else{
+                    setErrTitle("Oops...!!");
+                    setErrContent("Something went wrong");
+                    setLoading(false);
+                    setError(true);
+                }
+            })
+            
+            
         } catch (err) {
-            console.log(err);
+            setErrTitle("Oops...!!");
+            setErrContent("Something went wrong");
+            setLoading(false);
+            setError(true);
         }
     }
     return (
@@ -86,6 +99,7 @@ const VerMob = props => {
                 <Button title={"Verify Mobile Number"} onPress={handleClick}/>
             </View>
             {loading ? <AppLoader/> : null}
+            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }
         </SafeAreaView>
     )
 }

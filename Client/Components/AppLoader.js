@@ -15,7 +15,7 @@ const intStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#FFF',
-        zIndex: 1
+        zIndex: 200
     },
 })
 

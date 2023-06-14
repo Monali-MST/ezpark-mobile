@@ -7,12 +7,17 @@ import jwtDecode from 'jwt-decode';
 import axios from "axios";
 import { server } from "../Service/server_con";
 import AppLoader from "../Components/AppLoader";
+import ErrorMessage from "../Components/ErrorMessage";
+import { setErrContent, setErrTitle } from '../Global/Variable';
 import Button from "../Components/Button";
 
 const BookSum = (props) => {
 
     const data = props.route.params;
+ 
     const [loading, setLoading] = useState(false);
+
+    const [error, setError] = useState(false);
 
     const [showError, setShowError] = useState(false);
 
@@ -88,18 +93,56 @@ const BookSum = (props) => {
     }, [discountRate]);
 
     const handlePress = async e => {
-        if(selected==null){
+        setLoading(true);
+        if (selected == null) {
             setShowError(true);
-        }else{
+        } else {
             setShowError(false);
-            console.log(selected);
-            props.navigation.navigate("Payment",{SlotCharge: slotCharge, Discount: discountValue, Total: payableCharge, rate: discountRate});
+            const date = await AsyncStorage.getItem('date');
+            const StartTime = await AsyncStorage.getItem('fromTime');
+            const EndTime = await AsyncStorage.getItem('toTime');
+            const token = await AsyncStorage.getItem('AccessToken');
+            const decoded = jwtDecode(token);
+            let Slot = data.Slot;
+            if (Slot.charAt(0) === "D") {
+                Slot = parseInt(Slot.slice(2)) + 42;
+            } else if (Slot.charAt(0) === "C") {
+                Slot = parseInt(Slot.slice(2)) + 28;
+            } else if (Slot.charAt(0) === "B") {
+                Slot = parseInt(Slot.slice(2)) + 14;
+            } else if (Slot.charAt(0) === "A") {
+                Slot = parseInt(Slot.slice(2));
+            }
+
+            console.log(Slot);
+            const values = { "Date": date, "StartTime": StartTime, "EndTime": EndTime, "VehicleNo": selected, "BookingMethod": "online", "slot": Slot, "user_email": decoded.userName };
+            try{
+              const response = await axios.post(server+'tempBooking',values);
+              if (response.data==200){
+                props.navigation.reset({
+                    index: 0,
+                    routes: [{
+                    name: 'Payment',
+                    params: {SlotCharge: slotCharge, Discount: discountValue, Total: payableCharge, rate: discountRate}
+                }],
+                    
+                });
+              }else if(response.data==100){
+                setErrTitle("Oops...!!");
+                setErrContent("Something went wrong");
+                setLoading(false);
+                setError(true);
+              }
+            }catch(err){
+                console.log(err)
+            }
+            
+            
         }
     }
 
     return (
         <SafeAreaView style={extStyles.body}>
-            {/* <View style={{height: "100%", position: "absolute", width: "100%", zIndex: 100}}> */}
             <View style={intStyles.titleContainer}>
                 <Text style={intStyles.title}>{data.Slot} Slot</Text>
             </View>
@@ -112,11 +155,9 @@ const BookSum = (props) => {
             <View style={intStyles.menuContainer}>
                 <Text style={intStyles.menuTitle}>Select vehicle number</Text>
                 <View style={intStyles.listContainer}>
-                    <SelectList data={selectData} save="value" setSelected={(value) => handleSelect(value)} boxStyles={intStyles.boxStyles} search={false} dropdownTextStyles={intStyles.dropdownTextStyles} placeholderTextColor="#A5A5A5" placeholder="Select vehicle" dropdownStyles={{ backgroundColor: "#FFF", height: menuHeight }} inputStyles={intStyles.inputStyles}/>
+                    <SelectList data={selectData} save="value" setSelected={(value) => handleSelect(value)} boxStyles={intStyles.boxStyles} search={false} dropdownTextStyles={intStyles.dropdownTextStyles} placeholderTextColor="#A5A5A5" placeholder="Select vehicle" dropdownStyles={{ backgroundColor: "#FFF", height: menuHeight }} inputStyles={intStyles.inputStyles} />
                 </View>
             </View>
-            {/* </View> */}
-            {/* <View style={{marginTop: 500}}> */}
             <View style={intStyles.paymentContainer}>
                 <View style={intStyles.paymentItemContainer}>
                     <Text style={intStyles.paymentText}>
@@ -148,7 +189,7 @@ const BookSum = (props) => {
                 <Button title={"Proceed to payment"} onPress={() => handlePress()} />
             </View>
             {loading ? <AppLoader /> : null}
-            {/* </View> */}
+            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }
         </SafeAreaView>
     );
 }
