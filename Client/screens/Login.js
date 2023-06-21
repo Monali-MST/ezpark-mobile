@@ -6,7 +6,7 @@ import Feather from "react-native-vector-icons/Feather";
 import ErrorMessage from "../Components/ErrorMessage";
 import { server } from "../Service/server_con";
 import axios from "axios";
-import { setErrTitle, setErrContent } from "./../Global/Variable";
+import { setErrTitle, setErrContent } from "../Global/Variable";
 import AppLoader from "../Components/AppLoader";
 import AsyncStore from "@react-native-async-storage/async-storage";
 
@@ -91,7 +91,7 @@ const Login = (props) => {
           <TextInput secureTextEntry={true} placeholder="Password" placeholderTextColor="#A5A5A5" style={intStyles.inputText} onChangeText={(value) => handleChange("password", value)} />
         </View>
         <View style={{ width: "80%", alignSelf: "center" }}>
-          <TouchableOpacity onPress={() => Alert.alert('This is forgot passwrod')} activeOpacity={0.8}>
+          <TouchableOpacity onPress={() => props.navigation.navigate("FogPass")} activeOpacity={0.8}>
             <Text style={{ ...extStyles.txtColor2, ...{ fontWeight: "500" } }}>Forgot password?</Text>
           </TouchableOpacity>
         </View>

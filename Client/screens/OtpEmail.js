@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, SafeAreaView, TextInput } from "react-native";
 import extStyles from '../styles/extStyles';
-import {server} from '../Service/server_con';
+import { server } from '../Service/server_con';
 import Material from "react-native-vector-icons/MaterialCommunityIcons";
 import Button from "../Components/Button";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -61,6 +61,7 @@ const OtpEmail = props => {
 
     const [loading, setLoading] = useState(false); //State variable for the loading screen
     const [error, setError] = useState(false);
+    const [invalid, setInvalid] = useState(false);
 
 
     const handleChange = (text) => {
@@ -70,7 +71,7 @@ const OtpEmail = props => {
     useEffect(() => {
         async function getEmail() {
             //Get user entered Email from Asyncstorage and set it to Email state varible 
-            setEmail(await AsyncStorage.getItem('Email')); 
+            setEmail(await AsyncStorage.getItem('Email'));
         };
 
         //Get user registartion details to the users array from the AsyncStorage
@@ -110,42 +111,70 @@ const OtpEmail = props => {
     const OtpValidation = async (e) => {
         setLoading(true);
         try {
-          const res = await axios.post(server + 'checkOtpMail', { "Email": Email, "OTP": OtpVal });
-          if (res.data === 200) {
-            // Send user's data to backend
-            await axios.post(server + "user", users);
-            for (const item of vehicle) {
-              if (item.VehicleNo != null) {
-                // Send vehicle data to backend
-                await axios.post(server + "vehicle", item);
-              }
+            const res = await axios.post(server + 'checkOtpMail', { "Email": Email, "OTP": OtpVal });
+            if (res.data === 200) {
+                // Send user's data to backend
+                await axios.post(server + "user", users);
+                for (const item of vehicle) {
+                    if (item.VehicleNo != null) {
+                        // Send vehicle data to backend
+                        await axios.post(server + "vehicle", item);
+                    }
+                }
+                AsyncStorage.clear();
+                // Navigate to congratulations screen
+                props.navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'Congrats' }]
+                });
+            } else if (res.data === 300) {
+                setErrTitle("Oops...!!");
+                setErrContent("Invalid OTP");
+                setLoading(false);
+                setError(true);
+                setInvalid(true);
+            } else {
+                setErrTitle("Oops...!!");
+                setErrContent("Something went wrong");
+                setLoading(false);
+                setError(true);
+                setInvalid(true);
             }
-            AsyncStorage.clear();
-            // Navigate to congratulations screen
-            props.navigation.reset({
-              index: 0,
-              routes: [{ name: 'Congrats' }]
-            });
-          } else if (res.data === 300) {
-            setErrTitle("Oops...!!");
-            setErrContent("Invalid OTP");
-            setLoading(false);
-            setError(true);
-          } else {
+        } catch (error) {
+            console.log(error);
             setErrTitle("Oops...!!");
             setErrContent("Something went wrong");
             setLoading(false);
             setError(true);
-          }
-        } catch (error) {
-          console.log(error);
-          setErrTitle("Oops...!!");
-          setErrContent("Something went wrong");
-          setLoading(false);
-          setError(true);
+            setInvalid(true);
         }
-      };
-      
+    };
+
+    const resend = async e => {
+        setLoading(true);
+        try {
+            await axios.post(server + 'mailOtpResend', { "Email": Email, "FirstName": users.Fname, "LastName": users.Lname })
+                .then((res) => {
+                    if (res.data === 200) {
+                        props.navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'OtpEmail' }]
+                        });
+                    } else {
+                        setErrTitle("Oops...!!");
+                        setErrContent("Something went wrong");
+                        setLoading(false);
+                        setError(true);
+                    }
+                })
+        } catch (err) {
+            setErrTitle("Oops...!!");
+            setErrContent("Something went wrong");
+            setLoading(false);
+            setError(true);
+        }
+    }
+
     return (
         <SafeAreaView style={extStyles.body}>
             <View style={intStyles.titleView}>
@@ -156,23 +185,39 @@ const OtpEmail = props => {
                 <Text style={{ fontSize: 16, marginLeft: 10 }}>Please type the verification code sent{'\n'} to {Email}</Text>
             </View>
             <View style={[intStyles.formInput]}>
-                <TextInput placeholderTextColor="#A5A5A5" style={intStyles.inputText} value={OtpVal} onChangeText={handleChange} maxLength={4} keyboardType={"numeric"}/>
+                <TextInput placeholderTextColor="#A5A5A5" style={intStyles.inputText} value={OtpVal} onChangeText={handleChange} maxLength={4} keyboardType={"numeric"} />
             </View>
             <View style={{ alignItems: "center" }}>
                 <Text style={{ fontWeight: "bold", fontSize: 16, color: "#A5A5A5", marginTop: 10 }}>Did not receive?
-                    <Text onPress={{}} style={{ color: "#FAA41E" }} > Resend</Text>
+                    <Text onPress={resend} style={{ color: "#FAA41E" }} > Resend</Text>
                 </Text>
+                {invalid ? <Text onPress={() => props.navigation.navigate('ChangeEmail')} style={{ fontWeight: "bold", fontSize: 16, color: "#D24E01", marginTop: 50 }} >Change Email</Text> : null}
             </View>
-            <View style={{ width: "90%", alignSelf: "center", marginVertical: 10 }}>
-                <Button title={"Verify"} onPress={OtpValidation}/>
+            <View style={intStyles.btnContainer}>
+                <Button title={"Verify"} onPress={OtpValidation} />
             </View>
-            {loading ? <AppLoader/> : null}
-            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }
+            {loading ? <AppLoader /> : null}
+            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null}
         </SafeAreaView>
     );
 }
 
 const intStyles = StyleSheet.create({
+    messageContainer: {
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 50
+    },
+
+    btnContainer: {
+        marginTop: 100,
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: 20
+    },
+
     icon: {
         marginLeft: 10,
         marginRight: 5,

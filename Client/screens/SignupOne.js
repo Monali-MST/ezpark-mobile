@@ -201,6 +201,7 @@ const SignupOne = props => {
             setErrors((prev) => ({ ...prev, nicErr: "Invalid NIC", nicBColor: "#F00", valid: false }));
         }
 
+        //Validate Email address
         if (users.Email == "") {
             setErrors((prev) => ({ ...prev, emailErr: "E-mail field cannot be empty", emailBColor: "#F00", valid: false }));
         } else if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(users.Email))) {

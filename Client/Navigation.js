@@ -21,6 +21,12 @@ import BookSum from "./screens/BookSum";
 import MyBookings from "./screens/MyBookings";
 import Payment from "./screens/Payment";
 import Chat from "./screens/Chat";
+import ChangeEmail from "./screens/ChangeEmail";
+import ChangeMob from "./screens/ChangeMob";
+import FogPass from "./screens/FogPass";
+import FogPassVerify from "./screens/FogPassVerify";
+import ChangePass from "./screens/ChangePass";
+import Success from "./screens/Success";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +34,12 @@ const Navigation = props => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Splash">
+                <Stack.Screen name="Success" component={Success} options={{ headerShown: false }} />
+                <Stack.Screen name="ChangePass" component={ChangePass} options={{ headerShown: false }} />
+                <Stack.Screen name="FogPassVerify" component={FogPassVerify} options={{ headerShown: false }} />
+                <Stack.Screen name="FogPass" component={FogPass} options={{ headerShown: false }} />
+                <Stack.Screen name="ChangeMob" component={ChangeMob} options={{ headerShown: false }} />
+                <Stack.Screen name="ChangeEmail" component={ChangeEmail} options={{ headerShown: false }} />
                 <Stack.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
                 <Stack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
                 <Stack.Screen name="MyBookings" component={MyBookings} options={{ headerShown: false }} />
