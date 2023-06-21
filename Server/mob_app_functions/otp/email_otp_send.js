@@ -23,7 +23,7 @@ module.exports = async function email_otp_send(req, res) {
     let parameters = {
         from: "EzPark Team",
         to: Email,
-        subject: "EzPark Registration Verfication",
+        subject: "EzPark User Verfication",
         text: "Hello " + FirstName + " " + LastName + "\n\nYour Ezpark verification code is: " + code + "\n\nBest Wishes,\nEzPark Team"
     }
 
