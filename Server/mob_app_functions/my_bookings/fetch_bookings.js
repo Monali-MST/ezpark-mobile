@@ -16,7 +16,7 @@ module.exports = async function fetch_bookings(req, res) {
                     returnData.push({ Date: element.BookedDate, StartTime: element.StartTime, EndTime: element.EndTime, VehicleNo: element.VehicleNo, Slot: "D-" + (element.slot - 42), BookingID:element.BookingID })
                     // console.log("D-"+(element.slot-42));
                 } else if (element.slot > 28) {
-                    console.log("C-" + (element.slot - 28));
+                    // console.log("C-" + (element.slot - 28));
                     returnData.push({ Date: element.BookedDate, StartTime: element.StartTime, EndTime: element.EndTime, VehicleNo: element.VehicleNo, Slot: "C-" + (element.slot - 28), BookingID:element.BookingID })
                 } else if (element.slot > 14) {
                     // console.log("B-" + (element.slot - 14));

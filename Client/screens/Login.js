@@ -33,7 +33,6 @@ const Login = (props) => {
 
   const setToken = async (token) =>{
     await AsyncStore.setItem('AccessToken', token);
-    console.log(await AsyncStore.getItem('AccessToken'));
     return;
   }
 

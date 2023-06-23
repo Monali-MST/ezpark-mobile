@@ -19,6 +19,7 @@ const booking_history = require('../mob_app_functions/history/booking_history')
 const mobile_resend = require('../mob_app_functions/otp/mobile_resend')
 const email_resend = require('../mob_app_functions/otp/email_resend')
 const change_password = require('../mob_app_functions/change_password/change_password')
+const fetch_refund = require('../mob_app_functions/my_bookings/fetch_refund')
 
 
 //__________Server test__________
@@ -109,6 +110,11 @@ router.post('/bookHistory', (req, res, next) => {
 //__________Change password__________
 router.post('/changePassword', (req, res, next) => {
     change_password(req, res);
+})
+
+//__________Fetch refund details__________
+router.post('/refundDetails', (req, res, next) => {
+    fetch_refund(req, res);
 })
 
 module.exports = router;

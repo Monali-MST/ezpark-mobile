@@ -18,57 +18,57 @@ const MyBookings = (props) => {
 
     const [futureBookings, setFutureBookings] = useState([]);
 
-    useEffect(()=>{
-        async function getData(){
+    useEffect(() => {
+        async function getData() {
             const token = await AsyncStorage.getItem('AccessToken');
             const decoded = jwtDecode(token);
-            try{
-                const response = await axios.post(server+'fetchBookings',{"userName": decoded.userName});
-                if(response.data!=404){
+            try {
+                const response = await axios.post(server + 'fetchBookings', { "userName": decoded.userName });
+                if (response.data != 404) {
                     setFetchedData(response.data);
                 }
-                
-            }catch(err){
+
+            } catch (err) {
                 console.log(err);
             }
         }
 
         getData();
 
-        const interval = setInterval(getData, 1000);
+        const interval = setInterval(getData, 10000);
 
         return () => {
             clearInterval(interval);
-          };
-    },[])
+        };
+    }, [])
 
-    useEffect(()=>{
-        fetchedData.forEach((item, index)=>{
-            if((moment(item.Date).format('YYYY-MM-DD')>moment().format('YYYY-MM-DD'))||((moment(item.Date).format('YYYY-MM-DD')==moment().format('YYYY-MM-DD'))&&(item.StartTime>moment().format('HH:mm:ss')))){
-                futureBookings[index]=item;
+    useEffect(() => {
+        fetchedData.forEach((item, index) => {
+            if ((moment(item.Date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD')) || ((moment(item.Date).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD')) && (item.StartTime > moment().format('HH:mm:ss')))) {
+                futureBookings[index] = item;
             }
         });
-    },[fetchedData]);
+    }, [fetchedData]);
 
-    useEffect(()=>{
-        fetchedData.forEach((item, index)=>{
-            if((moment(item.Date).format('YYYY-MM-DD')==moment().format('YYYY-MM-DD'))&&(item.StartTime<=moment().format('HH:mm:ss') && moment().format('HH:mm:ss')<=item.EndTime)){
-                currentBookings[index]=item;
+    useEffect(() => {
+        fetchedData.forEach((item, index) => {
+            if ((moment(item.Date).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD')) && (item.StartTime <= moment().format('HH:mm:ss') && moment().format('HH:mm:ss') <= item.EndTime)) {
+                currentBookings[index] = item;
             }
         });
-    },[fetchedData]);
+    }, [fetchedData]);
 
-    useEffect(()=>{
-            setFutureBookings([]);    
-    },[]);
+    useEffect(() => {
+        setFutureBookings([]);
+    }, []);
 
 
     if (!Array.isArray(fetchedData)) {
-        return <AppLoader/>;
+        return <AppLoader />;
     }
 
 
-    return(
+    return (
         <SafeAreaView style={extStyles.body}>
             <View style={intStyles.titleView}>
                 <Material name="calendar-clock" color={"#FAA41E"} size={82} style={intStyles.icon} />
@@ -80,7 +80,7 @@ const MyBookings = (props) => {
             <View style={intStyles.scrollContainer}>
                 <ScrollView>
                     {currentBookings.map((item, index) => (
-                            <ProgressBooking key={index} date={moment(item.Date).format('YYYY-MM-DD')} StartTime={item.StartTime} EndTime={item.EndTime} VehicleNo={item.VehicleNo} Slot={item.Slot}/>
+                        <ProgressBooking key={index} ID={item.BookingID} date={moment(item.Date).format('YYYY-MM-DD')} StartTime={item.StartTime} EndTime={item.EndTime} VehicleNo={item.VehicleNo} Slot={item.Slot} />
                     ))}
                 </ScrollView>
             </View>
@@ -88,61 +88,61 @@ const MyBookings = (props) => {
                 <Text style={intStyles.scrollHeadingTxt}>Future Bookings</Text>
             </View>
             <View style={intStyles.scrollContainer}>
-                <ScrollView style={{paddingTop: 10, height: "100%"}}>
-                {futureBookings.map((item, index) => (
-                        <FutureBooking key={index} Date={moment(item.Date).format('YYYY-MM-DD')} StartTime={item.StartTime} EndTime={item.EndTime} VehicleNo={item.VehicleNo} Slot={item.Slot}/>
-                ))}
+                <ScrollView style={{ paddingTop: 10, height: "100%" }}>
+                    {futureBookings.map((item, index) => (
+                        <FutureBooking key={index} ID={item.BookingID} Date={moment(item.Date).format('YYYY-MM-DD')} StartTime={item.StartTime} EndTime={item.EndTime} VehicleNo={item.VehicleNo} Slot={item.Slot} props={props} />
+                    ))}
                 </ScrollView>
             </View>
         </SafeAreaView>
     );
 }
 
-const ProgressBooking = ({date, StartTime, EndTime, VehicleNo, Slot}) => {
-    const formatTime = date+"T"+EndTime;
-    const targetTime = new Date(formatTime); 
+const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot }) => {
+    const formatTime = date + "T" + EndTime;
+    const targetTime = new Date(formatTime);
     const [remainingTime, setRemainingTime] = useState(calculateRemainingTime());
 
     function calculateRemainingTime() {
-    const currentTime = new Date();
-    const difference = targetTime.getTime() - currentTime.getTime();
+        const currentTime = new Date();
+        const difference = targetTime.getTime() - currentTime.getTime();
 
-    // Check if the remaining time is less than or equal to 0
-    if (difference <= 0) {
-    // Stop the interval and return 0:0:0
-    return { hours: 0, minutes: 0, seconds: 0 };
+        // Check if the remaining time is less than or equal to 0
+        if (difference <= 0) {
+            // Stop the interval and return 0:0:0
+            return { hours: 0, minutes: 0, seconds: 0 };
+        }
+
+        // Calculate the remaining time in hours, minutes, and seconds
+        const hours = Math.floor(difference / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        return { hours, minutes, seconds };
     }
 
-    // Calculate the remaining time in hours, minutes, and seconds
-    const hours = Math.floor(difference / (1000 * 60 * 60));
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setRemainingTime(calculateRemainingTime());
+        }, 1000);
 
-    return { hours, minutes, seconds };
-  }
+        return () => clearInterval(timer);
+    }, []);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setRemainingTime(calculateRemainingTime());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-    return(
+    return (
         <View style={intStyles.detailsContainer}>
-            <View style={{flexDirection: "row"}}>
-                <View style={{width: "50%"}}>
-                    <Text style={intStyles.slotTxt}>Slot <Text style={{color: "#000"}}>{Slot}</Text></Text>
+            <View style={{ flexDirection: "row" }}>
+                <View style={{ width: "50%" }}>
+                    <Text style={intStyles.slotTxt}>Slot <Text style={{ color: "#000" }}>{Slot}</Text></Text>
                     <Text style={intStyles.vehicleNoTxt}>{VehicleNo}</Text>
                 </View>
-                <View  style={{width: "50%", alignItems:"flex-end"}}>
+                <View style={{ width: "50%", alignItems: "flex-end" }}>
                     <Text style={intStyles.timerTitle}>Remaining Time</Text>
                     <Text style={intStyles.timer}> {remainingTime.hours.toString().padStart(2, '0')}:{remainingTime.minutes.toString().padStart(2, '0')}:{remainingTime.seconds.toString().padStart(2, '0')}</Text>
                 </View>
             </View>
             <Text style={intStyles.dateTimeTxt}>{date} | {StartTime} to {EndTime}</Text>
-            <View style={{flexDirection:"row", justifyContent: "flex-end"}}>
+            <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
                 <TouchableOpacity style={intStyles.btnReview}>
                     <Text style={intStyles.btnTxt}>Add Review</Text>
                 </TouchableOpacity>
@@ -154,13 +154,35 @@ const ProgressBooking = ({date, StartTime, EndTime, VehicleNo, Slot}) => {
     );
 }
 
-const FutureBooking = ({Date, StartTime, EndTime, VehicleNo, Slot}) => {
-    return(
+const FutureBooking = ({ ID, Date, StartTime, EndTime, VehicleNo, Slot, props }) => {
+    const [btnShow, setBtnShow] = useState(true);
+    const [refundID, setRefundID] = useState(3);
+    const startDate = moment(Date);
+    const currentDate = moment();
+    const dateDif = startDate.diff(currentDate, 'days') + 1;
+    useEffect(() => {
+        if (dateDif > 4) {
+            setBtnShow(true);
+            setRefundID(1);
+        } else if (dateDif > 1) {
+            setBtnShow(true);
+            setRefundID(2);
+        } else {
+            setBtnShow(false);
+            setRefundID(3);
+        }
+    }, [])
+
+    const handlePress = () => {
+        props.navigation.navigate("Cancel", { bookingID: ID, dateDif: dateDif, bookingDate: Date, Slot: Slot, VehicleNo: VehicleNo, refundID: refundID, startTime: StartTime, EndTime: EndTime, dateDif: dateDif });
+    }
+
+    return (
         <View style={intStyles.detailsContainer}>
-            <Text style={intStyles.slotTxt}>Slot <Text style={{color: "#000"}}>{Slot}</Text></Text>
+            <Text style={intStyles.slotTxt}>Slot <Text style={{ color: "#000" }}>{Slot}</Text></Text>
             <Text style={intStyles.vehicleNoTxt}>{VehicleNo}</Text>
             <Text style={intStyles.dateTimeTxt}>{Date} | {StartTime} to {EndTime}</Text>
-            <TouchableOpacity style={intStyles.btn}>
+            <TouchableOpacity style={btnShow ? intStyles.btn : intStyles.btnDisabled} disabled={!btnShow} onPress={handlePress}>
                 <Text style={intStyles.btnTxt}>Cancel</Text>
             </TouchableOpacity>
         </View>
@@ -172,7 +194,7 @@ const intStyles = StyleSheet.create({
         color: "#000",
         fontWeight: "800",
         fontSize: 16
-    },  
+    },
 
     extendBtn: {
         width: 93,
@@ -184,7 +206,7 @@ const intStyles = StyleSheet.create({
         marginTop: 5,
         alignItems: "center",
         justifyContent: "center"
-    }, 
+    },
 
     btnReview: {
         width: 104,
@@ -196,15 +218,15 @@ const intStyles = StyleSheet.create({
         marginTop: 5,
         alignItems: "center",
         justifyContent: "center"
-    },  
+    },
 
-    timer:{
+    timer: {
         fontSize: 25,
         fontWeight: "bold",
         color: "#000"
     },
 
-    timerTitle:{
+    timerTitle: {
         fontSize: 14,
         fontWeight: "600",
         color: "#000"
@@ -215,7 +237,20 @@ const intStyles = StyleSheet.create({
         color: "#FFF",
         fontWeight: "800",
         fontSize: 16
-    },  
+    },
+
+    btnDisabled: {
+        width: 93,
+        height: 28,
+        borderRadius: 7,
+        backgroundColor: "#DCDCDC",
+        alignSelf: "flex-end",
+        marginRight: 10,
+        marginTop: 5,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+
     btn: {
         width: 93,
         height: 28,
@@ -226,7 +261,7 @@ const intStyles = StyleSheet.create({
         marginTop: 5,
         alignItems: "center",
         justifyContent: "center"
-    },  
+    },
 
     dateTimeTxt: {
         fontSize: 14,
@@ -248,7 +283,7 @@ const intStyles = StyleSheet.create({
     },
 
     detailsContainer: {
-        width:"90%",
+        width: "90%",
         alignSelf: "center",
         elevation: 8,
         backgroundColor: "#FFF",
@@ -293,7 +328,7 @@ const intStyles = StyleSheet.create({
     titleView: {
         flexDirection: "row",
         alignItems: "center",
-        marginTop:10,
+        marginTop: 10,
         height: "11%"
     },
 });
