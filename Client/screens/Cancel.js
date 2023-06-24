@@ -7,12 +7,20 @@ import Material from "react-native-vector-icons/MaterialCommunityIcons";
 import AppLoader from "../Components/AppLoader";
 import Button from '../Components/Button';
 import Button_Cancel from "../Components/Button_Cancel";
+import ErrorMessage from "../Components/ErrorMessage";
+import { setErrContent, setErrTitle } from "../Global/Variable";
+import jwtDecode from "jwt-decode";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const Cancel = (props) => {
-
+ 
     const data = props.route.params;
 
     const [loading, setLoading] = useState(false);
+
+    const [error, setError] = useState(false);
+
 
     const [respondData, setRespondData] = useState(0);
     const [refundAmount, setRefundAmount] = useState(0);
@@ -31,6 +39,28 @@ const Cancel = (props) => {
         setLoading(true);
         getRefundRate();
     }, [])
+
+    const handleClick = async e => {
+        setLoading(true);
+        const token = await AsyncStorage.getItem('AccessToken');
+        const decoded = jwtDecode(token);
+        const values = {"bookingID":data.bookingID, "Date":data.currentDate, "refundAmount":refundAmount, "levelId":data.refundID, "userName":decoded.userName};
+        await axios.post(server + 'cancelRefund', values)
+        .then((res)=>{
+            if (res.data==200){
+                props.navigation.reset({
+                    index: 0,
+                    routes: [{name: 'RefundSuccess',
+                    params: {Message: "Refund sucessfully issued"} }]
+                })
+            }else{
+                setErrTitle("Oops...!!");
+                setErrContent("Something went wrong");
+                setLoading(false);
+                setError(true);
+            }
+        })
+    }
 
     return (
         <SafeAreaView style={extStyles.body}>
@@ -76,11 +106,12 @@ const Cancel = (props) => {
                 </View>
             </View>
             <View style={intStyles.btnContainer}>
-                <Button title="Proceed to refund" onPress={()=>Alert.alert("Proceed to refund")}/>
+                <Button title="Proceed to refund" onPress={handleClick}/>
             </View>
             <View style={{...intStyles.btnContainer, ...{marginTop:20}}}>
                 <Button_Cancel title="Cancel" onPress={()=>props.navigation.navigate("MyBookings")}/>
             </View>
+            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null}
             {loading ? <AppLoader /> : null}
         </SafeAreaView>
     );

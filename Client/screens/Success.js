@@ -1,5 +1,3 @@
-//Congratulations screen. This will appear at the end of the registration process
-
 import React from "react";
 import { View, Text, SafeAreaView, Image, StyleSheet} from "react-native";
 import extStyles from "../styles/extStyles";

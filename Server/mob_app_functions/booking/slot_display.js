@@ -1,7 +1,7 @@
 var connection = require('../../service/connection');//Connect to the database
 
 module.exports = async function slot_display(req, res) {
-    const query1 = "SELECT slot from ezpark.booking WHERE BookedDate=(?) AND (slot>(?) AND slot<(?)) AND ((StartTime>=(?) AND StartTime<=(?)) OR (EndTime>=(?) AND EndTime<=(?)) OR (StartTime<(?) AND EndTime>(?)));"
+    const query1 = "SELECT slot from ezpark.booking WHERE cancel=0 AND BookedDate=(?) AND (slot>(?) AND slot<(?)) AND ((StartTime>=(?) AND StartTime<=(?)) OR (EndTime>=(?) AND EndTime<=(?)) OR (StartTime<(?) AND EndTime>(?)));"
 
     const query2 = "SELECT slot_type, Enability, slot_price from ezpark.slot WHERE slot_id>(?) AND slot_id<(?);"
 

@@ -174,7 +174,7 @@ const FutureBooking = ({ ID, Date, StartTime, EndTime, VehicleNo, Slot, props })
     }, [])
 
     const handlePress = () => {
-        props.navigation.navigate("Cancel", { bookingID: ID, dateDif: dateDif, bookingDate: Date, Slot: Slot, VehicleNo: VehicleNo, refundID: refundID, startTime: StartTime, EndTime: EndTime, dateDif: dateDif });
+        props.navigation.navigate("Cancel", { bookingID: ID, dateDif: dateDif, bookingDate: Date, Slot: Slot, VehicleNo: VehicleNo, refundID: refundID, startTime: StartTime, EndTime: EndTime, dateDif: dateDif, currentDate: (currentDate.format('YYYY-MM-DD')) });
     }
 
     return (

@@ -28,6 +28,7 @@ import FogPassVerify from "./screens/FogPassVerify";
 import ChangePass from "./screens/ChangePass";
 import Success from "./screens/Success";
 import Cancel from "./screens/Cancel";
+import RefundSuccess from "./screens/RefundSuccess";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,7 @@ const Navigation = props => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Splash">
+                <Stack.Screen name="RefundSuccess" component={RefundSuccess} options={{ headerShown: false }} />
                 <Stack.Screen name="Cancel" component={Cancel} options={{ headerShown: false }} />
                 <Stack.Screen name="Success" component={Success} options={{ headerShown: false }} />
                 <Stack.Screen name="ChangePass" component={ChangePass} options={{ headerShown: false }} />

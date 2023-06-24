@@ -1,7 +1,7 @@
 var connection = require('../../service/connection');
 
 module.exports = async function fetch_bookings(req, res) {
-    const query = "SELECT BookingID, BookedDate, StartTime, EndTime, VehicleNo, slot FROM ezpark.booking WHERE user_email=(?)";
+    const query = "SELECT BookingID, BookedDate, StartTime, EndTime, VehicleNo, slot FROM ezpark.booking WHERE user_email=(?) && cancel=0";
 
     const value = req.body.userName;
 
