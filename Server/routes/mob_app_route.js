@@ -21,6 +21,7 @@ const email_resend = require('../mob_app_functions/otp/email_resend')
 const change_password = require('../mob_app_functions/change_password/change_password')
 const fetch_refund = require('../mob_app_functions/my_bookings/fetch_refund')
 const cancel_refund = require('../mob_app_functions/booking_cancel/cancel_refund')
+const cancel_request = require('../mob_app_functions/booking_cancel/cancel_request')
 
 
 //__________Server test__________
@@ -121,6 +122,11 @@ router.post('/refundDetails', (req, res, next) => {
 //__________Booking cancellation with refund__________
 router.post('/cancelRefund', (req, res, next) => {
     cancel_refund(req, res);
+})
+
+//__________Booking cancellation with request__________
+router.post('/cancelRequest', (req, res, next) => {
+    cancel_request(req, res);
 })
 
 module.exports = router;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import extStyles from "../styles/extStyles";
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import { server } from "../Service/server_con";
@@ -155,26 +155,30 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot }) => {
 }
 
 const FutureBooking = ({ ID, Date, StartTime, EndTime, VehicleNo, Slot, props }) => {
-    const [btnShow, setBtnShow] = useState(true);
+    const [validRefund, setValidRefund] = useState(true);
     const [refundID, setRefundID] = useState(3);
-    const startDate = moment(Date);
+    const startDate = moment(Date, 'YYYY-MM-DD');
     const currentDate = moment();
-    const dateDif = startDate.diff(currentDate, 'days') + 1;
+    const dateDif = startDate.add(1, 'day').diff(currentDate, 'days');
     useEffect(() => {
         if (dateDif > 4) {
-            setBtnShow(true);
+            setValidRefund(true);
             setRefundID(1);
         } else if (dateDif > 1) {
-            setBtnShow(true);
+            setValidRefund(true);
             setRefundID(2);
         } else {
-            setBtnShow(false);
+            setValidRefund(false);
             setRefundID(3);
         }
     }, [])
 
     const handlePress = () => {
-        props.navigation.navigate("Cancel", { bookingID: ID, dateDif: dateDif, bookingDate: Date, Slot: Slot, VehicleNo: VehicleNo, refundID: refundID, startTime: StartTime, EndTime: EndTime, dateDif: dateDif, currentDate: (currentDate.format('YYYY-MM-DD')) });
+        if (validRefund) {
+            props.navigation.navigate("Cancel", { bookingID: ID, dateDif: dateDif, bookingDate: Date, Slot: Slot, VehicleNo: VehicleNo, refundID: refundID, startTime: StartTime, EndTime: EndTime, dateDif: dateDif, currentDate: (currentDate.format('YYYY-MM-DD')) });
+        } else {
+            props.navigation.navigate("RefundReq", { bookingID: ID, dateDif: dateDif, bookingDate: Date, Slot: Slot, VehicleNo: VehicleNo, refundID: refundID, startTime: StartTime, EndTime: EndTime, dateDif: dateDif, currentDate: (currentDate.format('YYYY-MM-DD')) });
+        }
     }
 
     return (
@@ -182,7 +186,7 @@ const FutureBooking = ({ ID, Date, StartTime, EndTime, VehicleNo, Slot, props })
             <Text style={intStyles.slotTxt}>Slot <Text style={{ color: "#000" }}>{Slot}</Text></Text>
             <Text style={intStyles.vehicleNoTxt}>{VehicleNo}</Text>
             <Text style={intStyles.dateTimeTxt}>{Date} | {StartTime} to {EndTime}</Text>
-            <TouchableOpacity style={btnShow ? intStyles.btn : intStyles.btnDisabled} disabled={!btnShow} onPress={handlePress}>
+            <TouchableOpacity style={intStyles.btn} onPress={handlePress}>
                 <Text style={intStyles.btnTxt}>Cancel</Text>
             </TouchableOpacity>
         </View>

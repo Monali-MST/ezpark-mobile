@@ -11,6 +11,7 @@ import ErrorMessage from "../Components/ErrorMessage";
 import { setErrContent, setErrTitle } from "../Global/Variable";
 import jwtDecode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import moment from "moment";
 
 
 const Cancel = (props) => {
@@ -25,6 +26,8 @@ const Cancel = (props) => {
     const [respondData, setRespondData] = useState(0);
     const [refundAmount, setRefundAmount] = useState(0);
 
+    const [timeDiff, setTimeDiff] = useState(0);
+
     useEffect(() => {
         async function getRefundRate() {
             try {
@@ -37,6 +40,7 @@ const Cancel = (props) => {
             }
         }
         setLoading(true);
+        setTimeDiff(moment(data.EndTime, 'HH:mm:ss').diff(moment(data.startTime, 'HH:mm:ss'), 'minutes'));
         getRefundRate();
     }, [])
 
@@ -44,7 +48,7 @@ const Cancel = (props) => {
         setLoading(true);
         const token = await AsyncStorage.getItem('AccessToken');
         const decoded = jwtDecode(token);
-        const values = {"bookingID":data.bookingID, "Date":data.currentDate, "refundAmount":refundAmount, "levelId":data.refundID, "userName":decoded.userName};
+        const values = {"bookingID":data.bookingID, "Date":data.currentDate, "refundAmount":refundAmount.toFixed(2), "levelId":data.refundID, "userName":decoded.userName, "timeDiff":timeDiff};
         await axios.post(server + 'cancelRefund', values)
         .then((res)=>{
             if (res.data==200){
@@ -90,9 +94,9 @@ const Cancel = (props) => {
                     <Text style={intStyles.value}>{data.bookingDate}</Text>
                     <Text style={intStyles.value}>{data.startTime}</Text>
                     <Text style={intStyles.value}>{data.EndTime}</Text>
-                    <Text style={intStyles.value}>{respondData[1]}</Text>
+                    <Text style={intStyles.value}>{Number(respondData[1]).toFixed(2)}</Text>
                     <Text style={intStyles.value}>{respondData[0]}%</Text>
-                    <Text style={{ ...intStyles.item, ...{ fontWeight: "bold", fontSize: 18 } }}>{refundAmount}</Text>
+                    <Text style={{ ...intStyles.item, ...{ fontWeight: "bold", fontSize: 18 } }}>{refundAmount.toFixed(2)}</Text>
                 </View>
             </View>
             <View style={intStyles.messageContainer}>
@@ -106,7 +110,7 @@ const Cancel = (props) => {
                 </View>
             </View>
             <View style={intStyles.btnContainer}>
-                <Button title="Proceed to refund" onPress={handleClick}/>
+                <Button title="Proceed to Refund" onPress={handleClick}/>
             </View>
             <View style={{...intStyles.btnContainer, ...{marginTop:20}}}>
                 <Button_Cancel title="Cancel" onPress={()=>props.navigation.navigate("MyBookings")}/>
