@@ -11,7 +11,7 @@ import ErrorMessage from "../Components/ErrorMessage";
 import { setErrContent, setErrTitle } from "../Global/Variable";
 import jwtDecode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import moment from "moment";
+import moment from "moment-timezone";
 
 
 const Cancel = (props) => {

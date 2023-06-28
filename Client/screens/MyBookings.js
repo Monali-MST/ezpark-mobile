@@ -6,7 +6,7 @@ import { server } from "../Service/server_con";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import moment from "moment";
+import moment from "moment-timezone";
 import AppLoader from "../Components/AppLoader";
 
 
@@ -27,15 +27,14 @@ const MyBookings = (props) => {
                 if (response.data != 404) {
                     setFetchedData(response.data);
                 }
-
             } catch (err) {
                 console.log(err);
             }
         }
-
+        
         getData();
 
-        const interval = setInterval(getData, 10000);
+        const interval = setInterval(getData, 1000);
 
         return () => {
             clearInterval(interval);
@@ -43,25 +42,27 @@ const MyBookings = (props) => {
     }, [])
 
     useEffect(() => {
+        let i = 0;
+        let j = 0;
         fetchedData.forEach((item, index) => {
             if ((moment(item.Date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD')) || ((moment(item.Date).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD')) && (item.StartTime > moment().format('HH:mm:ss')))) {
-                futureBookings[index] = item;
+                futureBookings[i] = item;
+                i++;
+            } else {
+                currentBookings[j] = item;
+                j++;
             }
         });
+
+
+        if (futureBookings[i]) {
+            setFutureBookings(prevBookings => prevBookings.slice(0, -1));
+        }
+
+        if (currentBookings[j]) {
+            setCurrentBookings(prevBookings => prevBookings.slice(0, -1));
+        }
     }, [fetchedData]);
-
-    useEffect(() => {
-        fetchedData.forEach((item, index) => {
-            if ((moment(item.Date).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD')) && (item.StartTime <= moment().format('HH:mm:ss') && moment().format('HH:mm:ss') <= item.EndTime)) {
-                currentBookings[index] = item;
-            }
-        });
-    }, [fetchedData]);
-
-    useEffect(() => {
-        setFutureBookings([]);
-    }, []);
-
 
     if (!Array.isArray(fetchedData)) {
         return <AppLoader />;
@@ -80,7 +81,7 @@ const MyBookings = (props) => {
             <View style={intStyles.scrollContainer}>
                 <ScrollView>
                     {currentBookings.map((item, index) => (
-                        <ProgressBooking key={index} ID={item.BookingID} date={moment(item.Date).format('YYYY-MM-DD')} StartTime={item.StartTime} EndTime={item.EndTime} VehicleNo={item.VehicleNo} Slot={item.Slot} />
+                        <ProgressBooking key={index} ID={item.BookingID} date={moment(item.Date).format('YYYY-MM-DD')} StartTime={item.StartTime} EndTime={item.EndTime} VehicleNo={item.VehicleNo} Slot={item.Slot} props={props}/>
                     ))}
                 </ScrollView>
             </View>
@@ -98,14 +99,24 @@ const MyBookings = (props) => {
     );
 }
 
-const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot }) => {
+const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props }) => {
     const formatTime = date + "T" + EndTime;
-    const targetTime = new Date(formatTime);
+    const targetTime = moment.tz(formatTime, "Asia/Colombo");
+    const targetTime2 = moment(targetTime).add(15, "minutes");
+
     const [remainingTime, setRemainingTime] = useState(calculateRemainingTime());
+    const [remaingTimeExtend, setRemainingTimeExtend] = useState(calculateRemainingTimeExtend());
+    const [elapsedTime, setElapsedTime] = useState(calculateElapsedTime());
+
+    const [extendTimer, setExtendTimer] = useState(false);
+    const [fineTimer, setFineTimer] = useState(false);
+
+    
+
 
     function calculateRemainingTime() {
-        const currentTime = new Date();
-        const difference = targetTime.getTime() - currentTime.getTime();
+        const currentTime = moment.tz("Asia/Colombo");
+        const difference = targetTime.diff(currentTime);
 
         // Check if the remaining time is less than or equal to 0
         if (difference <= 0) {
@@ -113,7 +124,41 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot }) => {
             return { hours: 0, minutes: 0, seconds: 0 };
         }
 
+
+
         // Calculate the remaining time in hours, minutes, and seconds
+        const hours = Math.floor(difference / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        return { hours, minutes, seconds };
+    };
+
+    function calculateRemainingTimeExtend() {
+        const currentTime = moment.tz("Asia/Colombo");
+        const difference = targetTime2.diff(currentTime);
+
+        // Check if the remaining time is less than or equal to 0
+        if (difference <= 0) {
+            // Stop the interval and return 0:0:0
+            return { hours: 0, minutes: 0, seconds: 0 };
+        }
+
+
+
+        // Calculate the remaining time in hours, minutes, and seconds
+        const hours = Math.floor(difference / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        return { hours, minutes, seconds };
+    };
+
+    function calculateElapsedTime() {
+        const currentTime = moment.tz("Asia/Colombo");
+        const difference = currentTime.diff(targetTime2);
+
+        // Calculate the elapsed time in hours, minutes, and seconds
         const hours = Math.floor(difference / (1000 * 60 * 60));
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
@@ -122,12 +167,29 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot }) => {
     }
 
     useEffect(() => {
+
         const timer = setInterval(() => {
-            setRemainingTime(calculateRemainingTime());
+            const current = moment.tz("Asia/Colombo");
+            console.log(moment.tz('Asia/Colombo').format("HH:mm:ss"))
+            // console.log(current.format("HH:mm:ss"));
+            if (moment(EndTime, 'HH:mm:ss').isAfter(current)) {
+                setRemainingTime(calculateRemainingTime());
+            } else if (moment(EndTime, 'HH:mm:ss').isBefore(current.subtract(15, "minutes"))) {
+                setExtendTimer(false);
+                setFineTimer(true);
+                setElapsedTime(calculateElapsedTime());
+            } else {
+                setExtendTimer(true);
+                setRemainingTimeExtend(calculateRemainingTimeExtend());
+            }
         }, 1000);
 
         return () => clearInterval(timer);
     }, []);
+
+    const handleExtend = () => {
+        props.navigation.navigate("Extend");
+    }
 
     return (
         <View style={intStyles.detailsContainer}>
@@ -137,8 +199,34 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot }) => {
                     <Text style={intStyles.vehicleNoTxt}>{VehicleNo}</Text>
                 </View>
                 <View style={{ width: "50%", alignItems: "flex-end" }}>
-                    <Text style={intStyles.timerTitle}>Remaining Time</Text>
-                    <Text style={intStyles.timer}> {remainingTime.hours.toString().padStart(2, '0')}:{remainingTime.minutes.toString().padStart(2, '0')}:{remainingTime.seconds.toString().padStart(2, '0')}</Text>
+                    {fineTimer ?
+                        <Text style={intStyles.timerTitleFine}>Penalty Time</Text>
+                    : extendTimer ?
+                        <Text style={intStyles.timerTitleExtend}>Time to Extend</Text>
+                        :
+                        <Text style={intStyles.timerTitle}>Remaining Time</Text>
+                    }
+
+                    {fineTimer ?
+                        <Text style={intStyles.timerFine}>
+                            {elapsedTime.hours.toString().padStart(2, '0')}:
+                            {elapsedTime.minutes.toString().padStart(2, '0')}:
+                            {elapsedTime.seconds.toString().padStart(2, '0')}
+                        </Text>
+                    : extendTimer ?
+                        <Text style={intStyles.timerExtend}>
+                            {remaingTimeExtend.hours.toString().padStart(2, '0')}:
+                            {remaingTimeExtend.minutes.toString().padStart(2, '0')}:
+                            {remaingTimeExtend.seconds.toString().padStart(2, '0')}
+                        </Text>
+                    :
+                        <Text style={intStyles.timer}>
+                            {remainingTime.hours.toString().padStart(2, '0')}:
+                            {remainingTime.minutes.toString().padStart(2, '0')}:
+                            {remainingTime.seconds.toString().padStart(2, '0')}
+                        </Text>
+                    }
+
                 </View>
             </View>
             <Text style={intStyles.dateTimeTxt}>{date} | {StartTime} to {EndTime}</Text>
@@ -146,7 +234,7 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot }) => {
                 <TouchableOpacity style={intStyles.btnReview}>
                     <Text style={intStyles.btnTxt}>Add Review</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={intStyles.extendBtn}>
+                <TouchableOpacity onPress={handleExtend} style={extendTimer ? intStyles.extendBtn : intStyles.btnDisabled} disabled={!extendTimer}>
                     <Text style={intStyles.extendBtnTxt}>Extend</Text>
                 </TouchableOpacity>
             </View>
@@ -158,13 +246,13 @@ const FutureBooking = ({ ID, Date, StartTime, EndTime, VehicleNo, Slot, props })
     const [validRefund, setValidRefund] = useState(true);
     const [refundID, setRefundID] = useState(3);
     const startDate = moment(Date, 'YYYY-MM-DD');
-    const currentDate = moment();
+    const currentDate = moment.tz("Asia/Colombo");
     const dateDif = startDate.add(1, 'day').diff(currentDate, 'days');
     useEffect(() => {
         if (dateDif > 4) {
             setValidRefund(true);
             setRefundID(1);
-        } else if (dateDif > 1) {
+        } else if (dateDif > 2) {
             setValidRefund(true);
             setRefundID(2);
         } else {
@@ -224,10 +312,36 @@ const intStyles = StyleSheet.create({
         justifyContent: "center"
     },
 
+    timerFine: {
+        fontSize: 25,
+        fontWeight: "bold",
+        color: "#F00"
+    },
+
+    timerExtend: {
+        fontSize: 25,
+        fontWeight: "bold",
+        color: "#A9A9A9"
+    },
+
     timer: {
         fontSize: 25,
         fontWeight: "bold",
         color: "#000"
+    },
+
+    timerTitleFine: {
+        fontSize: 14,
+        fontWeight: "600",
+        color: "#F00"
+
+    },
+
+    timerTitleExtend: {
+        fontSize: 14,
+        fontWeight: "600",
+        color: "#A9A9A9"
+
     },
 
     timerTitle: {

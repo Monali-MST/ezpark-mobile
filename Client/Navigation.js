@@ -30,6 +30,7 @@ import Success from "./screens/Success";
 import Cancel from "./screens/Cancel";
 import RefundSuccess from "./screens/RefundSuccess";
 import RefundReq from "./screens/RefundReq";
+import Extend from "./screens/Extend";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,7 @@ const Navigation = props => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Splash">
+                <Stack.Screen name="Extend" component={Extend} options={{ headerShown: false }} />
                 <Stack.Screen name="RefundReq" component={RefundReq} options={{ headerShown: false }} />
                 <Stack.Screen name="RefundSuccess" component={RefundSuccess} options={{ headerShown: false }} />
                 <Stack.Screen name="Cancel" component={Cancel} options={{ headerShown: false }} />

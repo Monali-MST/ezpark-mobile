@@ -22,7 +22,10 @@ const change_password = require('../mob_app_functions/change_password/change_pas
 const fetch_refund = require('../mob_app_functions/my_bookings/fetch_refund')
 const cancel_refund = require('../mob_app_functions/booking_cancel/cancel_refund')
 const cancel_request = require('../mob_app_functions/booking_cancel/cancel_request')
-
+const before_five = require('../mob_app_functions/notification/before_five')
+const end_time = require('../mob_app_functions/notification/end_time')
+const extend = require('../mob_app_functions/extend/extend')
+ 
 
 //__________Server test__________
 router.get('/test', (req, res, next) => {
@@ -127,6 +130,21 @@ router.post('/cancelRefund', (req, res, next) => {
 //__________Booking cancellation with request__________
 router.post('/cancelRequest', (req, res, next) => {
     cancel_request(req, res);
+})
+
+//__________Notify five minutes before booking end__________
+router.post('/notifyBeforeFive', (req, res, next) => {
+    before_five(req, res);
+})
+
+//__________Notify on booking end time__________
+router.post('/notifyOnEnd', (req, res, next) => {
+    end_time(req, res);
+})
+
+//__________Booking extend__________
+router.post('/extend', (req, res, next) => {
+    extend(req, res);
 })
 
 module.exports = router;

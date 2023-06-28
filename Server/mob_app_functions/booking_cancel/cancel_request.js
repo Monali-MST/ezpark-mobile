@@ -15,7 +15,7 @@ module.exports = async function cancel_request(req, res) {
     const value4 = [req.body.reason, req.body.Date, req.body.bookingID];
     const query4 = "INSERT INTO `ezpark`.`refund_request` (`Reason`, `Requested_date`, `Booking_id`) VALUES ((?), (?), (?));";
 
-    const text = "Your request for the refund has been sent. (Booking ID: " + req.body.bookingID + "). You will be notified soon regarding the refund process soon.";
+    const text = "Your request for the refund has been sent. (Booking ID: " + req.body.bookingID + "). You will be notified soon regarding the refund process.";
 
     try {
 
