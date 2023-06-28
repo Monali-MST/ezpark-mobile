@@ -31,7 +31,7 @@ const MyBookings = (props) => {
                 console.log(err);
             }
         }
-        
+
         getData();
 
         const interval = setInterval(getData, 1000);
@@ -81,7 +81,7 @@ const MyBookings = (props) => {
             <View style={intStyles.scrollContainer}>
                 <ScrollView>
                     {currentBookings.map((item, index) => (
-                        <ProgressBooking key={index} ID={item.BookingID} date={moment(item.Date).format('YYYY-MM-DD')} StartTime={item.StartTime} EndTime={item.EndTime} VehicleNo={item.VehicleNo} Slot={item.Slot} props={props}/>
+                        <ProgressBooking key={index} ID={item.BookingID} date={moment(item.Date).format('YYYY-MM-DD')} StartTime={item.StartTime} EndTime={item.EndTime} VehicleNo={item.VehicleNo} Slot={item.Slot} props={props} extend={item.Extend} />
                     ))}
                 </ScrollView>
             </View>
@@ -99,7 +99,7 @@ const MyBookings = (props) => {
     );
 }
 
-const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props }) => {
+const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props, extend }) => {
     const formatTime = date + "T" + EndTime;
     const targetTime = moment.tz(formatTime, "Asia/Colombo");
     const targetTime2 = moment(targetTime).add(15, "minutes");
@@ -111,8 +111,8 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props 
     const [extendTimer, setExtendTimer] = useState(false);
     const [fineTimer, setFineTimer] = useState(false);
 
-    
 
+    // const [extendItem, setExtendItem] = useState(false);
 
     function calculateRemainingTime() {
         const currentTime = moment.tz("Asia/Colombo");
@@ -170,11 +170,9 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props 
 
         const timer = setInterval(() => {
             const current = moment.tz("Asia/Colombo");
-            console.log(moment.tz('Asia/Colombo').format("HH:mm:ss"))
-            // console.log(current.format("HH:mm:ss"));
-            if (moment(EndTime, 'HH:mm:ss').isAfter(current)) {
+            if (moment(EndTime, 'HH:mm:ss').isAfter(current) && !extend) {
                 setRemainingTime(calculateRemainingTime());
-            } else if (moment(EndTime, 'HH:mm:ss').isBefore(current.subtract(15, "minutes"))) {
+            } else if (moment(EndTime, 'HH:mm:ss').isBefore(current.subtract(15, "minutes")) && !extend) {
                 setExtendTimer(false);
                 setFineTimer(true);
                 setElapsedTime(calculateElapsedTime());
@@ -188,7 +186,7 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props 
     }, []);
 
     const handleExtend = () => {
-        props.navigation.navigate("Extend");
+        props.navigation.navigate("Extend", {bookingId: ID, date: date, slot: Slot, startTime: targetTime2, VehicleNo: VehicleNo});
     }
 
     return (
@@ -201,10 +199,10 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props 
                 <View style={{ width: "50%", alignItems: "flex-end" }}>
                     {fineTimer ?
                         <Text style={intStyles.timerTitleFine}>Penalty Time</Text>
-                    : extendTimer ?
-                        <Text style={intStyles.timerTitleExtend}>Time to Extend</Text>
-                        :
-                        <Text style={intStyles.timerTitle}>Remaining Time</Text>
+                        : extendTimer ?
+                            <Text style={intStyles.timerTitleExtend}>Time to Extend</Text>
+                            :
+                            <Text style={intStyles.timerTitle}>Remaining Time</Text>
                     }
 
                     {fineTimer ?
@@ -213,18 +211,18 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props 
                             {elapsedTime.minutes.toString().padStart(2, '0')}:
                             {elapsedTime.seconds.toString().padStart(2, '0')}
                         </Text>
-                    : extendTimer ?
-                        <Text style={intStyles.timerExtend}>
-                            {remaingTimeExtend.hours.toString().padStart(2, '0')}:
-                            {remaingTimeExtend.minutes.toString().padStart(2, '0')}:
-                            {remaingTimeExtend.seconds.toString().padStart(2, '0')}
-                        </Text>
-                    :
-                        <Text style={intStyles.timer}>
-                            {remainingTime.hours.toString().padStart(2, '0')}:
-                            {remainingTime.minutes.toString().padStart(2, '0')}:
-                            {remainingTime.seconds.toString().padStart(2, '0')}
-                        </Text>
+                        : extendTimer ?
+                            <Text style={intStyles.timerExtend}>
+                                {remaingTimeExtend.hours.toString().padStart(2, '0')}:
+                                {remaingTimeExtend.minutes.toString().padStart(2, '0')}:
+                                {remaingTimeExtend.seconds.toString().padStart(2, '0')}
+                            </Text>
+                            :
+                            <Text style={intStyles.timer}>
+                                {remainingTime.hours.toString().padStart(2, '0')}:
+                                {remainingTime.minutes.toString().padStart(2, '0')}:
+                                {remainingTime.seconds.toString().padStart(2, '0')}
+                            </Text>
                     }
 
                 </View>
@@ -234,7 +232,7 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props 
                 <TouchableOpacity style={intStyles.btnReview}>
                     <Text style={intStyles.btnTxt}>Add Review</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={handleExtend} style={extendTimer ? intStyles.extendBtn : intStyles.btnDisabled} disabled={!extendTimer}>
+                <TouchableOpacity onPress={handleExtend} style={extendTimer && !extend ? intStyles.extendBtn : intStyles.btnDisabled} disabled={!extendTimer || Boolean(extend)}>
                     <Text style={intStyles.extendBtnTxt}>Extend</Text>
                 </TouchableOpacity>
             </View>

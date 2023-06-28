@@ -9,6 +9,10 @@ import moment from "moment-timezone";
 
 const Extend = props => {
 
+    const [showError, setShowError] = useState(false);
+
+    const data = props.route.params;
+
     const [selected, setSelected] = useState({
         btn1: false,
         btn2: false,
@@ -17,12 +21,28 @@ const Extend = props => {
     });
 
     const handlePressed = (name) => {
+        setShowError(false);
         setSelected((prev) => ({ ...prev, btn1: false, btn2: false, btn3: false, btn4: false }));
         setSelected((prev) => ({ ...prev, [name]: true }));
     };
 
     const handleClick = () => {
-        console.log(moment.tz("Asia/Colombo").format("HH:mm:ss"));
+        if (selected.btn1 || selected.btn2 || selected.btn3 || selected.btn4) {
+            let endTime = "";
+            if (selected.btn1) {
+                endTime = moment(data.startTime).add(30, "minutes");
+            } else if (selected.btn2) {
+                endTime = moment(data.startTime).add(1, "hours");
+            } else if (selected.btn3) {
+                endTime = moment(data.startTime).add(90, "minutes");
+            } else if (selected.btn4) {
+                endTime = moment(data.startTime).add(2, "hours");
+            }
+            const values = { bookingId: data.bookingId, date: data.date, startTime: data.startTime, endTime: endTime, slot: data.slot, VehicleNo: data.VehicleNo };
+            props.navigation.navigate("BookSumExtend", values);
+        } else {
+            setShowError(true);
+        }
     };
 
     return (
@@ -37,7 +57,7 @@ const Extend = props => {
             <View style={intStyles.headingContainer}>
                 <Text style={intStyles.heading}>Select The Extend Time That You Want</Text>
             </View>
-            <View style={{...intStyles.btnContainer, ...{marginTop: 10}}}>
+            <View style={{ ...intStyles.btnContainer, ...{ marginTop: 10 } }}>
                 <View style={intStyles.btnDevider}>
                     <Pressable style={selected.btn1 ? intStyles.btnPressed : intStyles.btn} onPress={() => handlePressed("btn1")}>
                         <Text style={intStyles.btnText}>30 Minutes</Text>
@@ -61,11 +81,14 @@ const Extend = props => {
                     </Pressable>
                 </View>
             </View>
-            <View style={intStyles.btnContainer2}>
-                <Button title="Proceed to Extend" onPress={handleClick}/>
+            <View style={intStyles.errorContainer}>
+                {showError ? <Text style={intStyles.errTxt}>Please select the extend time</Text> : null}
             </View>
-            <View style={{...intStyles.btnContainer2, ...{marginTop:20}}}>
-                <Button_Cancel title="Cancel" onPress={()=>props.navigation.navigate("MyBookings")}/>
+            <View style={intStyles.btnContainer2}>
+                <Button title="Proceed to Extend" onPress={handleClick} />
+            </View>
+            <View style={{ ...intStyles.btnContainer2, ...{ marginTop: 20 } }}>
+                <Button_Cancel title="Cancel" onPress={() => props.navigation.navigate("MyBookings")} />
             </View>
         </SafeAreaView>
     );
@@ -73,10 +96,24 @@ const Extend = props => {
 
 
 const intStyles = StyleSheet.create({
+    errTxt: {
+        color: "#F00",
+        fontSize: 15,
+        fontWeight: "600",
+        textAlign: "center",
+        marginBottom: 10
+    },
+
+    errorContainer: {
+        width: "90%",
+        alignSelf: "center",
+        alignItems: "center",
+        marginTop: 60
+    },
+
     btnContainer2: {
         width: "90%",
         alignSelf: "center",
-        marginTop: 50
     },
 
     btnText: {
