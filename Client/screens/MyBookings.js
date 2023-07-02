@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import extStyles from "../styles/extStyles";
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import { server } from "../Service/server_con";
@@ -8,9 +8,12 @@ import jwtDecode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import moment from "moment-timezone";
 import AppLoader from "../Components/AppLoader";
+import ErrorMessage from "../Components/ErrorMessage";
+import { setErrContent, setErrTitle } from '../Global/Variable';
 
 
 const MyBookings = (props) => {
+    const [error, setError] = useState(false);
 
     const [fetchedData, setFetchedData] = useState([]);
 
@@ -27,8 +30,12 @@ const MyBookings = (props) => {
                 if (response.data != 404) {
                     setFetchedData(response.data);
                 }
+                setError(false);
             } catch (err) {
                 console.log(err);
+                setErrTitle("Oops...!!");
+                setErrContent("Something went wrong");
+                setError(true);
             }
         }
 
@@ -54,7 +61,6 @@ const MyBookings = (props) => {
             }
         });
 
-
         if (futureBookings[i]) {
             setFutureBookings(prevBookings => prevBookings.slice(0, -1));
         }
@@ -67,7 +73,6 @@ const MyBookings = (props) => {
     if (!Array.isArray(fetchedData)) {
         return <AppLoader />;
     }
-
 
     return (
         <SafeAreaView style={extStyles.body}>
@@ -95,6 +100,7 @@ const MyBookings = (props) => {
                     ))}
                 </ScrollView>
             </View>
+            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }
         </SafeAreaView>
     );
 }
@@ -111,9 +117,7 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props,
     const [extendTimer, setExtendTimer] = useState(false);
     const [fineTimer, setFineTimer] = useState(false);
 
-
     // const [extendItem, setExtendItem] = useState(false);
-
     function calculateRemainingTime() {
         const currentTime = moment.tz("Asia/Colombo");
         const difference = targetTime.diff(currentTime);
@@ -123,8 +127,6 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props,
             // Stop the interval and return 0:0:0
             return { hours: 0, minutes: 0, seconds: 0 };
         }
-
-
 
         // Calculate the remaining time in hours, minutes, and seconds
         const hours = Math.floor(difference / (1000 * 60 * 60));
@@ -143,8 +145,6 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props,
             // Stop the interval and return 0:0:0
             return { hours: 0, minutes: 0, seconds: 0 };
         }
-
-
 
         // Calculate the remaining time in hours, minutes, and seconds
         const hours = Math.floor(difference / (1000 * 60 * 60));
@@ -167,7 +167,6 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props,
     }
 
     useEffect(() => {
-
         const timer = setInterval(() => {
             const current = moment.tz("Asia/Colombo");
             if (moment(EndTime, 'HH:mm:ss').isAfter(current) && !extend) {
@@ -181,12 +180,11 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props,
                 setRemainingTimeExtend(calculateRemainingTimeExtend());
             }
         }, 1000);
-
         return () => clearInterval(timer);
     }, []);
 
     const handleExtend = () => {
-        props.navigation.navigate("Extend", {bookingId: ID, date: date, slot: Slot, startTime: targetTime2, VehicleNo: VehicleNo});
+        props.navigation.navigate("Extend", { bookingId: ID, date: date, slot: Slot, startTime: targetTime2, VehicleNo: VehicleNo });
     }
 
     return (
