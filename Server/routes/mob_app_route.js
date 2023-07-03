@@ -26,6 +26,7 @@ const before_five = require('../mob_app_functions/notification/before_five')
 const end_time = require('../mob_app_functions/notification/end_time')
 const extend = require('../mob_app_functions/extend/extend')
 const slotPrice = require('../mob_app_functions/extend/slotPrice')
+const overlapped_change = require('../mob_app_functions/extend/overlapped_change');
  
 
 //__________Server test__________
@@ -152,5 +153,10 @@ router.post('/extend', (req, res, next) => {
 router.post('/slotPrice', (req, res, next) => {
     slotPrice(req, res);
 })
+
+//__________Change overlapped slots__________
+router.post('/changeOverLapped', (req, res, next) => {
+    overlapped_change(req, res);
+} )
 
 module.exports = router;

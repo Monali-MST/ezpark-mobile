@@ -57,7 +57,7 @@ const DateTime = (props) => {
             setErrContent("Maximum booking time must be more than 30 minutes");
             setError(true);
         }else{
-            await AsyncStorage.multiSet([['date', date.Date], ['fromTime', fromTime.Time],['toTime', toTime.Time]]);
+            await AsyncStorage.multiSet([['date', date.Date], ['fromTime', fromTime.Time],['toTime', toTime.Time],['type', 'new']]);
             props.navigation.navigate('Zone');
         }
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import extStyles from "../styles/extStyles";
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import { server } from "../Service/server_con";
@@ -20,6 +20,8 @@ const MyBookings = (props) => {
     const [currentBookings, setCurrentBookings] = useState([]);
 
     const [futureBookings, setFutureBookings] = useState([]);
+
+    const [overlappedBookings, setOverlappedBookings] = useState([]);
 
     useEffect(() => {
         async function getData() {
@@ -51,13 +53,17 @@ const MyBookings = (props) => {
     useEffect(() => {
         let i = 0;
         let j = 0;
+        let k = 0;
         fetchedData.forEach((item, index) => {
-            if ((moment(item.Date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD')) || ((moment(item.Date).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD')) && (item.StartTime > moment().format('HH:mm:ss')))) {
+            if ((moment(item.Date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD')) && item.Overlapped == "0" || ((moment(item.Date).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD')) && (item.StartTime > moment().format('HH:mm:ss'))) && item.Overlapped == "0") {
                 futureBookings[i] = item;
                 i++;
-            } else {
+            } else if (item.Overlapped == "0") {
                 currentBookings[j] = item;
                 j++;
+            } else {
+                overlappedBookings[k] = item;
+                k++;
             }
         });
 
@@ -67,6 +73,10 @@ const MyBookings = (props) => {
 
         if (currentBookings[j]) {
             setCurrentBookings(prevBookings => prevBookings.slice(0, -1));
+        }
+
+        if (overlappedBookings[k]) {
+            setOverlappedBookings(prevBookings => prevBookings.slice(0, -1));
         }
     }, [fetchedData]);
 
@@ -95,13 +105,51 @@ const MyBookings = (props) => {
             </View>
             <View style={intStyles.scrollContainer}>
                 <ScrollView style={{ paddingTop: 10, height: "100%" }}>
+                {overlappedBookings.map((item, index) => (
+                        <OverlappedBookings key={index} ID={item.BookingID} Date={moment(item.Date).format('YYYY-MM-DD')} StartTime={item.StartTime} EndTime={item.EndTime} VehicleNo={item.VehicleNo} Slot={item.Slot} props={props} />
+                    ))}
                     {futureBookings.map((item, index) => (
                         <FutureBooking key={index} ID={item.BookingID} Date={moment(item.Date).format('YYYY-MM-DD')} StartTime={item.StartTime} EndTime={item.EndTime} VehicleNo={item.VehicleNo} Slot={item.Slot} props={props} />
                     ))}
                 </ScrollView>
             </View>
-            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }
+            {error ? <ErrorMessage closeModal={() => setError(false)} /> : null}
         </SafeAreaView>
+    );
+}
+
+const OverlappedBookings = ({ ID, Date, StartTime, EndTime, VehicleNo, Slot, props }) => {
+
+    const [refundID, setRefundID] = useState(1);
+    const currentDate = moment.tz("Asia/Colombo");
+
+    const handleCancel = () => {
+        props.navigation.navigate("Cancel", { bookingID: ID, dateDif: 7, bookingDate: Date, Slot: Slot, VehicleNo: VehicleNo, refundID: refundID, startTime: StartTime, EndTime: EndTime, dateDif: 0, currentDate: (currentDate.format('YYYY-MM-DD')) });
+    };
+
+    const handleSelect = async e => {
+        await AsyncStorage.setItem('date',Date);
+        await AsyncStorage.setItem('fromTime',StartTime);
+        await AsyncStorage.setItem('toTime',EndTime);
+        await AsyncStorage.setItem('type','update');
+        await AsyncStorage.setItem('bookingID', String(ID));
+        props.navigation.navigate("Zone");
+    }
+
+    return (
+        <View style={{...intStyles.detailsContainer,...{backgroundColor: "#FFD6D6"}}}>
+            <Text style={intStyles.slotTxt}>Slot <Text style={{ color: "#000" }}>{Slot}</Text></Text>
+            <Text style={intStyles.vehicleNoTxt}>{VehicleNo}</Text>
+            <Text style={intStyles.dateTimeTxt}>{Date} | {StartTime} to {EndTime}</Text>
+            <View style={{ width: "100%", flexDirection: "row", justifyContent: "flex-end" }}>
+                <TouchableOpacity style={intStyles.selectSlotBtn} onPress={handleSelect}>
+                    <Text style={intStyles.selectSlotBtnTxt}>Select another slot</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={intStyles.btn} onPress={handleCancel}>
+                    <Text style={intStyles.btnTxt}>Cancel</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
     );
 }
 
@@ -278,6 +326,24 @@ const FutureBooking = ({ ID, Date, StartTime, EndTime, VehicleNo, Slot, props })
 }
 
 const intStyles = StyleSheet.create({
+    selectSlotBtnTxt: {
+        color: "#000",
+        fontWeight: "800",
+        fontSize: 12
+    },
+
+    selectSlotBtn: {
+        width: 120,
+        height: 28,
+        borderRadius: 7,
+        backgroundColor: "#FAA41E",
+        alignSelf: "flex-end",
+        marginRight: 10,
+        marginTop: 5,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+
     extendBtnTxt: {
         color: "#000",
         fontWeight: "800",

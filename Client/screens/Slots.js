@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, StyleSheet, Image, Alert, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, Text, StyleSheet, Image, Alert, TouchableOpacity, Modal } from "react-native";
 import extStyles from "../styles/extStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { server } from "../Service/server_con";
@@ -13,9 +13,18 @@ import ErrorMessage from "../Components/ErrorMessage";
 const Slots = (props) => {
     const [error, setError] = useState(false);
 
+    const [loading, setLoading] = useState(false);
+
+    const [showPopup, setShowPopUp] = useState(false);
+
+    const [bookingId, setBookingId] = useState();
+    const [slot, setSlot] = useState();
+
     const { data } = props.route.params;
 
-    const errHandler = (title,message) => {
+    const [type, setType] = useState();
+
+    const errHandler = (title, message) => {
         setErrTitle(title);
         setErrContent(message);
         setError(true);
@@ -45,6 +54,7 @@ const Slots = (props) => {
             let date = await AsyncStorage.getItem('date');
             let fromTime = await AsyncStorage.getItem('fromTime');
             let toTime = await AsyncStorage.getItem('toTime');
+            setType(await AsyncStorage.getItem('type'));
             setBookingDetails((prev) => ({ ...prev, date: date, fromTime: fromTime, toTime: toTime }));
 
             if (data === 'A') {
@@ -66,16 +76,32 @@ const Slots = (props) => {
 
         return () => {
             clearInterval(interval);
-          };
+        };
 
     }, [bookingDetails]);
 
     if (!Array.isArray(fetchedData)) {
-        return <AppLoader/>;
+        return <AppLoader />;
     }
 
-    const handleSelect = (Slot, Price ) => {
-        props.navigation.navigate("BookSum", {Slot: Slot, Price: Price});
+    const handleSelect = async (Slot, Price) => {
+        if (type == "new") {
+            props.navigation.navigate("BookSum", { Slot: Slot, Price: Price });
+        } else if (type == "update") {
+            setBookingId(await AsyncStorage.getItem('bookingID'));
+            setSlot(Slot);
+            setShowPopUp(true);
+        } else {
+            errHandler("Oops...!!", "Something went wrong.");
+        }
+    }
+
+    const handleModal = () => {
+        setShowPopUp(false);
+    }
+
+    const loadHanler = (state) => {
+        setLoading(state);
     }
 
     return (
@@ -93,11 +119,11 @@ const Slots = (props) => {
                             (item.Enability == 0) ? (
                                 <DisabledLeft key={index} Slot={data} SlotNo={index + 1} onErrHandler={errHandler} />
                             ) : (item.booked === 0 && item.Type === "Norm") ? (
-                                <FreeSlotsLeft key={index} Slot={data} SlotNo={index + 1} Price={item.Price} onSelectHandler={handleSelect}/>
+                                <FreeSlotsLeft key={index} Slot={data} SlotNo={index + 1} Price={item.Price} onSelectHandler={handleSelect} />
                             ) : (item.booked === 0 && item.Type === "vip") ? (
-                                <FreeSlotVipLeft key={index} Slot={data} SlotNo={index + 1} Price={item.Price} onSelectHandler={handleSelect}/>
+                                <FreeSlotVipLeft key={index} Slot={data} SlotNo={index + 1} Price={item.Price} onSelectHandler={handleSelect} />
                             ) : (item.booked === 0 && item.Type === "Dis") ? (
-                                <HandiSlotLeft key={index} Slot={data} SlotNo={index + 1} Price={item.Price} onSelectHandler={handleSelect}/>
+                                <HandiSlotLeft key={index} Slot={data} SlotNo={index + 1} Price={item.Price} onSelectHandler={handleSelect} />
                             ) : <BookedSlotsLeft key={index} onErrHandler={errHandler} />
                         ))}
                     </View>
@@ -106,24 +132,86 @@ const Slots = (props) => {
                             (item.Enability == 0) ? (
                                 <DisabledRight key={index} Slot={data} SlotNo={index + 1} onErrHandler={errHandler} />
                             ) : (item.booked === 0 && item.Type === "Norm") ? (
-                                <FreeSlotsRight key={index} Slot={data} SlotNo={index + 8} Price={item.Price} onSelectHandler={handleSelect}/>
+                                <FreeSlotsRight key={index} Slot={data} SlotNo={index + 8} Price={item.Price} onSelectHandler={handleSelect} />
                             ) : (item.booked === 0 && item.Type === "vip") ? (
-                                <FreeSlotVipRight key={index} Slot={data} SlotNo={index + 8} Price={item.Price} onSelectHandler={handleSelect}/>
+                                <FreeSlotVipRight key={index} Slot={data} SlotNo={index + 8} Price={item.Price} onSelectHandler={handleSelect} />
                             ) : (item.booked === 0 && item.Type === "Dis") ? (
-                                <HandiSlotRight key={index} Slot={data} SlotNo={index + 8} Price={item.Price} onSelectHandler={handleSelect}/>
+                                <HandiSlotRight key={index} Slot={data} SlotNo={index + 8} Price={item.Price} onSelectHandler={handleSelect} />
                             ) : <BookedSlotsRight key={index} onErrHandler={errHandler} />
                         ))}
                     </View>
                 </View>
             </View>
             {error ? <ErrorMessage closeModal={() => setError(false)} /> : null}
+            {loading ? <AppLoader /> : null}
+            {showPopup ? <Popup onErrorHandler={errHandler} onHandleModal={handleModal} bookingId={bookingId} Slot={slot} props={props} onLoadHandler={loadHanler} /> : null}
         </SafeAreaView>
+    );
+};
+
+const Popup = ({ onErrorHandler, onHandleModal, bookingId, Slot, props, onLoadHandler }) => {
+    const closeModal = () => {
+        onLoadHandler(false);
+        onHandleModal();
+    }
+
+    onLoadHandler(true);
+    const handleChange = async e => {
+        let SlotId = Slot;
+        if (SlotId.charAt(0) === "D") {
+            SlotId = parseInt(SlotId.slice(2)) + 42;
+        } else if (SlotId.charAt(0) === "C") {
+            SlotId = parseInt(SlotId.slice(2)) + 28;
+        } else if (SlotId.charAt(0) === "B") {
+            SlotId = parseInt(SlotId.slice(2)) + 14;
+        } else if (SlotId.charAt(0) === "A") {
+            SlotId = parseInt(SlotId.slice(2));
+        }
+        await axios.post(server + 'changeOverLapped', { "slot": SlotId, "bookingId": bookingId })
+            .then((res) => {
+                if (res.data == 200) {
+                    props.navigation.reset({
+                        index: 0,
+                        routes: [{
+                            name: 'RefundSuccess',
+                            params: { Message: "Slot succefully changed" }
+                        }]
+                    })
+                } else {
+                    onLoadHandler(false);
+                    onErrorHandler("Oops...!!", "Something went wrong.");
+                }
+            })
+
+    };
+
+    return (
+        <View style={intStyles.container}>
+            <Modal visible={true} animationType="fade" transparent={true}>
+                <View style={intStyles.modalContainer}>
+                    <View style={intStyles.modalContent}>
+                        <View style={{ width: "40%" }}>
+                            <Image source={require("./../src/assets/yes_no.png")} style={intStyles.modalImage} />
+                        </View>
+                        <View style={{ width: "60%" }}>
+                            <Text style={intStyles.modalHeading}>You have selected slot<Text style={{ color: "#FAA41E", fontSize: 35 }}> {Slot}</Text></Text>
+                            <TouchableOpacity style={intStyles.changeBtn} onPress={handleChange}>
+                                <Text style={intStyles.changeBtnTxt}>Proceed to change</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={intStyles.cancelBtn} onPress={closeModal}>
+                                <Text style={intStyles.cancelBtnTxt}>Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+        </View>
     );
 };
 
 const HandiSlotRight = ({ Slot, SlotNo, Price, onSelectHandler }) => {
     const handlePress = () => {
-        onSelectHandler((Slot+'-'+SlotNo), Price);
+        onSelectHandler((Slot + '-' + SlotNo), Price);
     };
     return (
         <View style={{ ...intStyles.slot, ...{ paddingTop: 5, transform: [{ rotate: '-13deg' }] } }}>
@@ -142,7 +230,7 @@ const HandiSlotRight = ({ Slot, SlotNo, Price, onSelectHandler }) => {
 
 const FreeSlotVipRight = ({ Slot, SlotNo, Price, onSelectHandler }) => {
     const handlePress = () => {
-        onSelectHandler((Slot+'-'+SlotNo), Price);
+        onSelectHandler((Slot + '-' + SlotNo), Price);
     };
     return (
         <View style={{ ...intStyles.slot, ...{ paddingTop: 5, transform: [{ rotate: '-13deg' }] } }}>
@@ -177,7 +265,7 @@ const DisabledRight = ({ Slot, SlotNo }) => {
 
 const DisabledLeft = ({ Slot, SlotNo, onErrHandler }) => {
     const handlePress = () => {
-        onErrHandler("Sorry...!!","This slot is disabled. Cannot place a booking.");
+        onErrHandler("Sorry...!!", "This slot is disabled. Cannot place a booking.");
     };
     return (
         <View style={{ ...intStyles.slot, ...{ paddingTop: 5 } }}>
@@ -196,7 +284,7 @@ const DisabledLeft = ({ Slot, SlotNo, onErrHandler }) => {
 
 const HandiSlotLeft = ({ Slot, SlotNo, Price, onSelectHandler }) => {
     const handlePress = () => {
-        onSelectHandler((Slot+'-'+SlotNo), Price);
+        onSelectHandler((Slot + '-' + SlotNo), Price);
     };
     return (
         <View style={{ ...intStyles.slot, ...{ paddingTop: 5 } }}>
@@ -215,7 +303,7 @@ const HandiSlotLeft = ({ Slot, SlotNo, Price, onSelectHandler }) => {
 
 const FreeSlotVipLeft = ({ Slot, SlotNo, Price, onSelectHandler }) => {
     const handlePress = () => {
-        onSelectHandler((Slot+'-'+SlotNo), Price);
+        onSelectHandler((Slot + '-' + SlotNo), Price);
     };
     return (
         <View style={{ ...intStyles.slot, ...{ paddingTop: 5 } }}>
@@ -234,7 +322,7 @@ const FreeSlotVipLeft = ({ Slot, SlotNo, Price, onSelectHandler }) => {
 
 const FreeSlotsRight = ({ Slot, SlotNo, Price, onSelectHandler }) => {
     const handlePress = () => {
-        onSelectHandler((Slot+'-'+SlotNo), Price);
+        onSelectHandler((Slot + '-' + SlotNo), Price);
     };
     return (
         <View style={{ ...intStyles.slot, ...{ paddingTop: 5, transform: [{ rotate: '-13deg' }] } }}>
@@ -250,7 +338,7 @@ const FreeSlotsRight = ({ Slot, SlotNo, Price, onSelectHandler }) => {
 
 const BookedSlotsRight = ({ onErrHandler }) => {
     const handlePress = () => {
-        onErrHandler("Oops...!!","This slot is already booked by another customer");
+        onErrHandler("Oops...!!", "This slot is already booked by another customer");
     };
     return (
         <View style={{ ...intStyles.slot, ...{ paddingHorizontal: 10, transform: [{ rotate: '-13deg' }] } }}>
@@ -263,7 +351,7 @@ const BookedSlotsRight = ({ onErrHandler }) => {
 
 const FreeSlotsLeft = ({ Slot, SlotNo, Price, onSelectHandler }) => {
     const handlePress = () => {
-        onSelectHandler((Slot+'-'+SlotNo), Price);
+        onSelectHandler((Slot + '-' + SlotNo), Price);
     };
     return (
         <View style={{ ...intStyles.slot, ...{ paddingTop: 5 } }}>
@@ -279,7 +367,7 @@ const FreeSlotsLeft = ({ Slot, SlotNo, Price, onSelectHandler }) => {
 
 const BookedSlotsLeft = ({ onErrHandler }) => {
     const handlePress = () => {
-        onErrHandler("Oops...!!","This slot is already booked by another customer");
+        onErrHandler("Oops...!!", "This slot is already booked by another customer");
     };
     return (
         <View style={{ ...intStyles.slot, ...{ paddingHorizontal: 10 } }}>
@@ -291,6 +379,79 @@ const BookedSlotsLeft = ({ onErrHandler }) => {
 };
 
 const intStyles = StyleSheet.create({
+    cancelBtnTxt: {
+        fontSize: 18,
+        textAlign: "center",
+        fontWeight: "700",
+        color: "#FFF"
+    },
+
+    cancelBtn: {
+        width: 150,
+        height: 40,
+        backgroundColor: "#000",
+        borderRadius: 10,
+        alignSelf: "center",
+        marginTop: 10,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+
+    changeBtnTxt: {
+        fontSize: 16,
+        textAlign: "center",
+        fontWeight: "700",
+        color: "#000"
+    },
+
+    changeBtn: {
+        width: 150,
+        height: 40,
+        backgroundColor: "#FAA41E",
+        borderRadius: 10,
+        alignSelf: "center",
+        marginTop: 10,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+
+    modalHeading: {
+        fontSize: 25,
+        color: "#000",
+        fontWeight: "700",
+        textAlign: "center"
+    },
+
+    modalImage: {
+        resizeMode: "contain",
+        height: "100%",
+        width: "100%"
+    },
+
+    container: {
+        width: "100%",
+        height: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    modalContainer: {
+        width: "100%",
+        height: "100%",
+        alignItems: 'center',
+        justifyContent: "center",
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    },
+
+    modalContent: {
+        width: "80%",
+        height: "30%",
+        backgroundColor: '#fff',
+        padding: 10,
+        borderRadius: 8,
+        flexDirection: "row"
+    },
+
     vipImg: {
         resizeMode: "contain",
         height: "100%",
@@ -371,7 +532,7 @@ const intStyles = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         alignItems: "center"
-    }
+    },
 })
 
 export default Slots;
