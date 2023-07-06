@@ -24,6 +24,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-async-storage/async-storage/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-community/datetimepicker/android" />
+            <option value="$PROJECT_DIR$/../node_modules/@stripe/stripe-react-native/android" />
             <option value="$PROJECT_DIR$/../node_modules/lottie-react-native/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-encrypted-storage/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-gradle-plugin" />

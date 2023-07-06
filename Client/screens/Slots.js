@@ -8,7 +8,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 import AppLoader from "../Components/AppLoader";
 import { setErrContent, setErrTitle } from "./../Global/Variable";
 import ErrorMessage from "../Components/ErrorMessage";
-import jwtDecode from "jwt-decode";
+
 
 const Slots = (props) => {
     const [error, setError] = useState(false);
@@ -100,9 +100,9 @@ const Slots = (props) => {
         setShowPopUp(false);
     }
 
-    // const loadHanler = (state) => {
-    //     setLoading(Boolean(state));
-    // }
+    const loadHanler = (state) => {
+        setLoading(state);
+    }
 
     return (
         <SafeAreaView style={extStyles.body}>
@@ -144,7 +144,7 @@ const Slots = (props) => {
             </View>
             {error ? <ErrorMessage closeModal={() => setError(false)} /> : null}
             {loading ? <AppLoader /> : null}
-            {showPopup ? <Popup onErrorHandler={errHandler} onHandleModal={handleModal} bookingId={bookingId} Slot={slot} props={props} onLoadHandler={setLoading} /> : null}
+            {showPopup ? <Popup onErrorHandler={errHandler} onHandleModal={handleModal} bookingId={bookingId} Slot={slot} props={props} onLoadHandler={loadHanler} /> : null}
         </SafeAreaView>
     );
 };
@@ -155,9 +155,8 @@ const Popup = ({ onErrorHandler, onHandleModal, bookingId, Slot, props, onLoadHa
         onHandleModal();
     }
 
+    onLoadHandler(true);
     const handleChange = async e => {
-        closeModal();
-        onLoadHandler(true);
         let SlotId = Slot;
         if (SlotId.charAt(0) === "D") {
             SlotId = parseInt(SlotId.slice(2)) + 42;
@@ -168,9 +167,7 @@ const Popup = ({ onErrorHandler, onHandleModal, bookingId, Slot, props, onLoadHa
         } else if (SlotId.charAt(0) === "A") {
             SlotId = parseInt(SlotId.slice(2));
         }
-        const token = await AsyncStorage.getItem('AccessToken');
-        const decoded = jwtDecode(token);
-        await axios.post(server + 'changeOverLapped', { "slotID": SlotId, "bookingId": bookingId, "userName": decoded.userName, "slot":Slot })
+        await axios.post(server + 'changeOverLapped', { "slot": SlotId, "bookingId": bookingId })
             .then((res) => {
                 if (res.data == 200) {
                     props.navigation.reset({

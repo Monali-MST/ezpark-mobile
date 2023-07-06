@@ -4,41 +4,7 @@
             "outputFile": "com.ezpark.app-mergeDebugResources-80:/values-nn-rNO/values-nn-rNO.xml",
             "map": [
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/504e304746f06fbf253e8939b8cdc146/transformed/jetified-paymentsheet-20.5.0/res/values-nn-rNO/values-nn-rNO.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,132,217,393,583,674,777,886,947,1006,1202,1287,1377,1448,1534,1601,1706,1836,1924",
-                        "endColumns": "76,84,175,189,90,102,108,60,58,195,84,89,70,85,66,104,129,87,71",
-                        "endOffsets": "127,212,388,578,669,772,881,942,1001,1197,1282,1372,1443,1529,1596,1701,1831,1919,1991"
-                    },
-                    "to": {
-                        "startLines": "9,75,142,143,144,146,147,148,149,151,152,153,154,159,160,161,162,163,164",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "481,5679,11791,11967,12157,12348,12451,12560,12621,12757,12953,13038,13128,13548,13634,13701,13806,13936,14024",
-                        "endColumns": "76,84,175,189,90,102,108,60,58,195,84,89,70,85,66,104,129,87,71",
-                        "endOffsets": "553,5759,11962,12152,12243,12446,12555,12616,12675,12948,13033,13123,13194,13629,13696,13801,13931,14019,14091"
-                    }
-                },
-                {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/acd24bd795ef1222e90373883f8ce4bd/transformed/jetified-stripe-core-20.5.0/res/values-nn-rNO/values-nn-rNO.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,126,178,233,288,340,405,463,516",
-                        "endColumns": "70,51,54,54,51,64,57,52,61",
-                        "endOffsets": "121,173,228,283,335,400,458,511,573"
-                    },
-                    "to": {
-                        "startLines": "15,25,27,28,39,45,49,53,57",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "882,1606,1728,1783,2440,2835,3125,3429,3692",
-                        "endColumns": "70,51,54,54,51,64,57,52,61",
-                        "endOffsets": "948,1653,1778,1833,2487,2895,3178,3477,3749"
-                    }
-                },
-                {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/208a12c289e3f3eb1bf612ef77f4b9a7/transformed/jetified-payments-ui-core-20.5.0/res/values-nn-rNO/values-nn-rNO.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/c25a63c289e7c6f288a4bca448777313/transformed/jetified-payments-ui-core-20.5.0/res/values-nn-rNO/values-nn-rNO.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/1b9092f955c23505a408e6df72089da2/transformed/jetified-payments-core-20.5.0/res/values-nn-rNO/values-nn-rNO.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/aa0734ae20e45e130e129302726b30a1/transformed/jetified-payments-core-20.5.0/res/values-nn-rNO/values-nn-rNO.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -72,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/a1f7451093513c61f414cc60717ca3c8/transformed/jetified-stripe-3ds2-android-6.1.5/res/values-nn-rNO/values-nn-rNO.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/c10849cda4ef80f8f95c84df12363a95/transformed/jetified-stripe-3ds2-android-6.1.5/res/values-nn-rNO/values-nn-rNO.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",
@@ -86,6 +52,40 @@
                         "startOffsets": "10614,10701,10803,10870,10937,11001,11073",
                         "endColumns": "86,101,66,66,63,71,66",
                         "endOffsets": "10696,10798,10865,10932,10996,11068,11135"
+                    }
+                },
+                {
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/917ac413649f8852f44c445fd767e052/transformed/jetified-paymentsheet-20.5.0/res/values-nn-rNO/values-nn-rNO.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,132,217,393,583,674,777,886,947,1006,1202,1287,1377,1448,1534,1601,1706,1836,1924",
+                        "endColumns": "76,84,175,189,90,102,108,60,58,195,84,89,70,85,66,104,129,87,71",
+                        "endOffsets": "127,212,388,578,669,772,881,942,1001,1197,1282,1372,1443,1529,1596,1701,1831,1919,1991"
+                    },
+                    "to": {
+                        "startLines": "9,75,142,143,144,146,147,148,149,151,152,153,154,159,160,161,162,163,164",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "481,5679,11791,11967,12157,12348,12451,12560,12621,12757,12953,13038,13128,13548,13634,13701,13806,13936,14024",
+                        "endColumns": "76,84,175,189,90,102,108,60,58,195,84,89,70,85,66,104,129,87,71",
+                        "endOffsets": "553,5759,11962,12152,12243,12446,12555,12616,12675,12948,13033,13123,13194,13629,13696,13801,13931,14019,14091"
+                    }
+                },
+                {
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/d7f779ec380a0305567c5825d58a104e/transformed/jetified-stripe-core-20.5.0/res/values-nn-rNO/values-nn-rNO.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,178,233,288,340,405,463,516",
+                        "endColumns": "70,51,54,54,51,64,57,52,61",
+                        "endOffsets": "121,173,228,283,335,400,458,511,573"
+                    },
+                    "to": {
+                        "startLines": "15,25,27,28,39,45,49,53,57",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "882,1606,1728,1783,2440,2835,3125,3429,3692",
+                        "endColumns": "70,51,54,54,51,64,57,52,61",
+                        "endOffsets": "948,1653,1778,1833,2487,2895,3178,3477,3749"
                     }
                 }
             ]

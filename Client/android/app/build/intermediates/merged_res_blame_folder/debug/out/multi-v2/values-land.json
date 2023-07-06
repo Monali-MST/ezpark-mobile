@@ -4,7 +4,7 @@
             "outputFile": "com.ezpark.app-mergeDebugResources-80:/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/1b40e4574e76bff5831ef4bf4270480d/transformed/appcompat-1.4.1/res/values-land/values-land.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/aebb5de1a712eaa465650de59e24aa02/transformed/appcompat-1.4.1/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -21,17 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/c51eb98ec57b48cdeb149f87b3da3f88/transformed/jetified-ui-1.1.1/res/values-land/values-land.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "48",
-                        "endOffsets": "99"
-                    }
-                },
-                {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/850fa850ab29f9774a27e9fee8384eb0/transformed/material-1.5.0/res/values-land/values-land.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/f07f5d0ab6299feda9cd6bb81f4569b6/transformed/material-1.5.0/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,26,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -47,6 +37,16 @@
                         "endLines": "6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,29,35,40",
                         "endColumns": "74,73,72,69,71,69,64,66,69,71,68,68,81,89,75,67,66,77,64,66,10,10,10",
                         "endOffsets": "383,457,530,600,672,742,807,874,944,1016,1085,1154,1236,1326,1402,1470,1537,1615,1680,1747,1919,2314,2583"
+                    }
+                },
+                {
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/7c13ed1eb638b1537ca1d483b2c42238/transformed/jetified-ui-1.1.1/res/values-land/values-land.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
                     }
                 }
             ]
