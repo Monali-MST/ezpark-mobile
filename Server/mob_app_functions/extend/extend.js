@@ -40,6 +40,8 @@ module.exports = async function extend(req, res) {
 
     const value5 = [req.body.userName];
     const query5 = "SELECT MobileNo FROM ezpark.user_details WHERE Email=(?);";
+    
+    const query6 = "INSERT INTO `ezpark`.`payment_details` (`PaymentDate`, `PaymentTime`, `PaymentAmount`, `Booking_id`,`Payment_intent_id`) VALUES ((?),(?),(?),(?),(?));";
 
 
     const text1 = "Dear customer, due to the extension of the booking of a current customer your booked slot has been overlapped.  Therefore, you can change the slot or cancel your booking.We apologize for the inconvenience caused.";
@@ -50,9 +52,20 @@ module.exports = async function extend(req, res) {
 
         await queryAsync(query1, value1);
 
-        await queryAsync(query2, values2);
+        let response = await queryAsync(query2, values2);
+        const bookingID = response.insertId;
 
-        let response = await queryAsync(query3, values3);
+        const values6=[
+            req.body.date,
+            req.body.currentTime,
+            req.body.paymentAmount,
+            bookingID,
+            req.body.paymentIntent
+        ];
+
+        await queryAsync(query6, values6);
+
+        response = await queryAsync(query3, values3);
         if(response!=0){
             for (const element of response) {
                 const bookingID = element.BookingID;
@@ -65,7 +78,7 @@ module.exports = async function extend(req, res) {
         await axios.post(process.env.SMS_URL + "?sendsms&apikey=" + process.env.SMS_Key + "&apitoken=" + process.env.SMS_Token + "&type=sms&from=EzPark&to=" + response[0].MobileNo + "&text=" + text2);
         
         await queryAsync("COMMIT");
-        return res.json(response);
+        return res.json(200);
     } catch (err) {
         await queryAsync("ROLLBACK");
         console.log(err);

@@ -65,16 +65,45 @@ const BookSumExtend = (props) => {
         const decoded = jwtDecode(token);
         const values = { "Date": data.date, "StartTime": times.startTime, "EndTime": times.endTime, "VehicleNo": data.VehicleNo, "BookingMethod": "online", "slot": slotID, "user_email": decoded.userName };
         try {
-            const response = await axios.post(server + 'tempBooking', values);
+            let response = await axios.post(server + 'tempBooking', values);
             if (response.data == 200) {
-                props.navigation.reset({
-                    index: 0,
-                    routes: [{
-                        name: 'Payment',
-                        params: { SlotCharge: (timeDiff * slotPrice * 1.5).toFixed(2), Discount: 0, Total: (timeDiff * slotPrice * 1.5).toFixed(2), rate: 0 }
-                    }],
-
-                });
+                const formattedAmount = Number(timeDiff * slotPrice * 1.5).toFixed(0);
+                response = await axios.post(server + 'paymentIntent', {"amount":formattedAmount, "userName":decoded.userName});
+                if(response.data!=100){
+                    if(!response.error){
+                        props.navigation.reset({
+                            index: 0,
+                            routes: [{
+                            name: 'PaymentExtend',
+                            params: {SlotCharge: (timeDiff * slotPrice * 1.5).toFixed(2),
+                                Discount: 0,
+                                Total: (timeDiff * slotPrice * 1.5).toFixed(2),
+                                rate: 0,
+                                intent: response.data.paymentIntent,
+                                date: data.date,
+                                startTime: times.startTime,
+                                endTime: times.endTime,
+                                vehicleNo: data.VehicleNo,
+                                slot: slotID,
+                                userName: decoded.userName,
+                                timeDiff: timeDiff,
+                                bookingId: data.bookingId
+                            }
+                        }],    
+                        });
+                    }else{
+                        console.log(response.error)
+                        setErrTitle("Oops...!!");
+                        setErrContent("Something went wrong");
+                        setLoading(false);
+                        setError(true);
+                    }
+                }else{
+                    setErrTitle("Oops...!!");
+                    setErrContent("Something went wrong");
+                    setLoading(false);
+                    setError(true);
+                }
             } else if (response.data == 100) {
                 setErrTitle("Oops...!!");
                 setErrContent("Something went wrong");
@@ -83,6 +112,10 @@ const BookSumExtend = (props) => {
             }
         } catch (err) {
             console.log(err)
+            setErrTitle("Oops...!!");
+            setErrContent("Something went wrong");
+            setLoading(false);
+            setError(true);
         }
     };
 
