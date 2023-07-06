@@ -10,7 +10,7 @@ import AppLoader from "../Components/AppLoader";
 import ErrorMessage from "../Components/ErrorMessage";
 import { setErrContent, setErrTitle } from '../Global/Variable';
 import Button from "../Components/Button";
-import { StripeProvider, useStripe } from "@stripe/stripe-react-native";
+import { StripeProvider, useStripe, CardField } from "@stripe/stripe-react-native";
 
 const BookSum = (props) => {
 
@@ -42,7 +42,7 @@ const BookSum = (props) => {
 
     const [selected, setSelected] = useState(null);
 
-    const { initPaymentSheet, presentPaymentSheet } = useStripe();
+    const [timeDiff, setTimeDiff] = useState();
 
     const handleSelect = (value) => {
         setSelected(value);
@@ -74,6 +74,7 @@ const BookSum = (props) => {
         const [hoursFT, minutesFT] = fromTime.split(':');
         const [hoursTT, minutesTT] = toTime.split(':');
         const diffInMinutes = (parseInt(hoursTT, 10) * 60 + parseInt(minutesTT, 10)) - (parseInt(hoursFT, 10) * 60 + parseInt(minutesFT, 10));
+        setTimeDiff(diffInMinutes);
         setSlotCharge(((parseFloat(data.Price) / 60) * diffInMinutes).toFixed(2));
         getDiscount(userName);
     }
@@ -117,7 +118,6 @@ const BookSum = (props) => {
                 Slot = parseInt(Slot.slice(2));
             }
 
-            console.log(Slot);
             const values = { "Date": date, "StartTime": StartTime, "EndTime": EndTime, "VehicleNo": selected, "BookingMethod": "online", "slot": Slot, "user_email": decoded.userName };
             try{
               let response = await axios.post(server+'tempBooking',values);
@@ -127,21 +127,28 @@ const BookSum = (props) => {
                 if(response.data!=100){
                     console.log(response.data);
                     setLoading(false);
-
-                    const payResponse = initPaymentSheet({
-                        merchantDisplayName: "EzPark",
-                        paymentIntentClientSecret: response.data.paymentIntent,
-                        defaultBillingDetails: {
-                            name: "Pramod Jayathilaka",
-                            address: "Kurunegala"
-                        }
-                    });
-                    if(!payResponse.error){
-                        console.log(payResponse);
-                        console.log("Here");
-                        await presentPaymentSheet();
+                    if(!response.error){
+                        props.navigation.reset({
+                            index: 0,
+                            routes: [{
+                            name: 'Payment',
+                            params: {SlotCharge: slotCharge,
+                                Discount: discountValue,
+                                Total: payableCharge,
+                                rate: discountRate,
+                                intent: response.data.paymentIntent,
+                                date: date,
+                                startTime: StartTime,
+                                endTime: EndTime,
+                                vehicleNo: selected,
+                                slot: Slot,
+                                userName: decoded.userName,
+                                timeDiff: timeDiff
+                            }
+                        }],    
+                        });
                     }else{
-                        console.log(payResponse.error)
+                        console.log(response.error)
                         setErrTitle("Oops...!!");
                         setErrContent("Something went wrong");
                         setLoading(false);
@@ -155,14 +162,7 @@ const BookSum = (props) => {
                     setLoading(false);
                     setError(true);
                 }
-                // props.navigation.reset({
-                //     index: 0,
-                //     routes: [{
-                //     name: 'Payment',
-                //     params: {SlotCharge: slotCharge, Discount: discountValue, Total: payableCharge, rate: discountRate}
-                // }],
-                    
-                // });
+            
               }else if(response.data==100){
                 setErrTitle("Oops...!!");
                 setErrContent("Something went wrong");

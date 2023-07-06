@@ -4,7 +4,6 @@ dotenv.config();
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 module.exports = async function payment(req, res) {
-    console.log(req.body.amount);
     const customer = await stripe.customers.create({
         "email": req.body.userName
     });
@@ -12,10 +11,7 @@ module.exports = async function payment(req, res) {
         const paymentIntent = await stripe.paymentIntents.create({
             amount: req.body.amount,
             customer: customer.id,
-            currency: 'usd',
-            automatic_payment_methods: {
-                enabled: true,
-            },
+            currency: 'usd'
         });
 
         return res.json({paymentIntent: paymentIntent.client_secret, customer: customer.id});
