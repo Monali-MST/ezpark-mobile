@@ -232,7 +232,7 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props,
     }, []);
 
     const handleExtend = () => {
-        props.navigation.navigate("Extend", { bookingId: ID, date: date, slot: Slot, startTime: targetTime2, VehicleNo: VehicleNo });
+        props.navigation.navigate("Extend", { bookingId: ID, date: date, slot: Slot, startTime: String(targetTime2), VehicleNo: VehicleNo });
     }
 
     return (

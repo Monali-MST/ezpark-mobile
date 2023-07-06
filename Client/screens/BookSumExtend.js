@@ -18,8 +18,8 @@ const BookSumExtend = (props) => {
     const [slotID, setSlotID] = useState();
 
     const [times, setTimes] = useState({
-        startTime: "",
-        endTime: ""
+        startTime: null,
+        endTime: null
     });
 
     const data = props.route.params;
@@ -61,6 +61,7 @@ const BookSumExtend = (props) => {
     }, [slotPrice]);
 
     const handleSubmit = async e => {
+        setLoading(true);
         const token = await AsyncStorage.getItem('AccessToken');
         const decoded = jwtDecode(token);
         const values = { "Date": data.date, "StartTime": times.startTime, "EndTime": times.endTime, "VehicleNo": data.VehicleNo, "BookingMethod": "online", "slot": slotID, "user_email": decoded.userName };

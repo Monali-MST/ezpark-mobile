@@ -38,7 +38,7 @@ const Extend = props => {
             } else if (selected.btn4) {
                 endTime = moment(data.startTime).add(2, "hours");
             }
-            const values = { bookingId: data.bookingId, date: data.date, startTime: data.startTime, endTime: endTime, slot: data.slot, VehicleNo: data.VehicleNo };
+            const values = { bookingId: data.bookingId, date: data.date, startTime: data.startTime, endTime: String(endTime), slot: data.slot, VehicleNo: data.VehicleNo };
             props.navigation.navigate("BookSumExtend", values);
         } else {
             setShowError(true);

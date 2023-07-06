@@ -32,19 +32,19 @@ import RefundSuccess from "./screens/RefundSuccess";
 import RefundReq from "./screens/RefundReq";
 import Extend from "./screens/Extend";
 import BookSumExtend from "./screens/BookSumExtend";
-import PaymentScreen from "./screens/PaymentScreen";
 import History from "./screens/History";
 import PaymentExtend from "./screens/PaymentExtend";
+import Review from "./screens/Review";
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = props => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Splash">
+            <Stack.Navigator initialRouteName="Review">
+                <Stack.Screen name="Review" component={Review} options={{ headerShown: false }} />
                 <Stack.Screen name="PaymentExtend" component={PaymentExtend} options={{ headerShown: false }} />
                 <Stack.Screen name="History" component={History} options={{ headerShown: false }} />
-                <Stack.Screen name="PaymentScreen" component={PaymentScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="BookSumExtend" component={BookSumExtend} options={{ headerShown: false }} />
                 <Stack.Screen name="Extend" component={Extend} options={{ headerShown: false }} />
                 <Stack.Screen name="RefundReq" component={RefundReq} options={{ headerShown: false }} />
