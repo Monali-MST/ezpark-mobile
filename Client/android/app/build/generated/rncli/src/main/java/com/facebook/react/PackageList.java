@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-community/datetimepicker
 import com.reactcommunity.rndatetimepicker.RNDateTimePickerPackage;
+// @stripe/stripe-react-native
+import com.reactnativestripesdk.StripeSdkPackage;
 // lottie-react-native
 import com.airbnb.android.react.lottie.LottiePackage;
 // react-native-encrypted-storage
@@ -72,6 +74,7 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
       new RNDateTimePickerPackage(),
+      new StripeSdkPackage(),
       new LottiePackage(),
       new RNEncryptedStoragePackage(),
       new SafeAreaContextPackage(),

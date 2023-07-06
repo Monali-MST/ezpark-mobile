@@ -10,6 +10,7 @@ import AppLoader from "../Components/AppLoader";
 import ErrorMessage from "../Components/ErrorMessage";
 import { setErrContent, setErrTitle } from '../Global/Variable';
 import Button from "../Components/Button";
+import { StripeProvider, useStripe } from "@stripe/stripe-react-native";
 
 const BookSum = (props) => {
 
@@ -40,6 +41,8 @@ const BookSum = (props) => {
     const [selectData, setSelectData] = useState();
 
     const [selected, setSelected] = useState(null);
+
+    const { initPaymentSheet, presentPaymentSheet } = useStripe();
 
     const handleSelect = (value) => {
         setSelected(value);
@@ -117,16 +120,49 @@ const BookSum = (props) => {
             console.log(Slot);
             const values = { "Date": date, "StartTime": StartTime, "EndTime": EndTime, "VehicleNo": selected, "BookingMethod": "online", "slot": Slot, "user_email": decoded.userName };
             try{
-              const response = await axios.post(server+'tempBooking',values);
+              let response = await axios.post(server+'tempBooking',values);
               if (response.data==200){
-                props.navigation.reset({
-                    index: 0,
-                    routes: [{
-                    name: 'Payment',
-                    params: {SlotCharge: slotCharge, Discount: discountValue, Total: payableCharge, rate: discountRate}
-                }],
+                const formattedAmount = Number(payableCharge).toFixed(0);
+                response = await axios.post(server + 'paymentIntent', {"amount":formattedAmount, "userName":decoded.userName})
+                if(response.data!=100){
+                    console.log(response.data);
+                    setLoading(false);
+
+                    const payResponse = initPaymentSheet({
+                        merchantDisplayName: "EzPark",
+                        paymentIntentClientSecret: response.data.paymentIntent,
+                        defaultBillingDetails: {
+                            name: "Pramod Jayathilaka",
+                            address: "Kurunegala"
+                        }
+                    });
+                    if(!payResponse.error){
+                        console.log(payResponse);
+                        console.log("Here");
+                        await presentPaymentSheet();
+                    }else{
+                        console.log(payResponse.error)
+                        setErrTitle("Oops...!!");
+                        setErrContent("Something went wrong");
+                        setLoading(false);
+                        setError(true);
+                    }
+
+
+                }else{
+                    setErrTitle("Oops...!!");
+                    setErrContent("Something went wrong");
+                    setLoading(false);
+                    setError(true);
+                }
+                // props.navigation.reset({
+                //     index: 0,
+                //     routes: [{
+                //     name: 'Payment',
+                //     params: {SlotCharge: slotCharge, Discount: discountValue, Total: payableCharge, rate: discountRate}
+                // }],
                     
-                });
+                // });
               }else if(response.data==100){
                 setErrTitle("Oops...!!");
                 setErrContent("Something went wrong");
@@ -186,7 +222,9 @@ const BookSum = (props) => {
                 {showError ? <Text style={intStyles.errTxt}>Please select the vehicle</Text> : null}
             </View>
             <View style={intStyles.buttonContainer}>
+            <StripeProvider publishableKey="pk_test_51MdZNYKdpK5vl1GeDp6R8Jj1G6CW0kOrMJ7Ab1eY5QDlEePNRdvvFiLLmdgCoHv0dZ85dqhAO6q1OnEYRGaQ6El400gTt2vNIB">
                 <Button title={"Proceed to payment"} onPress={() => handlePress()} />
+            </StripeProvider>
             </View>
             {loading ? <AppLoader /> : null}
             {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }
@@ -287,7 +325,7 @@ const intStyles = StyleSheet.create({
         borderRadius: 10,
         alignItems: "center",
         justifyContent: "center",
-        zIndex: 100
+        zIndex: 1
     },
 
     image: {
