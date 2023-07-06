@@ -15,7 +15,6 @@
     "@react-native-community/datetimepicker": "^7.0.1",
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/native-stack": "^6.9.7",
-    "@stripe/stripe-react-native": "^0.17.0",
     "axios": "^1.2.6",
     "bcrypt": "^5.1.0",
     "js-base64": "^3.7.5",

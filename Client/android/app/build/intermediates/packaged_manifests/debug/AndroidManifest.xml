@@ -10,24 +10,7 @@
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- See https://developer.android.com/training/package-visibility/declaring for more details. -->
-    <queries>
-
-        <!-- Added to check the default browser that will host the AuthFlow. -->
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-
-            <data android:scheme="http" />
-        </intent>
-        <!-- Added to check if Chrome is installed for browser-based payment authentication (e.g. 3DS1). -->
-        <package android:name="com.android.chrome" /> <!-- Needs to be explicitly declared on Android R+ -->
-        <package android:name="com.google.android.apps.maps" />
-    </queries> <!-- Include required permissions for Google Maps API to run. -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name="com.ezpark.MainApplication"
@@ -55,122 +38,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.stripe.android.financialconnections.FinancialConnectionsSheetRedirectActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Accepts success and cancel URIs that begin with "stripe-auth://link-accounts” -->
-                <data
-                    android:host="link-accounts"
-                    android:path="/com.ezpark/success"
-                    android:scheme="stripe-auth" />
-                <data
-                    android:host="link-accounts"
-                    android:path="/com.ezpark/cancel"
-                    android:scheme="stripe-auth" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.stripe.android.financialconnections.FinancialConnectionsSheetActivity"
-            android:exported="false"
-            android:theme="@style/StripeDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.paymentsheet.PaymentSheetActivity"
-            android:exported="false"
-            android:theme="@style/StripePaymentSheetDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.paymentsheet.PaymentOptionsActivity"
-            android:exported="false"
-            android:theme="@style/StripePaymentSheetDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.link.LinkActivity"
-            android:exported="false"
-            android:label="@string/link" />
-        <activity
-            android:name="com.stripe.android.ui.core.cardscan.CardScanActivity"
-            android:exported="false"
-            android:theme="@style/StripePaymentSheetDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.view.AddPaymentMethodActivity"
-            android:exported="false"
-            android:theme="@style/StripeDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.view.PaymentMethodsActivity"
-            android:exported="false"
-            android:theme="@style/StripeDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.view.PaymentFlowActivity"
-            android:exported="false"
-            android:theme="@style/StripeDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.view.PaymentAuthWebViewActivity"
-            android:exported="false"
-            android:theme="@style/StripeDefaultTheme"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.stripe.android.view.PaymentRelayActivity"
-            android:exported="false"
-            android:theme="@style/StripeTransparentTheme" />
-        <!--
-        Set android:launchMode="singleTop" so that the StripeBrowserLauncherActivity instance that
-        launched the browser Activity will also handle the return URL deep link.
-        -->
-        <activity
-            android:name="com.stripe.android.payments.StripeBrowserLauncherActivity"
-            android:exported="false"
-            android:launchMode="singleTask"
-            android:theme="@style/StripeTransparentTheme" />
-        <activity
-            android:name="com.stripe.android.payments.StripeBrowserProxyReturnActivity"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:theme="@style/StripeTransparentTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Must match `DefaultReturnUrl#value`. -->
-                <data
-                    android:host="payment_return_url"
-                    android:path="/com.ezpark"
-                    android:scheme="stripesdk" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.stripe.android.payments.core.authentication.threeds2.Stripe3ds2TransactionActivity"
-            android:exported="false"
-            android:theme="@style/StripeDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.googlepaylauncher.StripeGooglePayActivity"
-            android:exported="false"
-            android:theme="@style/StripeGooglePayDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.googlepaylauncher.GooglePayLauncherActivity"
-            android:exported="false"
-            android:theme="@style/StripeGooglePayDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.googlepaylauncher.GooglePayPaymentMethodLauncherActivity"
-            android:exported="false"
-            android:theme="@style/StripeGooglePayDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.payments.paymentlauncher.PaymentLauncherConfirmationActivity"
-            android:exported="false"
-            android:theme="@style/PayLauncherDefaultTheme" />
-        <activity
-            android:name="com.stripe.android.payments.bankaccount.ui.CollectBankAccountActivity"
-            android:exported="false"
-            android:theme="@style/StripeTransparentTheme" />
-        <activity
-            android:name="com.stripe.android.stripe3ds2.views.ChallengeActivity"
-            android:exported="false"
-            android:theme="@style/Stripe3DS2Theme" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
@@ -182,37 +49,7 @@
             <meta-data
                 android:name="androidx.lifecycle.ProcessLifecycleInitializer"
                 android:value="androidx.startup" />
-            <meta-data
-                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-                android:value="androidx.startup" />
-        </provider> <!-- Needs to be explicitly declared on P+ -->
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
-        <activity
-            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-        <receiver
-            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-            android:directBootAware="false"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.DUMP" >
-            <intent-filter>
-                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-            </intent-filter>
-        </receiver>
-
-        <meta-data
-            android:name="aia-compat-api-min-version"
-            android:value="1" />
+        </provider>
     </application>
 
 </manifest>
