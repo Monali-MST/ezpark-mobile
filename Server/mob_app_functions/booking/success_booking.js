@@ -21,7 +21,7 @@ module.exports= async function success_booking(req,res){
     const query3 = "SELECT NoOfPoints_PerHour FROM ezpark.point_details WHERE Action_ID=2;";
     const value3 = [2];
 
-    const query4 = "UPDATE `ezpark`.`user_details` SET `UserPoints` = `UserPoints`+(?) WHERE `Email` = (?);"
+    const query4 = "UPDATE `ezpark`.`user_details` SET `UserPoints` = `UserPoints`+(?) WHERE `Email` = (?);";
 
     const query5 = "SELECT MobileNo FROM ezpark.user_details WHERE Email=(?);";
     const value5 = [req.body.user_email];

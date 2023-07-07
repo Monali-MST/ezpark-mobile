@@ -275,7 +275,7 @@ const ProgressBooking = ({ ID, date, StartTime, EndTime, VehicleNo, Slot, props,
             </View>
             <Text style={intStyles.dateTimeTxt}>{date} | {StartTime} to {EndTime}</Text>
             <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-                <TouchableOpacity style={intStyles.btnReview}>
+                <TouchableOpacity style={intStyles.btnReview} onPress={() => props.navigation.navigate("Review", {bookignID:ID})}>
                     <Text style={intStyles.btnTxt}>Add Review</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleExtend} style={extendTimer && !extend ? intStyles.extendBtn : intStyles.btnDisabled} disabled={!extendTimer || Boolean(extend)}>

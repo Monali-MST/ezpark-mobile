@@ -29,6 +29,7 @@ const slotPrice = require('../mob_app_functions/extend/slotPrice')
 const overlapped_change = require('../mob_app_functions/extend/overlapped_change');
 const payment = require('../mob_app_functions/payment/payment');
 const success_booking = require('../mob_app_functions/booking/success_booking');
+const review = require('../mob_app_functions/review/review');
  
 
 //__________Server test__________
@@ -169,6 +170,11 @@ router.post('/paymentIntent', (req, res, next) => {
 //__________Insert date to booking table__________
 router.post('/successBooking', (req, res, next) => {
     success_booking(req, res);
+} )
+
+//__________Insert review and ratings to review_rate table__________
+router.post('/review', (req, res, next) => {
+    review(req, res);
 } )
 
 module.exports = router;

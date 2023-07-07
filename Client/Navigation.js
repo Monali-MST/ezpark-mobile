@@ -41,7 +41,7 @@ const Stack = createNativeStackNavigator();
 const Navigation = props => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Review">
+            <Stack.Navigator initialRouteName="Splash">
                 <Stack.Screen name="Review" component={Review} options={{ headerShown: false }} />
                 <Stack.Screen name="PaymentExtend" component={PaymentExtend} options={{ headerShown: false }} />
                 <Stack.Screen name="History" component={History} options={{ headerShown: false }} />
