@@ -40,11 +40,12 @@ const BookSum = (props) => {
 
     const [selectData, setSelectData] = useState();
 
-    const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState();
 
     const [timeDiff, setTimeDiff] = useState();
 
     const handleSelect = (value) => {
+        setShowError(false);
         setSelected(value);
     }
 
@@ -98,7 +99,8 @@ const BookSum = (props) => {
 
     const handlePress = async e => {
         setLoading(true);
-        if (selected == null) {
+        if (!selected) {
+            setLoading(false);
             setShowError(true);
         } else {
             setShowError(false);
@@ -222,9 +224,7 @@ const BookSum = (props) => {
                 {showError ? <Text style={intStyles.errTxt}>Please select the vehicle</Text> : null}
             </View>
             <View style={intStyles.buttonContainer}>
-            <StripeProvider publishableKey="pk_test_51MdZNYKdpK5vl1GeDp6R8Jj1G6CW0kOrMJ7Ab1eY5QDlEePNRdvvFiLLmdgCoHv0dZ85dqhAO6q1OnEYRGaQ6El400gTt2vNIB">
                 <Button title={"Proceed to payment"} onPress={() => handlePress()} />
-            </StripeProvider>
             </View>
             {loading ? <AppLoader /> : null}
             {error ? <ErrorMessage closeModal={() => setError(false)} /> : null }

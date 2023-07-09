@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View, Text, ScrollView, Pressable, Image } fr
 import extStyles from "../styles/extStyles";
 import AsyncStore from "@react-native-async-storage/async-storage";
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Octicons from 'react-native-vector-icons/Octicons';
 
 const Dashboard = props => {
     const Logout = async e => {
@@ -44,10 +44,10 @@ const Dashboard = props => {
                             </Pressable>
                         </View>
                         <View style={{flexDirection:"row", marginHorizontal: 5}}>
-                            <Pressable onPress={() => props.navigation.navigate('Chat')}>
+                            <Pressable onPress={() => props.navigation.navigate('History')}>
                                 <View style={intStyles.btn1}>
-                                    <Ionicons name="chatbubbles-outline" color={"#FAA41E"} size={50} />
-                                    <Text style={intStyles.btnTxt1}>Chat with{'\n'}Us</Text>
+                                    <Octicons name="history" color={"#FAA41E"} size={50} />
+                                    <Text style={intStyles.btnTxt1}>Booking{'\n'}History</Text>
                                 </View>
                             </Pressable>
                         </View>
