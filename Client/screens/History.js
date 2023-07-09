@@ -18,6 +18,8 @@ const History = (props) => {
 
     const [fetchData, setFetchData] = useState([]);
 
+    const [showEmptyMsg, setShowEmpstyMsg] = useState(false);
+
     useEffect(() => {
         const getData = async e => {
             try {
@@ -25,7 +27,8 @@ const History = (props) => {
                 const decoded = jwtDecode(token);
                 const response = await axios.post(server + 'bookHistory', { "UserName": decoded.userName });
                 if (response.data == 404) {
-
+                    setShowEmptyMsg(true);
+                    setLoading(false);
                 } else if (response.data == 100) {
                     setErrTitle("Oops...!!");
                     setErrContent("Something went wrong");
@@ -55,6 +58,12 @@ const History = (props) => {
             </View>
             <View style={intStyles.scrollContainer}>
                 <ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+                    {showEmptyMsg ? 
+                        <View>
+                             <Text style={intStyles.msgTxt}>No booking history available</Text>
+                        </View>
+                    : null}
+                    
                     {fetchData.map((item, index)=>(
                         (item.cancel==0) ? (
                             <CompleteBooking key={index} bookingID={item.BookingID} Date={moment(item.BookedDate).format('YYYY-MM-DD')} startTime={item.StartTime} endTime={item.EndTime} slotID={item.slot} charge={item.PaymentAmount} vehicleNo={item.VehicleNo}/>
@@ -181,6 +190,12 @@ const CanceledBooking = ({bookingID, Date, startTime, endTime, slotID, charge, v
 }
 
 const intStyles = StyleSheet.create({
+    msgTxt: {
+        alignSelf: "center",
+        fontSize: 12,
+        fontWeight: "500"
+    },
+
     cancelledTxt: {
         fontSize: 22,
         fontWeight: "bold",
@@ -229,7 +244,9 @@ const intStyles = StyleSheet.create({
     titleContainer: {
         width: "100%",
         flexDirection: "row",
-        padding: 10
+        padding: 10,
+        backgroundColor: "#FFF",
+        elevation: 10
     }
 });
 
