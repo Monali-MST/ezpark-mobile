@@ -82,7 +82,6 @@ const History = (props) => {
 
 const RequestedCancelling = ({bookingID, Date, startTime, endTime, slotID, charge, vehicleNo}) => {
     let slot;
-    console.log(slotID);
     if(slotID>=43){
         slot = "D-"+(slotID-42);
     }else if(slotID>=29){
@@ -118,7 +117,6 @@ const RequestedCancelling = ({bookingID, Date, startTime, endTime, slotID, charg
 
 const CompleteBooking = ({bookingID, Date, startTime, endTime, slotID, charge, vehicleNo}) => {
     let slot;
-    console.log(slotID);
     if(slotID>=43){
         slot = "D-"+(slotID-42);
     }else if(slotID>=29){
@@ -154,7 +152,6 @@ const CompleteBooking = ({bookingID, Date, startTime, endTime, slotID, charge, v
 
 const CanceledBooking = ({bookingID, Date, startTime, endTime, slotID, charge, vehicleNo, refundedAmount}) => {
     let slot;
-    console.log(slotID);
     if(slotID>=43){
         slot = "D-"+(slotID-42);
     }else if(slotID>=29){
