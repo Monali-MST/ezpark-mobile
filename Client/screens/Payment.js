@@ -48,7 +48,7 @@ const Payment = (props) => {
       } catch (err) {
         console.log(err);
         setErrTitle("Oops...!!");
-        setErrContent("Something went wrong2");
+        setErrContent("Something went wrong");
         setLoading(false);
         setError(true);
       }
@@ -73,7 +73,7 @@ const Payment = (props) => {
       })
     } else {
       setErrTitle("Oops...!!");
-      setErrContent("Something went wrong3");
+      setErrContent("Something went wrong");
       setLoading(false);
       setError(true);
     }

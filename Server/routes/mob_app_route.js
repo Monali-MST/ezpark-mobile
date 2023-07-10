@@ -1,35 +1,37 @@
 const express = require('express')
 const router = express.Router()
 
-const test = require('../mob_app_functions/test/test')
-const user_reg = require('../mob_app_functions/user_reg/user_reg')
-const vehicle_reg = require('../mob_app_functions/user_reg/vehicle_reg')
-const email_val = require('../mob_app_functions/user_reg/email_val')
-const user_login = require('../mob_app_functions/user_login/user_login')
-const slot_ret = require('../mob_app_functions/booking/slot_display')
-const fetch_vehicles = require('../mob_app_functions/booking/fetch_vehicles')
-const fetch_discounts = require('../mob_app_functions/booking/fetch_discounts')
-const fetch_bookings = require('../mob_app_functions/my_bookings/fetch_bookings')
-const temp_booking = require('../mob_app_functions/booking/temp_booking')
-const mobile_otp_send = require('../mob_app_functions/otp/mobile_otp_send')
-const mobile_otp_check = require('../mob_app_functions/otp/mobile_otp_check')
-const email_otp_send = require('../mob_app_functions/otp/email_otp_send')
-const email_otp_check = require('../mob_app_functions/otp/email_otp_check')
-const booking_history = require('../mob_app_functions/history/booking_history')
-const mobile_resend = require('../mob_app_functions/otp/mobile_resend')
-const email_resend = require('../mob_app_functions/otp/email_resend')
-const change_password = require('../mob_app_functions/change_password/change_password')
-const fetch_refund = require('../mob_app_functions/my_bookings/fetch_refund')
-const cancel_refund = require('../mob_app_functions/booking_cancel/cancel_refund')
-const cancel_request = require('../mob_app_functions/booking_cancel/cancel_request')
-const before_five = require('../mob_app_functions/notification/before_five')
-const end_time = require('../mob_app_functions/notification/end_time')
-const extend = require('../mob_app_functions/extend/extend')
-const slotPrice = require('../mob_app_functions/extend/slotPrice')
+const test = require('../mob_app_functions/test/test');
+const user_reg = require('../mob_app_functions/user_reg/user_reg');
+const vehicle_reg = require('../mob_app_functions/user_reg/vehicle_reg');
+const email_val = require('../mob_app_functions/user_reg/email_val');
+const user_login = require('../mob_app_functions/user_login/user_login');
+const slot_ret = require('../mob_app_functions/booking/slot_display');
+const fetch_vehicles = require('../mob_app_functions/booking/fetch_vehicles');
+const fetch_discounts = require('../mob_app_functions/booking/fetch_discounts');
+const fetch_bookings = require('../mob_app_functions/my_bookings/fetch_bookings');
+const temp_booking = require('../mob_app_functions/booking/temp_booking');
+const mobile_otp_send = require('../mob_app_functions/otp/mobile_otp_send');
+const mobile_otp_check = require('../mob_app_functions/otp/mobile_otp_check');
+const email_otp_send = require('../mob_app_functions/otp/email_otp_send');
+const email_otp_check = require('../mob_app_functions/otp/email_otp_check');
+const booking_history = require('../mob_app_functions/history/booking_history');
+const mobile_resend = require('../mob_app_functions/otp/mobile_resend');
+const email_resend = require('../mob_app_functions/otp/email_resend');
+const change_password = require('../mob_app_functions/change_password/change_password');
+const fetch_refund = require('../mob_app_functions/my_bookings/fetch_refund');
+const cancel_refund = require('../mob_app_functions/booking_cancel/cancel_refund');
+const cancel_request = require('../mob_app_functions/booking_cancel/cancel_request');
+const before_five = require('../mob_app_functions/notification/before_five');
+const end_time = require('../mob_app_functions/notification/end_time');
+const extend = require('../mob_app_functions/extend/extend');
+const slotPrice = require('../mob_app_functions/extend/slotPrice');
 const overlapped_change = require('../mob_app_functions/extend/overlapped_change');
 const payment = require('../mob_app_functions/payment/payment');
 const success_booking = require('../mob_app_functions/booking/success_booking');
 const review = require('../mob_app_functions/review/review');
+const point = require('../mob_app_functions/dashboard/point');
+const badge_upgrade = require('../mob_app_functions/dashboard/badge_upgrade');
  
 
 //__________Server test__________
@@ -160,21 +162,31 @@ router.post('/slotPrice', (req, res, next) => {
 //__________Change overlapped slots__________
 router.post('/changeOverLapped', (req, res, next) => {
     overlapped_change(req, res);
-} )
+})
 
 //__________Handle Payments__________
 router.post('/paymentIntent', (req, res, next) => {
     payment(req, res);
-} )
+})
 
 //__________Insert date to booking table__________
 router.post('/successBooking', (req, res, next) => {
     success_booking(req, res);
-} )
+})
 
 //__________Insert review and ratings to review_rate table__________
 router.post('/review', (req, res, next) => {
     review(req, res);
-} )
+})
+
+//__________Fetch user points__________
+router.post('/point', (req, res, next) => {
+    point(req, res);
+})
+
+//__________Upgrade user badge__________
+router.post('/badgeUpgrade', (req, res, next)=>{
+    badge_upgrade(req, res);
+})
 
 module.exports = router;
