@@ -33,7 +33,10 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim fade_in
+anim fade_out
 anim fragment_fast_out_extra_slow_in
+anim hide_to_bottom
 anim mtrl_bottom_sheet_slide_in
 anim mtrl_bottom_sheet_slide_out
 anim mtrl_card_lowers_interpolator
@@ -55,12 +58,15 @@ anim rns_slide_in_from_right
 anim rns_slide_out_to_bottom
 anim rns_slide_out_to_left
 anim rns_slide_out_to_right
+anim show_from_bottom
 anim stripe_3ds2_challenge_transition_slide_in
 anim stripe_3ds2_challenge_transition_slide_out
 anim stripe_card_widget_progress_fade_in
 anim stripe_card_widget_progress_fade_out
 anim stripe_paymentsheet_transition_fade_in
 anim stripe_paymentsheet_transition_fade_out
+anim top_in
+anim top_out
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -427,6 +433,12 @@ attr counterTextAppearance
 attr counterTextColor
 attr countryAutoCompleteStyle
 attr countryItemLayout
+attr cropBorderColor
+attr cropBorderWidth
+attr cropFocusHeight
+attr cropFocusWidth
+attr cropMaskColor
+attr cropStyle
 attr crossfade
 attr currentState
 attr curveFit
@@ -1033,6 +1045,25 @@ attr scopeUris
 attr scrimAnimationDuration
 attr scrimBackground
 attr scrimVisibleHeightTrigger
+attr scv_animation_duration
+attr scv_animation_enabled
+attr scv_background_color
+attr scv_crop_enabled
+attr scv_crop_mode
+attr scv_frame_color
+attr scv_frame_stroke_weight
+attr scv_guide_color
+attr scv_guide_show_mode
+attr scv_guide_stroke_weight
+attr scv_handle_color
+attr scv_handle_shadow_enabled
+attr scv_handle_show_mode
+attr scv_handle_size
+attr scv_img_src
+attr scv_initial_frame_scale
+attr scv_min_frame_size
+attr scv_overlay_color
+attr scv_touch_padding
 attr searchHintIcon
 attr searchIcon
 attr searchViewStyle
@@ -1459,7 +1490,22 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_back_press
 color info_zone_header_text
+color ip_camera_pre
+color ip_color_accent
+color ip_color_press
+color ip_color_primary
+color ip_color_primary_dark
+color ip_color_primary_trans
+color ip_crop_back
+color ip_crop_frame
+color ip_crop_guide
+color ip_crop_handle
+color ip_pb_back_color
+color ip_pb_color
+color ip_text_primary_inverted
+color ip_text_secondary_inverted
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -2207,6 +2253,7 @@ dimen hint_alpha_material_dark
 dimen hint_alpha_material_light
 dimen hint_pressed_alpha_material_dark
 dimen hint_pressed_alpha_material_light
+dimen ip_handle
 dimen item_touch_helper_max_drag_scroll_per_frame
 dimen item_touch_helper_swipe_escape_max_velocity
 dimen item_touch_helper_swipe_escape_velocity
@@ -2807,6 +2854,11 @@ drawable abc_vector_test
 drawable autofill_inline_suggestion_chip_background
 drawable avd_hide_password
 drawable avd_show_password
+drawable bg_btn_dis
+drawable bg_btn_nor
+drawable bg_btn_pre
+drawable bg_folder_item
+drawable bg_image_folder
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -2855,7 +2907,10 @@ drawable googlepay_button_no_shadow_background_image_focused
 drawable googlepay_button_no_shadow_background_image_pressed
 drawable googlepay_button_overlay
 drawable googlepay_button_overlay_dark
+drawable ic_arrow_back
 drawable ic_clock_black_24dp
+drawable ic_cover_shade
+drawable ic_default_image
 drawable ic_keyboard_black_24dp
 drawable ic_link_add
 drawable ic_link_chevron
@@ -2870,6 +2925,8 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_photo_camera
+drawable ic_vector_check
+drawable ic_vector_delete
 drawable m3_appbar_background
 drawable m3_popupmenu_background_overlay
 drawable m3_radiobutton_ripple
@@ -2915,6 +2972,10 @@ drawable pay_with_googlepay_button_content
 drawable pay_with_googlepay_button_content_dark
 drawable redbox_top_border_background
 drawable rn_edit_text_material
+drawable selector_back_press
+drawable selector_grid_camera_bg
+drawable selector_item_checked
+drawable selector_top_ok
 drawable stripe_3ds2_ic_amex
 drawable stripe_3ds2_ic_arrow
 drawable stripe_3ds2_ic_cartesbancaires
@@ -3175,6 +3236,7 @@ id blocking
 id book_now
 id borderless
 id bottom
+id bottom_bar
 id bottom_sheet
 id bottom_space
 id bottom_spacer
@@ -3191,6 +3253,10 @@ id browser_actions_menu_items
 id browser_actions_menu_view
 id bsb_edit_text
 id bsb_text_input_layout
+id btn_back
+id btn_del
+id btn_ok
+id btn_preview
 id buttonPanel
 id button_container
 id buyButton
@@ -3203,6 +3269,7 @@ id ca_challenge_zone
 id ca_information_zone
 id cache_measures
 id callMeasure
+id camera
 id cancel_action
 id cancel_button
 id card_brand_view
@@ -3215,6 +3282,8 @@ id card_number_edit_text
 id card_number_text_input_layout
 id carryVelocity
 id catalyst_redbox_title
+id cb_check
+id cb_origin
 id center
 id centerCrop
 id centerInside
@@ -3223,6 +3292,7 @@ id center_vertical
 id chain
 id chain2
 id chains
+id checkView
 id check_icon
 id checkbox
 id checked
@@ -3232,7 +3302,9 @@ id chip2
 id chip3
 id chip_group
 id chronometer
+id circle
 id circle_center
+id circle_square
 id city
 id city_layout
 id city_postal_container
@@ -3266,6 +3338,7 @@ id currentState
 id custom
 id customPanel
 id cut
+id cv_crop_image
 id cvc_edit_text
 id cvc_text_input_layout
 id czv_entry_view
@@ -3357,18 +3430,23 @@ id fitEnd
 id fitStart
 id fitToContents
 id fitXY
+id fit_image
 id fixed
+id fl_pop_blank
 id flip
 id flipper_skip_empty_view_group_traversal
 id flipper_skip_view_traversal
 id floating
 id focusCrop
+id footer_bar
 id footer_container
 id forever
 id fps_text
 id fragment_container
 id fragment_container_parent
 id fragment_container_view_tag
+id free
+id freeCropImageView
 id frost
 id ghost_view
 id ghost_view_holder
@@ -3414,6 +3492,7 @@ id info
 id inspection_slot_table_set
 id invisible
 id inward
+id ip_rl_box
 id issuer_image
 id italic
 id item1
@@ -3421,6 +3500,9 @@ id item2
 id item3
 id item4
 id item_touch_helper_previous_elevation
+id iv_cover
+id iv_folder_check
+id iv_thumb
 id jumpToEnd
 id jumpToStart
 id label
@@ -3438,13 +3520,20 @@ id link_auth
 id link_button
 id link_inline_signup
 id listMode
+id listView
 id list_item
+id ll_content
+id ll_dir
 id lock_icon
 id logo_only
 id lottie_layer_name
 id mandate_acceptance_text_view
+id margin
+id margin_bottom
+id mask
 id masked
 id masked_card_item
+id masker
 id match_constraint
 id match_parent
 id material
@@ -3522,6 +3611,7 @@ id noState
 id none
 id normal
 id north
+id not_show
 id notes
 id notification_background
 id notification_main_column
@@ -3569,7 +3659,12 @@ id progress_circular
 id progress_horizontal
 id radio
 id ratio
+id ratio_16_9
+id ratio_3_4
+id ratio_4_3
+id ratio_9_16
 id react_test_id
+id rectangle
 id rectangles
 id recycler
 id restart
@@ -3632,6 +3727,8 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id show_always
+id show_on_touch
 id sin
 id skipCollapsed
 id skipped
@@ -3740,6 +3837,7 @@ id toggle
 id toolbar
 id top
 id topPanel
+id top_bar
 id top_container
 id top_message
 id touch_outside
@@ -3751,6 +3849,10 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tv_des
+id tv_dir
+id tv_folder_name
+id tv_image_count
 id unchecked
 id uniform
 id unlabeled
@@ -3765,6 +3867,7 @@ id view_transition
 id view_tree_lifecycle_owner
 id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
+id viewpager
 id visible
 id visible_removing_fragment_view_tag
 id web_view
@@ -3878,8 +3981,15 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_card_scan
 layout activity_financialconnections_sheet
+layout activity_image_crop
+layout activity_image_free_crop
+layout activity_image_grid
+layout activity_image_preview
 layout activity_payment_options
 layout activity_payment_sheet
+layout adapter_camera_item
+layout adapter_folder_list_item
+layout adapter_image_list_item
 layout add_payment_method_activity
 layout add_payment_method_card_view
 layout add_payment_method_row
@@ -3923,6 +4033,8 @@ layout google_pay_row
 layout googlepay_button
 layout googlepay_button_dark
 layout googlepay_button_no_shadow
+layout include_top_bar
+layout ip_dialog_loading
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -3992,6 +4104,7 @@ layout pay_with_googlepay_button_no_shadow
 layout payment_auth_web_view_activity
 layout payment_flow_activity
 layout payment_methods_activity
+layout pop_folder
 layout primary_button
 layout redbox_item_frame
 layout redbox_item_title
@@ -4044,9 +4157,13 @@ menu example_menu
 menu example_menu2
 menu payment_auth_web_view_menu
 menu paymentsheet_payment_methods_list
+mipmap checkbox_checked
+mipmap checkbox_normal
+mipmap grid_camera
 mipmap ic_launcher
 mipmap ic_launcher_foreground
 mipmap ic_launcher_round
+mipmap text_indicator
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -4285,6 +4402,27 @@ string invalid_expiry_month
 string invalid_expiry_year
 string invalid_shipping_information
 string invalid_zip
+string ip_all_images
+string ip_cancel
+string ip_complete
+string ip_folder_image_count
+string ip_need_to_del
+string ip_origin
+string ip_origin_size
+string ip_photo_crop
+string ip_preview
+string ip_preview_count
+string ip_preview_image_count
+string ip_select_complete
+string ip_select_limit
+string ip_str_capture
+string ip_str_choose
+string ip_str_confirm
+string ip_str_no_camera
+string ip_str_no_camera_permission
+string ip_str_no_permission
+string ip_str_picture
+string ip_str_tips
 string item_view_role_description
 string klarna_buy_now_pay_later
 string klarna_pay_later
@@ -4800,6 +4938,8 @@ style DialogAnimationFade
 style DialogAnimationSlide
 style DialogWindowTheme
 style EmptyTheme
+style ImagePickerTheme
+style ImagePickerThemeFullScreen
 style MaterialAlertDialog_Material3
 style MaterialAlertDialog_Material3_Body_Text
 style MaterialAlertDialog_Material3_Body_Text_CenterStacked
@@ -4945,6 +5085,7 @@ style StripePaymentSheetTotalLabel
 style StripeToolBarStyle
 style StripeTransparentTheme
 style StripeVerticalDivider
+style SuperCheckboxTheme
 style Test_ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Day
 style Test_Theme_MaterialComponents_MaterialCalendar
 style Test_Widget_MaterialComponents_MaterialCalendar
@@ -5629,6 +5770,7 @@ style Widget_MaterialComponents_Toolbar_PrimarySurface
 style Widget_MaterialComponents_Toolbar_Surface
 style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
+style popupwindow_anim_style
 style redboxButton
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
@@ -5695,6 +5837,7 @@ styleable FontFamilyFont android_font android_fontWeight android_fontStyle andro
 styleable ForegroundLinearLayout android_foreground android_foregroundGravity foregroundInsidePadding
 styleable Fragment android_name android_id android_tag
 styleable FragmentContainerView android_name android_tag
+styleable FreeCropImageView cropBorderColor cropBorderWidth cropFocusHeight cropFocusWidth cropMaskColor cropStyle
 styleable GenericDraweeHierarchy actualImageScaleType backgroundImage fadeDuration failureImage failureImageScaleType overlayImage placeholderImage placeholderImageScaleType pressedStateOverlayImage progressBarAutoRotateInterval progressBarImage progressBarImageScaleType retryImage retryImageScaleType roundAsCircle roundBottomEnd roundBottomLeft roundBottomRight roundBottomStart roundTopEnd roundTopLeft roundTopRight roundTopStart roundWithOverlayColor roundedCornerRadius roundingBorderColor roundingBorderPadding roundingBorderWidth viewAspectRatio
 styleable GradientColor android_startColor android_endColor android_type android_centerX android_centerY android_gradientRadius android_tileMode android_centerColor android_startX android_startY android_endX android_endY
 styleable GradientColorItem android_color android_offset
@@ -5802,7 +5945,9 @@ styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration
 styleable WalletFragmentOptions appTheme environment fragmentMode fragmentStyle
 styleable WalletFragmentStyle buyButtonAppearance buyButtonHeight buyButtonText buyButtonWidth maskedWalletDetailsBackground maskedWalletDetailsButtonBackground maskedWalletDetailsButtonTextAppearance maskedWalletDetailsHeaderTextAppearance maskedWalletDetailsLogoImageType maskedWalletDetailsLogoTextColor maskedWalletDetailsTextAppearance
 styleable include constraintSet
+styleable scv_CropImageView scv_animation_duration scv_animation_enabled scv_background_color scv_crop_enabled scv_crop_mode scv_frame_color scv_frame_stroke_weight scv_guide_color scv_guide_show_mode scv_guide_stroke_weight scv_handle_color scv_handle_shadow_enabled scv_handle_show_mode scv_handle_size scv_img_src scv_initial_frame_scale scv_min_frame_size scv_overlay_color scv_touch_padding
 xml image_share_filepaths
+xml provider_paths
 xml rn_dev_preferences
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end

@@ -122,10 +122,10 @@ const Review = (props) => {
                 <Ionicons name="ios-star-sharp" size={40} color={starColor.star5} style={intStyles.star} onPress={() => handleStars("star5")} />
             </View>
             <View style={intStyles.inputContainer}>
-                <TextInput value={review} onChangeText={handleChangeText} style={intStyles.input} multiline numberOfLines={4} maxLength={250} placeholder="Write a review..." textAlignVertical="top" />
+                <TextInput value={review} onChangeText={handleChangeText} style={intStyles.input} multiline numberOfLines={4} maxLength={500} placeholder="Write a review..." textAlignVertical="top" />
             </View>
             <Text style={intStyles.characterCount}>
-                {characterCount}/250
+                {characterCount}/500
             </Text>
             <View style={intStyles.messageContainer}>
                 <Text style={intStyles.message}>

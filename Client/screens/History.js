@@ -18,7 +18,7 @@ const History = (props) => {
 
     const [fetchData, setFetchData] = useState([]);
 
-    const [showEmptyMsg, setShowEmpstyMsg] = useState(false);
+    const [showEmptyMsg, setShowEmptyMsg] = useState(false);
 
     useEffect(() => {
         const getData = async e => {

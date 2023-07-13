@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.ezpark.app-mergeDebugResources-80:/values-en-rSG/values-en-rSG.xml",
+            "outputFile": "com.ezpark.app-mergeDebugResources-81:/values-en-rSG/values-en-rSG.xml",
             "map": [
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/b68be9ed7d677131ed718f8e4f3fe09d/transformed/jetified-play-services-wallet-19.1.0/res/values-en-rSG/values.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/30b2e5172521cb1337da4d167f5f3be2/transformed/jetified-play-services-wallet-19.1.0/res/values-en-rSG/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

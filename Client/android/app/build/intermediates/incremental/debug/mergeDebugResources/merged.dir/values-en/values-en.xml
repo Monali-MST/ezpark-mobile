@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="ip_all_images">All Pictures</string>
+    <string name="ip_cancel">Cancel</string>
+    <string name="ip_complete">Complete</string>
+    <string name="ip_folder_image_count">%1$d in total</string>
+    <string name="ip_need_to_del">Are you sure to delete this photo?</string>
+    <string name="ip_origin">Origin Image</string>
+    <string name="ip_origin_size">Origin Image(%1$s)</string>
+    <string name="ip_photo_crop">Crop</string>
+    <string name="ip_preview">Preview</string>
+    <string name="ip_preview_count">Preview(%1$d)</string>
+    <string name="ip_preview_image_count">%1$d/%2$d</string>
+    <string name="ip_select_complete">Complete(%1$d/%2$d)</string>
+    <string name="ip_select_limit">%1$d at the most</string>
+    <string name="ip_str_capture">Camara</string>
+    <string name="ip_str_choose">Choose</string>
+    <string name="ip_str_confirm">Confirm</string>
+    <string name="ip_str_no_camera">Detect no camera</string>
+    <string name="ip_str_no_camera_permission">No permission to capture photo</string>
+    <string name="ip_str_no_permission">No permission</string>
+    <string name="ip_str_picture">Picture</string>
+    <string name="ip_str_tips">Tips</string>
     <string name="stripe_3ds2_bzv_issuer_image_description">Issuer Image</string>
     <string name="stripe_3ds2_bzv_payment_system_image_description">Payment System Image</string>
     <string name="stripe_3ds2_czv_whitelist_no_label">No</string>

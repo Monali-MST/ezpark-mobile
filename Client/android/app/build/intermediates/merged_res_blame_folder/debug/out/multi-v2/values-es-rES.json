@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.ezpark.app-mergeDebugResources-80:/values-es-rES/values-es-rES.xml",
+            "outputFile": "com.ezpark.app-mergeDebugResources-81:/values-es-rES/values-es-rES.xml",
             "map": [
                 {
-                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/c10849cda4ef80f8f95c84df12363a95/transformed/jetified-stripe-3ds2-android-6.1.5/res/values-es-rES/values-es-rES.xml",
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/16dcc9df228a2c340ba0844304d05e2d/transformed/jetified-stripe-3ds2-android-6.1.5/res/values-es-rES/values-es-rES.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",

@@ -659,6 +659,21 @@
     <color name="foreground_material_light">@android:color/black</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
+    <color name="ic_back_press">#323336</color>
+    <color name="ip_camera_pre">#353535</color>
+    <color name="ip_color_accent">#1AAD19</color>
+    <color name="ip_color_press">#ffe0e0e0</color>
+    <color name="ip_color_primary">#393A3F</color>
+    <color name="ip_color_primary_dark">#303135</color>
+    <color name="ip_color_primary_trans">#ec2f3335</color>
+    <color name="ip_crop_back">#1C1C1C</color>
+    <color name="ip_crop_frame">#ffe0e0e0</color>
+    <color name="ip_crop_guide">#ffe0e0e0</color>
+    <color name="ip_crop_handle">#ffe0e0e0</color>
+    <color name="ip_pb_back_color">#ffe0e0e0</color>
+    <color name="ip_pb_color">#1AAD19</color>
+    <color name="ip_text_primary_inverted">#ffffff</color>
+    <color name="ip_text_secondary_inverted">#66ffffff</color>
     <color name="m3_ref_palette_error0">#ff000000</color>
     <color name="m3_ref_palette_error10">#ff410e0b</color>
     <color name="m3_ref_palette_error100">#ffffffff</color>
@@ -1081,6 +1096,7 @@
     <item format="float" name="hint_alpha_material_light" type="dimen">0.38</item>
     <item format="float" name="hint_pressed_alpha_material_dark" type="dimen">0.70</item>
     <item format="float" name="hint_pressed_alpha_material_light" type="dimen">0.54</item>
+    <dimen name="ip_handle">8dp</dimen>
     <dimen name="item_touch_helper_max_drag_scroll_per_frame">20dp</dimen>
     <dimen name="item_touch_helper_swipe_escape_max_velocity">800dp</dimen>
     <dimen name="item_touch_helper_swipe_escape_velocity">120dp</dimen>
@@ -2039,6 +2055,27 @@
     <string name="invalid_expiry_year">Your card\'s expiration year is invalid.</string>
     <string name="invalid_shipping_information">Invalid Shipping Address</string>
     <string name="invalid_zip">Your postal code is incomplete.</string>
+    <string name="ip_all_images">所有图片</string>
+    <string name="ip_cancel">取消</string>
+    <string name="ip_complete">完成</string>
+    <string name="ip_folder_image_count">共%1$d张</string>
+    <string name="ip_need_to_del">要删除这张照片吗？</string>
+    <string name="ip_origin">原图</string>
+    <string name="ip_origin_size">原图(%1$s)</string>
+    <string name="ip_photo_crop">图片裁剪</string>
+    <string name="ip_preview">预览</string>
+    <string name="ip_preview_count">预览(%1$d)</string>
+    <string name="ip_preview_image_count">%1$d/%2$d</string>
+    <string name="ip_select_complete">完成(%1$d/%2$d)</string>
+    <string name="ip_select_limit">最多选择%1$d张图片</string>
+    <string name="ip_str_capture">拍摄照片</string>
+    <string name="ip_str_choose">选择</string>
+    <string name="ip_str_confirm">确定</string>
+    <string name="ip_str_no_camera">没有检测到摄像头</string>
+    <string name="ip_str_no_camera_permission">权限被禁止，无法拍照</string>
+    <string name="ip_str_no_permission">权限被禁止，无法选择本地图片</string>
+    <string name="ip_str_picture">图片</string>
+    <string name="ip_str_tips">提示</string>
     <string name="item_view_role_description">Tab</string>
     <string name="klarna_buy_now_pay_later">Buy now or pay later with Klarna.</string>
     <string name="klarna_pay_later">Pay later with Klarna.</string>
@@ -5358,6 +5395,12 @@
         <item name="android:windowClipToOutline">false</item>
     </style>
     <style name="EmptyTheme"/>
+    <style name="ImagePickerTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+    <style name="ImagePickerThemeFullScreen" parent="ImagePickerTheme">
+        <item name="android:fitsSystemWindows">false</item>
+    </style>
     <style name="MaterialAlertDialog.Material3" parent="MaterialAlertDialog.MaterialComponents">
     <item name="enforceMaterialTheme">true</item>
     <item name="android:layout">@layout/m3_alert_dialog</item>
@@ -6088,6 +6131,9 @@
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/stripe_paymentsheet_form_border</item>
+    </style>
+    <style name="SuperCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_item_checked</item>
     </style>
     <style name="Test.ShapeAppearanceOverlay.MaterialComponents.MaterialCalendar.Day" parent="">
     <item name="cornerFamily">rounded</item>
@@ -8916,6 +8962,12 @@
     <style name="Widget.Support.CoordinatorLayout" parent="android:Widget">
         <item name="statusBarBackground">#000000</item>
     </style>
+    <style name="popupwindow_anim_style">
+        
+        <item name="android:windowEnterAnimation">@anim/show_from_bottom</item>
+        
+        <item name="android:windowExitAnimation">@anim/hide_to_bottom</item>
+    </style>
     <style name="redboxButton">
     <item name="android:layout_width">0dp</item>
     <item name="android:layout_height">wrap_content</item>
@@ -11116,6 +11168,17 @@
     <declare-styleable name="FragmentContainerView">
         <attr name="android:name"/>
         <attr name="android:tag"/>
+    </declare-styleable>
+    <declare-styleable name="FreeCropImageView">
+        <attr format="color" name="cropMaskColor"/>
+        <attr format="color" name="cropBorderColor"/>
+        <attr format="dimension" name="cropBorderWidth"/>
+        <attr format="dimension" name="cropFocusWidth"/>
+        <attr format="dimension" name="cropFocusHeight"/>
+        <attr format="enum" name="cropStyle">
+            <enum name="rectangle" value="0"/>
+            <enum name="circle" value="1"/>
+        </attr>
     </declare-styleable>
     <declare-styleable name="GenericDraweeHierarchy">
 
@@ -13494,4 +13557,44 @@
     <declare-styleable name="include">
         <attr name="constraintSet"/>
     </declare-styleable>
+    <declare-styleable name="scv_CropImageView">
+    <attr format="reference" name="scv_img_src"/>
+    <attr name="scv_crop_mode">
+      <enum name="fit_image" value="0"/>
+      <enum name="ratio_4_3" value="1"/>
+      <enum name="ratio_3_4" value="2"/>
+      <enum name="square" value="3"/>
+      <enum name="ratio_16_9" value="4"/>
+      <enum name="ratio_9_16" value="5"/>
+      <enum name="free" value="6"/>
+      <enum name="custom" value="7"/>
+      <enum name="circle" value="8"/>
+      <enum name="circle_square" value="9"/>
+    </attr>
+    <attr format="reference|color" name="scv_background_color"/>
+    <attr format="reference|color" name="scv_overlay_color"/>
+    <attr format="reference|color" name="scv_frame_color"/>
+    <attr format="reference|color" name="scv_handle_color"/>
+    <attr format="reference|color" name="scv_guide_color"/>
+    <attr name="scv_guide_show_mode">
+      <enum name="show_always" value="1"/>
+      <enum name="show_on_touch" value="2"/>
+      <enum name="not_show" value="3"/>
+    </attr>
+    <attr name="scv_handle_show_mode">
+      <enum name="show_always" value="1"/>
+      <enum name="show_on_touch" value="2"/>
+      <enum name="not_show" value="3"/>
+    </attr>
+    <attr format="dimension" name="scv_handle_size"/>
+    <attr format="dimension" name="scv_touch_padding"/>
+    <attr format="dimension" name="scv_min_frame_size"/>
+    <attr format="dimension" name="scv_frame_stroke_weight"/>
+    <attr format="dimension" name="scv_guide_stroke_weight"/>
+    <attr format="boolean" name="scv_crop_enabled"/>
+    <attr format="float" name="scv_initial_frame_scale"/>
+    <attr format="boolean" name="scv_animation_enabled"/>
+    <attr format="integer" name="scv_animation_duration"/>
+    <attr format="boolean" name="scv_handle_shadow_enabled"/>
+  </declare-styleable>
 </resources>

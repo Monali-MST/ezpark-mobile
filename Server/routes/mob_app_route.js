@@ -32,6 +32,7 @@ const success_booking = require('../mob_app_functions/booking/success_booking');
 const review = require('../mob_app_functions/review/review');
 const point = require('../mob_app_functions/dashboard/point');
 const badge_upgrade = require('../mob_app_functions/dashboard/badge_upgrade');
+const fetch_review = require('../mob_app_functions/dashboard/fetch_review');
  
 
 //__________Server test__________
@@ -187,6 +188,11 @@ router.post('/point', (req, res, next) => {
 //__________Upgrade user badge__________
 router.post('/badgeUpgrade', (req, res, next)=>{
     badge_upgrade(req, res);
+})
+
+//__________Fetch reviews to the dashboard__________
+router.post('/fetchReview', (req, res, next)=>{
+    fetch_review(req, res);
 })
 
 module.exports = router;

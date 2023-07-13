@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.ezpark.app-mergeDebugResources-81:/values-v19/values-v19.xml",
+            "map": [
+                {
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/9d5369a7d605c69368d20bf932998cd5/transformed/jetified-image-picker-1.2.5/res/values-v19/values-v19.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "329"
+                    }
+                }
+            ]
+        }
+    ]
+}
