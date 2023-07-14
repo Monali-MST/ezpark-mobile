@@ -36,6 +36,10 @@ import History from "./screens/History";
 import PaymentExtend from "./screens/PaymentExtend";
 import Review from "./screens/Review";
 import MyProfile from "./screens/MyProfile";
+import VehicleManage from "./screens/VehicleManage";
+import AddNewVehicle from "./screens/AddNewVehicle";
+import ContactUs from "./screens/ContactUs";
+import AboutUs from "./screens/AboutUs";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,7 +47,11 @@ const Navigation = props => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Splash">
-                <Stack.Screen name="MyProfile" component={MyProfile} options={{headerShown: false}} />
+                <Stack.Screen name="AboutUs" component={AboutUs} options={{ headerShown: false }} />
+                <Stack.Screen name="ContactUs" component={ContactUs} options={{ headerShown: false }} />
+                <Stack.Screen name="AddNewVehicle" component={AddNewVehicle} options={{ headerShown: false }} />
+                <Stack.Screen name="VehicleManage" component={VehicleManage} options={{ headerShown: false }} />
+                <Stack.Screen name="MyProfile" component={MyProfile} options={{ headerShown: false }} />
                 <Stack.Screen name="Review" component={Review} options={{ headerShown: false }} />
                 <Stack.Screen name="PaymentExtend" component={PaymentExtend} options={{ headerShown: false }} />
                 <Stack.Screen name="History" component={History} options={{ headerShown: false }} />

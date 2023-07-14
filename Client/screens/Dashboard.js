@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, View, Text, ScrollView, Pressable, Image } from 'react-native';
 import extStyles from "../styles/extStyles";
-import AsyncStore from "@react-native-async-storage/async-storage";
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import moment, { max } from 'moment-timezone';
@@ -13,7 +12,9 @@ import AppLoader from "../Components/AppLoader";
 import ErrorMessage from "../Components/ErrorMessage";
 import { setErrContent, setErrTitle } from '../Global/Variable';
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import Feather from "react-native-vector-icons/Feather";
+ 
 const Dashboard = props => {
 
     const [loading, setLoading] = useState(false);
@@ -31,14 +32,6 @@ const Dashboard = props => {
         greeting = 'Good afternoon!';
     } else {
         greeting = 'Good evening!';
-    }
-
-    const Logout = async e => {
-        await AsyncStore.removeItem('AccessToken');
-        props.navigation.reset({
-            index: 0,
-            routes: [{ name: 'Login' }]
-        });
     }
 
     const [fetchedData, setFetchedData] = useState([]);
@@ -183,9 +176,6 @@ const Dashboard = props => {
                 <View style={{ width: "40%", alignItems: "center", justifyContent: "flex-end", padding: 10, flexDirection: "row" }}>
                     <Image source={require("../src/assets/coin.png")} style={intStyles.coin} />
                     {point && maxPoint ? <Text style={intStyles.navTxt}>{point.UserPoints}{showMax ? '/'+maxPoint.Minimum_Points : null}</Text> : null}
-                    {/* <Pressable style={intStyles.logoutBtn}>
-                        <Text onPress={() => Logout()} style={{fontSize: 15, fontWeight: "800", color: "#FFF"}}>Logout</Text>
-                    </Pressable> */}
                 </View>
             </View>
             <View style={intStyles.container}>
@@ -219,6 +209,33 @@ const Dashboard = props => {
                             </Pressable>
                         </View>
                     </View>
+                    <View style={intStyles.divider}>
+                        <View style={{ flexDirection: "row", marginHorizontal: 5 }}>
+                            <Pressable onPress={() => props.navigation.navigate('VehicleManage')}>
+                                <View style={intStyles.btn2}>
+                                    <FontAwesome5 name="car" color={"#FFF"} size={50} />
+                                    <Text style={intStyles.btnTxt2}>My Vehicles Details</Text>
+                                </View>
+                            </Pressable>
+                        </View>
+                        <View style={{ flexDirection: "row", marginHorizontal: 5 }}>
+                            <Pressable onPress={() => props.navigation.navigate('ContactUs')}>
+                                <View style={intStyles.btn1}>
+                                    <Feather name="phone-call" color={"#FAA41E"} size={50} />
+                                    <Text style={intStyles.btnTxt1}>Contact{'\n'}Us</Text>
+                                </View>
+                            </Pressable>
+                        </View>
+                        <View style={{ flexDirection: "row", marginHorizontal: 5 }}>
+                            <Pressable onPress={() => props.navigation.navigate('AboutUs')}>
+                                <View style={intStyles.btn2}>
+                                    <Feather name="info" color={"#FFF"} size={50} />
+                                    <Text style={intStyles.btnTxt2}>About{'\n'}Us</Text>
+                                </View>
+                            </Pressable>
+                        </View>
+                    </View>
+
                     <View style={{ width: "100%", padding: 10, alignItems: "center" }}>
                         <Text style={intStyles.reviewsHeading}>Reviews and Ratings</Text>
                     </View>
@@ -274,11 +291,11 @@ const Review = ({firstName, LastName, rate, review, userName}) => {
     return(
         <View style={intStyles.reviewContainer}>
             <View style={intStyles.topDivider}>
-                <View style={intStyles.imageContainer}>
+                {/* <View style={intStyles.imageContainer}>
                     <View style={intStyles.profileImgContainer}>
                         <Image source={require("../src/assets/sample_profile.jpg")} style={intStyles.profileImg}/>
                     </View>
-                </View>
+                </View> */}
                 <View style={intStyles.ratingsContainer}>
                     <Text style={intStyles.nameTxt}>{firstName} {LastName}</Text>
                     <View style={{flexDirection:"row"}}>

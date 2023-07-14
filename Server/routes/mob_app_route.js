@@ -33,6 +33,9 @@ const review = require('../mob_app_functions/review/review');
 const point = require('../mob_app_functions/dashboard/point');
 const badge_upgrade = require('../mob_app_functions/dashboard/badge_upgrade');
 const fetch_review = require('../mob_app_functions/dashboard/fetch_review');
+const vehicle_manage = require('../mob_app_functions/vehicle_management/vehicle_manage');
+const add_vehicle = require('../mob_app_functions/vehicle_management/add_vehicle');
+const delete_vehicle = require('../mob_app_functions/vehicle_management/delete_vehicle');
  
 
 //__________Server test__________
@@ -193,6 +196,21 @@ router.post('/badgeUpgrade', (req, res, next)=>{
 //__________Fetch reviews to the dashboard__________
 router.post('/fetchReview', (req, res, next)=>{
     fetch_review(req, res);
+})
+
+//__________Manage vehicles of relevant user__________
+router.post('/manageVehicles', (req, res, next)=>{
+    vehicle_manage(req, res);
+})
+
+//__________Add new vehicle__________
+router.post('/addNewVehicle', (req, res, next)=>{
+    add_vehicle(req, res);
+})
+
+//__________Delete vehicle__________
+router.post('/deleteVehicle', (req, res, next)=>{
+    delete_vehicle(req, res);
 })
 
 module.exports = router;
