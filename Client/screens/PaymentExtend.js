@@ -87,9 +87,6 @@ const PaymentExtend = (props) => {
           <Text style={styles.headingTxt}>Payment Details</Text>
         </View>
         <View style={styles.form}>
-
-          <Text style={styles.formTxt}>Card Type *</Text>
-
           <View style={styles.cardNum}>
             <CardField style={{ height: 50, width: "100%" }} postalCodeEnabled={false} onCardChange={cardDetails => setCardDetials(cardDetails)} />
           </View>

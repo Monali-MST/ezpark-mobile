@@ -111,13 +111,14 @@ const Dashboard = props => {
                 case 4:
                     setBadgeImage(require("../src/assets/blue.png"));
                     setMaxPoint(badgeDetails.bronze);
+                    setMinPoint(badgeDetails.blue);
                     break;
             }
         }
     }, [point]);
 
     useEffect(() => {
-        if (maxPoint) {
+        if (maxPoint && minPoint) {
             setLoading(false);
             if (point.UserPoints >= maxPoint.Minimum_Points && !(point.Badge==1)) {
                 switch (point.Badge) {
@@ -144,8 +145,9 @@ const Dashboard = props => {
                         break;
                 }
             }
+            setLoading(false);
         }
-    }, [maxPoint]);
+    }, [maxPoint, minPoint]);
 
     const upgradeBadge = async (badge) => {
         setLoading(true);
