@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.ezpark.app-mergeDebugResources-81:/values-nn/values-nn.xml",
+            "map": [
+                {
+                    "source": "/Users/pramodjayathilaka/.gradle/caches/transforms-3/16dcc9df228a2c340ba0844304d05e2d/transformed/jetified-stripe-3ds2-android-6.1.5/res/values-nn/values-nn.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,142,244,311,378,442,513",
+                        "endColumns": "86,101,66,66,63,70,66",
+                        "endOffsets": "137,239,306,373,437,508,575"
+                    }
+                }
+            ]
+        }
+    ]
+}

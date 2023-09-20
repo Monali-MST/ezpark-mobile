@@ -1,53 +1,28 @@
-import express from "express";
-import mysql from "mysql";
+var express = require("express");
+var bodyparser = require("body-parser");
+var cors = require("cors");
+var path = require("path");
+const dotenv = require("dotenv");
+var app = express();
 
-const app = express()
+const mob_app_functions = require("./routes/mob_app_route");
+const { SourceTextModule } = require("vm");
 
-app.use(express.json())
+dotenv.config();
+app.use(cors());
+app.use(bodyparser.json());
+app.use(express.static(path.join(__dirname, "public")));
 
-const db=mysql.createConnection({
-    host:"ezpark-db.cvhbqqtsx1je.ap-northeast-1.rds.amazonaws.com",
-    user:"admin",
-    password:"ezPark!123",
-    database:"EzPark"
+app.use("/", mob_app_functions);
 
-})
+//Listening to frontend
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
-app.get("/",(req,res)=>{
-    res.json("Hello this is backend")
-})
-
-app.get("/user",(req,res)=>{
-    const query="SELECT * FROM User_Details"
-    db.query(query,(err,data)=>{
-        if(err) return res.json(err)
-        return res.json(data)
-    })
-})
-
-app.post("/user",(req,res)=>{
-    const query="INSERT INTO `EzPark`.`User_Details` (`FirstName`, `LastName`, `AddFLine`, `AddSLine`, `Street`, `City`, `PostCode`, `MobileNo`, `FixedLine`, `NIC`, `Email`,`Password`) VALUES (?);"
-    const values=[
-        req.body.FirstName,
-        req.body.LastName,
-        req.body.AddFLine,
-        req.body.AddSLine,
-        req.body.Street,
-        req.body.City,
-        req.body.PostCode,
-        req.body.MobileNo,
-        req.body.FixedLine,
-        req.body.NIC,
-        req.body.Email,
-        req.body.Password
-    ]
-    db.query(query,[values],(err,data)=>{
-        if(err) return res.json(err)
-        return res.json("User account has been  created succefully")
-    })
-
-})
-
-app.listen(8800, ()=>{
-    console.log("Connected to backend!2")
-})
+//Start server using environment variables
+app.listen(process.env.PORT, () => {
+  console.log("server started in port : ", process.env.PORT);
+});
